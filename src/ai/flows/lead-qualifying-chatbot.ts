@@ -46,22 +46,6 @@ const prompt = ai.definePrompt({
   Here's the user's message: {{{message}}}
 
   Generate a response for the user, set the isQualified field, and optionally suggest a next step.
-  Format the output as a JSON object with the following fields:
-  - response: The chatbot response to the user message.
-  - isQualified: Whether the user is qualified as a lead (true or false).
-  - nextStep: The next step for the user (optional).
-
-  Example Output:
-  {
-    "response": "Thank you for providing that information. Based on your input, you are a qualified lead. Would you like to schedule a consultation to discuss your project further?",
-    "isQualified": true,
-    "nextStep": "Schedule a consultation at [link to scheduling page]"
-  }
-
-  {
-    "response": "Thank you for your interest. At this time, we are unable to assist you.",
-    "isQualified": false
-  }
   `,
 });
 
