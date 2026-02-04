@@ -6,6 +6,7 @@ import { CodeXml } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Navigation() {
   const { scrollY } = useScroll();
@@ -90,6 +91,12 @@ export default function Navigation() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <div className={cn(
+            "flex items-center gap-2 rounded-full px-2 py-1",
+            !isScrolled && "bg-black/20 backdrop-blur-sm"
+          )}>
+            <ModeToggle />
+          </div>
           <Button 
             asChild 
             className={cn(
