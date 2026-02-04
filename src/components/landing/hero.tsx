@@ -23,8 +23,8 @@ const ComparisonCard = ({
 
   return (
     <Card
-      className={`relative overflow-hidden border-2 ${
-        type === "after" ? "border-primary" : "border-destructive/50"
+      className={`relative overflow-hidden border-2 transition-all duration-300 hover:shadow-xl ${
+        type === "after" ? "border-primary/50 bg-white/5" : "border-destructive/30 bg-white/5"
       }`}
     >
       <CardContent className="p-4">
@@ -35,17 +35,17 @@ const ComparisonCard = ({
             <XCircle className="w-6 h-6 text-red-500" />
           )}
           <div>
-            <h3 className="font-semibold text-lg text-foreground">{title}</h3>
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <h3 className="font-semibold text-lg text-white">{title}</h3>
+            <p className="text-sm text-gray-400">{description}</p>
           </div>
         </div>
-        <div className="aspect-video relative rounded-md overflow-hidden bg-muted">
+        <div className="aspect-video relative rounded-md overflow-hidden bg-muted/20">
           {imageData && (
             <Image
               src={imageData.imageUrl}
               alt={description}
               fill
-              className="object-cover"
+              className="object-cover opacity-80 hover:opacity-100 transition-opacity"
               sizes="(max-width: 768px) 100vw, 50vw"
               data-ai-hint={imageData.imageHint}
             />
@@ -58,70 +58,77 @@ const ComparisonCard = ({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen bg-slate-900 text-primary-foreground flex items-center py-20 md:py-0">
-       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-blue-900/40 opacity-80"></div>
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5"></div>
+    <section className="relative min-h-screen bg-slate-950 text-primary-foreground flex flex-col justify-center pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-900/20"></div>
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-[0.03]"></div>
+      
+      {/* Decorative Blur Blobs */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
+
       <div className="container mx-auto px-6 relative z-10">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline mb-4 text-center max-w-4xl mx-auto"
-        >
-          Stop Paying &apos;AI Agencies&apos; to Prompt ChatGPT For You
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg md:text-xl text-primary-foreground/70 mb-10 text-center max-w-3xl mx-auto"
-        >
-          Custom automation systems built by software engineers with
-          cybersecurity expertise. Production-ready, secure, and scalable. From
-          $399.
-        </motion.p>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-10 max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-headline mb-6 tracking-tight leading-[1.1]">
+              Stop Paying &apos;AI Agencies&apos; to <span className="text-primary italic">Prompt ChatGPT</span> For You
+            </h1>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-medium"
+          >
+            Custom automation systems built by software engineers with
+            cybersecurity expertise. Production-ready, secure, and scalable.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Button size="lg" className="h-12 px-8 font-bold text-base" asChild>
+              <Link href="#why-custom">See The Difference</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="h-12 px-8 font-bold text-base border-white/20 hover:bg-white/10" asChild>
+              <Link href="#contact">Book Free Consultation</Link>
+            </Button>
+          </motion.div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
           >
             <ComparisonCard
               type="before"
               title="Typical AI Agency"
-              description="Fancy prompts + markup"
+              description="Fancy prompts + heavy markup"
               imageId="hero-before"
             />
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
           >
             <ComparisonCard
               type="after"
-              title="Our Approach"
-              description="Custom code + API integrations"
+              title="Our Engineering Approach"
+              description="Custom code + direct API integrations"
               imageId="hero-after"
             />
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Button size="lg" asChild>
-            <Link href="#why-custom">See The Difference</Link>
-          </Button>
-          <Button size="lg" variant="outline" className="border-primary-foreground/50 hover:bg-primary-foreground/10" asChild>
-             <Link href="#contact">Book Free Consultation</Link>
-          </Button>
-        </motion.div>
       </div>
     </section>
   );
