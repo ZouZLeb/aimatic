@@ -38,14 +38,14 @@ export function ModeToggle() {
         "bg-white/5 hover:bg-white/20 border border-white/10"
       )}
       onClick={toggleTheme}
-      title={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
+      title={`Current: ${resolvedTheme === "dark" ? "Dark" : "Light"} mode`}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={resolvedTheme}
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -30, opacity: 0 }}
+          initial={{ x: resolvedTheme === "dark" ? 20 : -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: resolvedTheme === "dark" ? -20 : 20, opacity: 0 }}
           transition={{ 
             type: "spring",
             stiffness: 300,
@@ -54,9 +54,9 @@ export function ModeToggle() {
           className="flex items-center justify-center w-full h-full absolute inset-0"
         >
           {resolvedTheme === "dark" ? (
-            <Sun className="h-5 w-5 text-white" />
-          ) : (
             <Moon className="h-5 w-5 text-white" />
+          ) : (
+            <Sun className="h-5 w-5 text-white" />
           )}
         </motion.div>
       </AnimatePresence>

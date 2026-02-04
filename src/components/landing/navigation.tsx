@@ -23,7 +23,7 @@ export default function Navigation() {
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300",
         isScrolled 
-          ? "bg-background/95 backdrop-blur-md border-b py-3 shadow-md" 
+          ? "bg-slate-950/95 backdrop-blur-md border-b border-white/10 py-3 shadow-md" 
           : "bg-transparent py-6"
       )}
     >
@@ -31,14 +31,11 @@ export default function Navigation() {
         <Link href="/" className="flex items-center gap-2 group">
           <div className={cn(
             "p-1.5 rounded-lg transition-all duration-300",
-            isScrolled ? "bg-primary/10" : "bg-white/20 group-hover:bg-white/30"
+            isScrolled ? "bg-primary/20" : "bg-white/20 group-hover:bg-white/30"
           )}>
-            <CodeXml className={cn("w-6 h-6", isScrolled ? "text-primary" : "text-white")} />
+            <CodeXml className="w-6 h-6 text-white" />
           </div>
-          <span className={cn(
-            "font-black text-xl tracking-tight transition-colors font-headline", 
-            isScrolled ? "text-foreground" : "text-white"
-          )}>
+          <span className="font-black text-xl tracking-tight transition-colors font-headline text-white">
             SecureAutomate
           </span>
         </Link>
@@ -48,12 +45,7 @@ export default function Navigation() {
             <Link 
               key={item}
               href={`#${item.toLowerCase().replace(' ', '-')}`} 
-              className={cn(
-                "transition-all duration-200", 
-                isScrolled 
-                  ? "text-muted-foreground hover:text-primary font-semibold" 
-                  : "text-white/90 hover:text-white"
-              )}
+              className="text-white/80 hover:text-white transition-all duration-200"
             >
               {item}
             </Link>
@@ -70,10 +62,10 @@ export default function Navigation() {
           <Button 
             asChild 
             className={cn(
-              "font-bold transition-all h-10 px-6",
-              !isScrolled 
-                ? "bg-white text-slate-950 hover:bg-slate-100 shadow-lg border-none" 
-                : "bg-primary text-primary-foreground"
+              "font-bold transition-all h-10 px-6 border-none shadow-lg",
+              isScrolled 
+                ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                : "bg-white text-slate-950 hover:bg-slate-100"
             )}
           >
             <Link href="#contact">Book a Call</Link>
