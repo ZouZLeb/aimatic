@@ -12,7 +12,7 @@ export function ModeToggle() {
   const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
-  // Prevent hydration mismatch by only rendering the toggle after mounting
+  // Prevent hydration mismatch
   React.useEffect(() => {
     setMounted(true)
   }, [])
@@ -38,14 +38,14 @@ export function ModeToggle() {
         "bg-white/5 hover:bg-white/20 border border-white/10"
       )}
       onClick={toggleTheme}
-      title={`Current: ${resolvedTheme === "dark" ? "Dark" : "Light"} mode`}
+      title={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={resolvedTheme}
-          initial={{ x: resolvedTheme === "dark" ? 20 : -20, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: resolvedTheme === "dark" ? -20 : 20, opacity: 0 }}
+          initial={{ y: resolvedTheme === "dark" ? 20 : -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: resolvedTheme === "dark" ? -20 : 20, opacity: 0 }}
           transition={{ 
             type: "spring",
             stiffness: 300,

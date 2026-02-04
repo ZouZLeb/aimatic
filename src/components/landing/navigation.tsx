@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -22,24 +21,21 @@ export default function Navigation() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300",
+        "fixed top-0 z-50 w-full transition-all duration-300 bg-slate-900 text-white",
         isScrolled 
-          ? "bg-background/95 backdrop-blur-md border-b py-3 shadow-md" 
-          : "bg-transparent py-6"
+          ? "backdrop-blur-md bg-slate-900/90 border-b border-white/10 py-3 shadow-md" 
+          : "py-6"
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className={cn(
             "p-1.5 rounded-lg transition-all duration-300",
-            isScrolled ? "bg-primary/10" : "bg-primary/20 group-hover:bg-primary/30"
+            "bg-primary/20 group-hover:bg-primary/30"
           )}>
-            <CodeXml className={cn("w-6 h-6", isScrolled ? "text-primary" : "text-primary dark:text-white")} />
+            <CodeXml className="w-6 h-6 text-primary" />
           </div>
-          <span className={cn(
-            "font-black text-xl tracking-tight transition-colors font-headline",
-            isScrolled ? "text-foreground" : "text-foreground dark:text-white"
-          )}>
+          <span className="font-black text-xl tracking-tight transition-colors font-headline text-white">
             SecureAutomate
           </span>
         </Link>
@@ -49,10 +45,7 @@ export default function Navigation() {
             <Link 
               key={item}
               href={`#${item.toLowerCase().replace(' ', '-')}`} 
-              className={cn(
-                "transition-all duration-200",
-                isScrolled ? "text-muted-foreground hover:text-primary" : "text-foreground/80 dark:text-white/80 hover:text-foreground dark:hover:text-white"
-              )}
+              className="transition-all duration-200 text-white/70 hover:text-white"
             >
               {item}
             </Link>
@@ -63,10 +56,7 @@ export default function Navigation() {
           <ModeToggle />
           <Button 
             asChild 
-            className={cn(
-              "font-bold transition-all h-10 px-6 border-none shadow-lg",
-              "bg-primary text-primary-foreground hover:bg-primary/90"
-            )}
+            className="font-bold transition-all h-10 px-6 border-none shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
           >
             <Link href="#contact">Book a Call</Link>
           </Button>
