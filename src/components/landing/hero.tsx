@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -24,19 +25,21 @@ const ComparisonCard = ({
   return (
     <Card
       className={`relative overflow-hidden border-2 transition-all duration-300 hover:shadow-xl ${
-        type === "after" ? "border-primary/50 bg-white/10" : "border-destructive/40 bg-white/5"
+        type === "after" 
+          ? "border-primary/50 bg-primary/5 dark:bg-white/10" 
+          : "border-destructive/40 bg-destructive/5 dark:bg-white/5"
       }`}
     >
       <CardContent className="p-5">
         <div className="flex items-center gap-3 mb-4">
           {type === "after" ? (
-            <CheckCircle className="w-6 h-6 text-green-400" />
+            <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
           ) : (
-            <XCircle className="w-6 h-6 text-red-400" />
+            <XCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
           )}
           <div>
-            <h3 className="font-bold text-lg text-white">{title}</h3>
-            <p className="text-sm text-gray-300">{description}</p>
+            <h3 className="font-bold text-lg text-foreground dark:text-white">{title}</h3>
+            <p className="text-sm text-muted-foreground dark:text-gray-300">{description}</p>
           </div>
         </div>
         <div className="aspect-video relative rounded-md overflow-hidden bg-slate-900">
@@ -58,12 +61,12 @@ const ComparisonCard = ({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-slate-950 text-white flex flex-col justify-center pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-900/30"></div>
+    <section className="relative min-h-screen bg-background dark:bg-slate-950 text-foreground dark:text-white flex flex-col justify-center pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-primary/10 dark:from-slate-950 dark:via-slate-900 dark:to-blue-900/30"></div>
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-[0.05]"></div>
       
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/30 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/20 dark:bg-primary/30 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/10 dark:bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
@@ -81,7 +84,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-medium"
+            className="text-lg md:text-xl text-muted-foreground dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium"
           >
             Custom automation systems built by software engineers with
             cybersecurity expertise. Production-ready, secure, and scalable.
@@ -96,7 +99,7 @@ export default function Hero() {
             <Button size="lg" className="h-12 px-8 font-bold text-base bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
               <Link href="#why-custom">See The Difference</Link>
             </Button>
-            <Button size="lg" variant="outline" className="h-12 px-8 font-bold text-base border-white/30 text-white hover:bg-white/10" asChild>
+            <Button size="lg" variant="outline" className="h-12 px-8 font-bold text-base border-input dark:border-white/30 text-foreground dark:text-white hover:bg-accent/5 dark:hover:bg-white/10" asChild>
               <Link href="#contact">Book Free Consultation</Link>
             </Button>
           </motion.div>
