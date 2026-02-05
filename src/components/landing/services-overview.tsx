@@ -8,44 +8,44 @@ import { Badge } from "../ui/badge";
 const services = [
   {
     id: 1,
-    icon: Bot,
-    title: "AI-Powered Workflow Automation",
-    description: "Eliminate repetitive, manual tasks that drain your team's time and introduce errors.",
+    icon: Zap,
+    title: "n8n Workflow Engineering",
+    description: "Build robust, self-hosted automation workflows that integrate with 400+ apps without the high SaaS costs.",
     examples: [
-      "Automated data entry and CRM updates",
-      "Dynamic report generation (sales, finance, ops)",
-      "Intelligent email processing & response routing",
-      "Document data extraction (invoices, forms, etc.)",
+      "Custom n8n nodes for proprietary tools",
+      "End-to-end multi-app data pipelines",
+      "Automated lead processing & enrichment",
+      "Self-hosted privacy-focused scheduling",
     ],
-    roi: "Save 10-25 hours/week per employee",
+    roi: "Own your infrastructure, 0 per-task fees",
     color: "text-blue-400",
   },
   {
     id: 2,
-    icon: Link2,
-    title: "System Integration & API Development",
-    description: "Connect your disconnected software tools into one seamless, automated workflow.",
+    icon: Code,
+    title: "Custom Scripts & API Development",
+    description: "When n8n isn't enough, we write production-ready Python or Node.js scripts for complex business logic.",
     examples: [
-      "Real-time Shopify ↔ QuickBooks sync",
-      "Salesforce ↔ Marketing platform integration",
-      "Custom connectors for proprietary databases",
-      "Legacy system modernization & API wrapping",
+      "Secure data sync for legacy systems",
+      "Custom internal tooling & dashboards",
+      "Advanced PDF/Document parsing scripts",
+      "HIPAA/SOC 2 compliant data handlers",
     ],
-    roi: "Eliminate 5-10 hours/week of data transfer",
+    roi: "100% ownership of source code",
     color: "text-purple-400",
   },
   {
     id: 3,
-    icon: MessageSquare,
-    title: "Custom AI Chatbots & Support",
-    description: "Provide 24/7 intelligent support that actually understands your business context.",
+    icon: Link2,
+    title: "Privacy-First System Integration",
+    description: "Connect your tech stack through private APIs that don't leak metadata to third-party aggregators.",
     examples: [
-      "Internal knowledge base chatbots for employees",
-      "Customer support ticket triage and resolution",
-      "Website lead qualification and meeting scheduling",
-      "Interactive training & onboarding assistants",
+      "Secure CRM ↔ ERP synchronization",
+      "Private knowledge base integrations",
+      "Inventory & Fulfillment automation",
+      "Encrypted communication bridges",
     ],
-    roi: "Handle 60-80% of routine inquiries instantly",
+    roi: "Total data sovereignty and security",
     color: "text-green-400",
   },
 ];
@@ -55,9 +55,9 @@ export default function ServicesOverview() {
     <section id="services" className="bg-white dark:bg-slate-950/50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold font-headline">What We Build For You</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-headline">Production-Grade Solutions</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            From single-task automation to complex system integrations, we build custom solutions, not cookie-cutter templates.
+            We don't sell &apos;AI templates&apos;. We build high-quality, custom systems that solve specific problems while keeping your data private.
           </p>
         </div>
 
@@ -85,7 +85,7 @@ export default function ServicesOverview() {
                   
                   <div className="mb-6">
                     <h4 className="font-semibold text-sm mb-3">
-                      Common Examples:
+                      Core Offerings:
                     </h4>
                     <ul className="space-y-2">
                       {service.examples.map((example, i) => (
@@ -102,7 +102,7 @@ export default function ServicesOverview() {
 
                   <div className="pt-4 border-t mt-auto">
                      <Badge variant="secondary" className="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300">
-                        <Zap className="w-4 h-4 mr-2" /> {service.roi}
+                         {service.roi}
                      </Badge>
                   </div>
                 </CardContent>

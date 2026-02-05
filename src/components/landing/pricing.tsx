@@ -9,51 +9,50 @@ import { cn } from "@/lib/utils";
 
 const pricingTiers = [
   {
-    name: "Starter",
-    price: "$399",
-    priceDetail: "one-time",
-    bestFor: "Single workflow automation",
+    name: "Standard Build",
+    price: "$2,500+",
+    priceDetail: "fixed project fee",
+    bestFor: "Optimizing a core business process",
     features: [
-      "1 automated workflow",
-      "Up to 2 system integrations",
-      "Basic error handling",
-      "Email notifications",
+      "Custom n8n workflow engineering",
+      "Up to 3 deep-system integrations",
+      "Full source code delivery",
+      "Security audit & threat model",
     ],
-    timeline: "1-2 weeks",
-    cta: "Get Started",
+    timeline: "2 weeks",
+    cta: "Start Your Build",
     ctaLink: "#contact",
     highlighted: false,
   },
   {
-    name: "Professional",
-    price: "$1,500 - $3k",
-    priceDetail: "one-time project",
-    bestFor: "Multi-system integrations",
+    name: "Enterprise Architecture",
+    price: "$7,500+",
+    priceDetail: "custom scope",
+    bestFor: "Cross-departmental infrastructure",
     features: [
-      "Multiple automated workflows",
-      "3-5 system integrations",
-      "Advanced AI processing",
-      "Custom dashboard/UI",
-      "Comprehensive error handling",
+      "Self-hosted n8n infrastructure",
+      "Advanced custom Node/Python scripts",
+      "Complex API development",
+      "Staff training & documentation",
+      "Priority security monitoring",
     ],
-    timeline: "2-4 weeks",
-    cta: "Schedule Consultation",
+    timeline: "4-6 weeks",
+    cta: "Request Architecture Review",
     ctaLink: "#contact",
     highlighted: true,
   },
   {
-    name: "Enterprise",
-    price: "$5k+",
-    priceDetail: "custom scope",
-    bestFor: "Complex, scalable systems",
+    name: "Ongoing Engineering",
+    price: "Custom",
+    priceDetail: "monthly retainer",
+    bestFor: "Businesses requiring continuous R&D",
     features: [
-      "Unlimited workflows",
-      "Enterprise-grade security",
-      "Custom AI models",
-      "Dedicated support & SLA",
-      "Priority updates",
+      "Dedicated senior engineer",
+      "Unlimited workflow adjustments",
+      "Regular security patching",
+      "Emergency incident response",
     ],
-    timeline: "4-8 weeks",
+    timeline: "Ongoing",
     cta: "Contact Us",
     ctaLink: "#contact",
     highlighted: false,
@@ -61,10 +60,10 @@ const pricingTiers = [
 ];
 
 const includedFeatures = [
-    "Full Security Audit",
-    "Thorough Testing",
-    "Complete Documentation",
-    "30-Day Post-Launch Support",
+    "Full IP Ownership",
+    "Self-Hosted Support",
+    "Security-Certified Build",
+    "30-Day Support Post-Launch",
 ]
 
 export default function Pricing() {
@@ -73,10 +72,10 @@ export default function Pricing() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
-            Transparent Pricing. No Hidden Fees.
+            Transparent Engineering Rates.
           </h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            We believe in upfront pricing. Choose a plan that fits your needs, or contact us for a custom quote.
+            We don't charge per-task fees. Pay for the engineering once, own your automation forever.
           </p>
         </div>
 
@@ -101,7 +100,7 @@ export default function Pricing() {
                 <div className="p-8">
                   {tier.highlighted && (
                     <div className="bg-yellow-400 text-blue-950 text-xs font-black py-1 px-4 rounded-full inline-block mb-4 absolute -top-4 left-1/2 -translate-x-1/2 shadow-md">
-                      MOST POPULAR
+                      BEST VALUE
                     </div>
                   )}
                   <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
@@ -121,7 +120,7 @@ export default function Pricing() {
                 </div>
                 
                 <div className="p-8 bg-black/5 dark:bg-white/5 flex-grow">
-                   <h4 className="font-bold text-sm mb-4 uppercase tracking-wider">Top features:</h4>
+                   <h4 className="font-bold text-sm mb-4 uppercase tracking-wider">Project inclusions:</h4>
                   <ul className="space-y-3">
                     {tier.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
@@ -134,7 +133,7 @@ export default function Pricing() {
                   </ul>
                 </div>
                  <div className="p-8 border-t dark:border-white/10">
-                    <span className="text-xs font-bold uppercase text-muted-foreground tracking-widest mr-2">Timeline: </span>
+                    <span className="text-xs font-bold uppercase text-muted-foreground tracking-widest mr-2">Est. Timeline: </span>
                     <span className="text-sm font-semibold">{tier.timeline}</span>
                   </div>
               </Card>
@@ -143,7 +142,7 @@ export default function Pricing() {
         </div>
 
         <div className="text-center bg-card rounded-xl p-8 max-w-4xl mx-auto border shadow-sm">
-          <h3 className="text-lg font-bold mb-6">All Plans Include:</h3>
+          <h3 className="text-lg font-bold mb-6">Every Project Features:</h3>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
             {includedFeatures.map((feature, i) => (
                 <div key={i} className="flex items-center gap-2 text-sm font-medium">
@@ -153,7 +152,7 @@ export default function Pricing() {
             ))}
           </div>
           <p className="text-muted-foreground text-xs mt-8 border-t pt-4">
-            * No recurring monthly fees. Dedicated support packages available upon request.
+            * We specialize in n8n, Python, Node.js, and SQL. No platform lock-in.
           </p>
         </div>
       </div>

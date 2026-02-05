@@ -10,52 +10,49 @@ const processSteps = [
   {
     id: 1,
     icon: ShieldCheck,
-    title: "Threat Modeling",
-    description: "Identify vulnerabilities before writing code.",
+    title: "Privacy Audit & Modeling",
+    description: "Map your data to ensure 0% leakage to third-parties.",
     details: [
-      "Data flow analysis to map sensitive data paths",
-      "Attack surface mapping to find potential entry points",
-      "Compliance requirement review (GDPR, HIPAA, SOC 2)",
-      "Vetting of all third-party integrations and APIs",
+      "Identification of sensitive PII and trade secrets",
+      "Analysis of data destinations to prevent AI-training leakage",
+      "Regulatory compliance mapping (GDPR, CCPA, HIPAA)",
+      "Strict vetting of all workflow dependencies",
     ],
   },
   {
     id: 2,
     icon: Lock,
-    title: "Secure Architecture",
-    description: "Build on a production-grade foundation.",
+    title: "Secure n8n/Code Architecture",
+    description: "Self-hosted, encrypted, and production-grade.",
     details: [
-      "OAuth 2.0 / JWT for robust authentication",
-      "End-to-end encryption for data in transit and at rest",
-      "Principle of least privilege for role-based access",
-      "API rate limiting & DDoS protection",
-      "Secure secrets management (never hardcoded credentials)",
+      "Deployment to your private VPC or self-hosted server",
+      "Encryption of secrets using enterprise-grade vaults",
+      "Custom authentication protocols (OAuth2/SAML)",
+      "System isolation to prevent lateral movement threats",
     ],
   },
   {
     id: 3,
     icon: Bug,
-    title: "Testing & Validation",
-    description: "Test against real-world attack scenarios.",
+    title: "Verification & Hardening",
+    description: "Rigorous testing by security-certified engineers.",
     details: [
-      "Automated security scanning (OWASP Top 10)",
-      "Manual penetration testing for business logic flaws",
-      "Input validation & sanitization testing",
-      "Rigorous error handling and fail-safe verification",
-      "Load testing to ensure production readiness and stability",
+      "Penetration testing of all custom API endpoints",
+      "Static and dynamic code analysis for vulnerabilities",
+      "Stress testing for reliability and error-resilience",
+      "Input validation to prevent prompt-injection and SQLi",
     ],
   },
   {
     id: 4,
     icon: Activity,
-    title: "Monitoring & Maintenance",
-    description: "Continuous security and proactive upkeep.",
+    title: "Lifecycle Support",
+    description: "Continuous monitoring and priority updates.",
     details: [
-      "Real-time error and anomaly tracking (e.g., Sentry)",
-      "Uptime monitoring with a 99.9% SLA guarantee",
-      "Automated dependency scanning and security patching",
-      "Regular performance monitoring and optimization",
-      "Optional monthly security audits and reports",
+      "Proactive patching of all script dependencies",
+      "Real-time monitoring of workflow health and performance",
+      "Ongoing security audits as your business scales",
+      "Direct engineer access for support and maintenance",
     ],
   },
 ];
@@ -68,10 +65,10 @@ export default function SecurityProcess() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
-            Built by Developers With Security Clearance
+            Certified Security First. No Compromises.
           </h2>
           <p className="text-lg text-primary-foreground/70 mt-4 max-w-3xl mx-auto">
-            Every automation we build goes through our rigorous 4-stage security process before a single line of code is deployed to production.
+            We don't just build automations; we engineer secure systems. Our 4-stage lifecycle ensures your proprietary data stays proprietary.
           </p>
         </div>
 
@@ -107,7 +104,7 @@ export default function SecurityProcess() {
                   transition={{ duration: 0.3 }}
                 >
                   <CardContent className="p-8">
-                     <h3 className="text-xl font-bold mb-4 font-headline">{processSteps.find(s => s.id === activeStep)?.title} Deep Dive</h3>
+                     <h3 className="text-xl font-bold mb-4 font-headline">{processSteps.find(s => s.id === activeStep)?.title} Specifications</h3>
                     <ul className="space-y-3">
                         {processSteps
                         .find((s) => s.id === activeStep)

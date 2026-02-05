@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Linkedin, Github, Award, Briefcase, Verified } from "lucide-react";
+import { Linkedin, Github, Shield, Code, Cpu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "../ui/button";
@@ -14,10 +14,10 @@ export default function AboutSection() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
-            Built by Engineers, Not Marketers
+            Developers, Not Prompt Engineers
           </h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            We bring enterprise-grade software development and security practices to every project, ensuring robust and reliable automation solutions.
+            We focus on building high-quality, secure systems that solve problems while ensuring our clients own their technology.
           </p>
         </div>
 
@@ -36,36 +36,23 @@ export default function AboutSection() {
                     />
                   )}
                 </div>
-                <h3 className="text-2xl font-bold font-headline">Your Name</h3>
+                <h3 className="text-2xl font-bold font-headline">The Engineering Team</h3>
                 <p className="text-primary mb-4">
-                  Founder, Lead Software & Security Engineer
+                  Software Developers & Cybersecurity Experts
                 </p>
-
-                <div className="flex gap-4 mb-6">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <Linkedin className="mr-2" /> LinkedIn
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2" /> GitHub
-                    </a>
-                  </Button>
-                </div>
 
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-3">
-                    <Briefcase className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span><strong>8+ years</strong> in software development</span>
+                    <Shield className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span><strong>Security+ & AWS</strong> Certified</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Award className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>AWS Certified Developer</span>
+                    <Code className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span>Specializing in <strong>n8n & Custom Scripts</strong></span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Verified className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>Security+ Certified</span>
+                    <Cpu className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span>Focused on <strong>Data Sovereignty</strong></span>
                   </div>
                 </div>
               </div>
@@ -73,49 +60,50 @@ export default function AboutSection() {
               <div className="md:col-span-3 p-6 md:p-8">
                 <div className="prose prose-lg max-w-none text-foreground/90">
                   <p>
-                    After years as a software developer and cybersecurity analyst, I
-                    watched the &apos;AI automation&apos; space explode with agencies
-                    just reselling ChatGPT access with a huge markup. Most
-                    couldn&apos;t write a single line of code.
+                    The AI space is crowded with agencies that simply wrap a few
+                    ChatGPT prompts in a expensive SaaS subscription. They don't
+                    know how your data is being used, and they don't provide you
+                    with the tools to own your systems.
                   </p>
 
                   <p className="font-semibold text-foreground">
-                    We&apos;re different. Every system we build is custom-coded,
-                    security-audited, and production-ready. We don&apos;t use
-                    templates. We don&apos;t resell SaaS tools. We build actual
-                    software that integrates with your actual systems.
+                    We're building something different. Our team consists of actual 
+                    software developers with deep backgrounds in cybersecurity. We use
+                    tools like n8n and custom-written code to build systems that
+                    live on your servers and work with your existing tools.
                   </p>
 
                   <p>
-                    With a background in enterprise software development and
-                    penetration testing, we bring enterprise-grade security and
-                    reliability to every project—even the starter ones.
+                    When you work with us, your privacy comes first. We ensure you 
+                    don't have to share sensitive trade secrets or customer info 
+                    with opaque LLM providers. You keep complete control over who
+                    and where your data goes.
                   </p>
 
                   <p>
-                    When you work with us, you&apos;re working directly with the engineer
-                    who writes the code. No account managers. No outsourcing. Just
-                    honest, technical expertise applied to your specific problem.
+                    We deliver the code, the workflows, and the documentation. 
+                    You own the system. We provide ongoing support on your terms, 
+                    not as a way to keep you locked into a subscription.
                   </p>
                 </div>
 
                 <div className="mt-8 grid sm:grid-cols-3 gap-4">
                   <Card className="bg-primary/5 p-4">
-                    <h4 className="font-bold mb-1 text-primary">No BS</h4>
+                    <h4 className="font-bold mb-1 text-primary">No Wrappers</h4>
                     <p className="text-sm text-foreground/80">
-                      We tell you what you need, not what makes us the most money.
+                      We build real logic, not just chat interfaces.
                     </p>
                   </Card>
                   <Card className="bg-primary/5 p-4">
-                    <h4 className="font-bold mb-1 text-primary">Security First</h4>
+                    <h4 className="font-bold mb-1 text-primary">Data Privacy</h4>
                     <p className="text-sm text-foreground/80">
-                      Every line of code is written with security in mind.
+                      Your data stays in your VPC, always.
                     </p>
                   </Card>
                    <Card className="bg-primary/5 p-4">
-                    <h4 className="font-bold mb-1 text-primary">Real Code</h4>
+                    <h4 className="font-bold mb-1 text-primary">Full IP</h4>
                     <p className="text-sm text-foreground/80">
-                      Custom solutions, not repackaged SaaS subscriptions.
+                      You own 100% of the automation we build.
                     </p>
                   </Card>
                 </div>

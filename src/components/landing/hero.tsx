@@ -1,11 +1,10 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
-import { CheckCircle, XCircle } from "lucide-react";
+import { ShieldCheck, Database } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -33,9 +32,9 @@ const ComparisonCard = ({
       <CardContent className="p-5">
         <div className="flex items-center gap-3 mb-4">
           {type === "after" ? (
-            <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
+            <ShieldCheck className="w-6 h-6 text-green-600 dark:text-green-400" />
           ) : (
-            <XCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
+            <Database className="w-6 h-6 text-red-600 dark:text-red-400" />
           )}
           <div>
             <h3 className="font-bold text-lg text-foreground dark:text-white">{title}</h3>
@@ -76,7 +75,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-headline mb-6 tracking-tight leading-[1.1]">
-              Stop Paying &apos;AI Agencies&apos; to <span className="text-primary italic">Prompt ChatGPT</span> For You
+              Stop Sending Your Data to <span className="text-primary italic">Opaque AI Wrappers</span>
             </h1>
           </motion.div>
 
@@ -86,8 +85,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium"
           >
-            Custom automation systems built by software engineers with
-            cybersecurity expertise. Production-ready, secure, and scalable.
+            We build high-performance automation with n8n and custom scripts. 
+            Real engineering for security-first businesses. No data leaks, no monthly per-task fees, complete ownership.
           </motion.p>
 
           <motion.div
@@ -97,7 +96,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button size="lg" className="h-12 px-8 font-bold text-base bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-              <Link href="#why-custom">See The Difference</Link>
+              <Link href="#why-custom">Ownership vs Renting</Link>
             </Button>
             <Button size="lg" variant="outline" className="h-12 px-8 font-bold text-base border-input dark:border-white/30 text-foreground dark:text-white hover:bg-accent/5 dark:hover:bg-white/10" asChild>
               <Link href="#contact">Book Free Consultation</Link>
@@ -113,8 +112,8 @@ export default function Hero() {
           >
             <ComparisonCard
               type="before"
-              title="Typical AI Agency"
-              description="Fancy prompts + heavy markup"
+              title="Generic AI Agencies"
+              description="Your data feeds their models via generic SaaS tools"
               imageId="hero-before"
             />
           </motion.div>
@@ -125,8 +124,8 @@ export default function Hero() {
           >
             <ComparisonCard
               type="after"
-              title="Our Engineering Approach"
-              description="Custom code + direct API integrations"
+              title="Our Engineered Systems"
+              description="Private n8n workflows & custom scripts you own"
               imageId="hero-after"
             />
           </motion.div>

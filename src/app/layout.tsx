@@ -6,9 +6,9 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'SecureAutomate | Custom AI Automation for Security-First Businesses',
+  title: 'SecureAutomate | Engineering Private & Owned AI Infrastructure',
   description:
-    'Stop paying "AI Agencies" to prompt ChatGPT. We build custom, secure, and scalable automation systems with real code.',
+    'Custom automation built with n8n and real code by certified security engineers. Own your systems, protect your data, and eliminate opaque AI wrappers.',
 };
 
 export default function RootLayout({

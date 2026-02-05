@@ -11,44 +11,36 @@ import { motion } from "framer-motion";
 
 const comparisonData = [
   {
-    feature: "Integration with existing systems",
-    chatgpt: { status: "no", text: "Copy/paste only" },
-    nocode: { status: "partial", text: "Limited connectors" },
-    custom: { status: "yes", text: "Full API integration" },
+    feature: "Data Privacy & Control",
+    chatgpt: { status: "no", text: "Data shared with LLM providers" },
+    nocode: { status: "partial", text: "Third-party server storage" },
+    custom: { status: "yes", text: "Self-hosted or private cloud" },
     details:
-      "ChatGPT requires manual data transfer. No-code tools like Zapier offer thousands of connectors but can't handle custom or legacy systems. We build direct API connections to ANY system your business uses: from Salesforce to a proprietary database.",
+      "Most 'AI agencies' use tools that feed your sensitive company data back into LLM training loops. We build systems using self-hosted n8n or private scripts, ensuring your data never leaves your controlled environment unless you want it to.",
   },
   {
-    feature: "Security & compliance",
-    chatgpt: { status: "no", text: "No control" },
-    nocode: { status: "partial", text: "Basic encryption" },
-    custom: { status: "yes", text: "SOC 2 ready, custom controls" },
+    feature: "System Ownership",
+    chatgpt: { status: "no", text: "Subscription-locked" },
+    nocode: { status: "no", text: "Platform-locked" },
+    custom: { status: "yes", text: "You own 100% of the code" },
     details:
-      "Using public tools for sensitive data is a risk. No-code platforms offer basic security but may not meet strict compliance needs. Our custom builds are designed for SOC 2, HIPAA, or GDPR compliance from the ground up.",
+      "Stop paying per-task fees. When we build a system, it's yours. We deliver the source code and workflow files. If we part ways, your automation keeps running exactly as it was, with no dependencies on our billing.",
   },
   {
-    feature: "Handles complex edge cases",
-    chatgpt: { status: "no", text: "Breaks easily" },
-    nocode: { status: "no", text: "Rigid workflows" },
-    custom: { status: "yes", text: "Resilient error handling" },
+    feature: "Technical Depth",
+    chatgpt: { status: "no", text: "Prompt-based only" },
+    nocode: { status: "partial", text: "Drag-and-drop limits" },
+    custom: { status: "yes", text: "Full custom logic & scripts" },
     details:
-      "Templates and prompts fail when something unexpected happens. No-code tools follow rigid paths. We build robust error handling and logic to manage real-world complexity, ensuring your automation doesn't stop when an anomaly occurs.",
+      "Templates break. We use real software development practices—Node.js, Python, and advanced n8n logic—to handle edge cases, complex data transformations, and legacy system integrations that 'no-code' tools can't touch.",
   },
   {
-    feature: "Scalability & performance",
-    chatgpt: { status: "no", text: "Manual per request" },
-    nocode: { status: "partial", text: "Expensive at scale" },
-    custom: { status: "yes", text: "Production-grade infrastructure" },
+    feature: "Security Certification",
+    chatgpt: { status: "no", text: "None" },
+    nocode: { status: "partial", text: "Standard SaaS terms" },
+    custom: { status: "yes", text: "Built by Security+ Engineers" },
     details:
-      "No-code tools become prohibitively expensive as your usage grows (per 'task' or 'zap'). We build solutions on scalable cloud infrastructure (like AWS/GCP) that handle high volume efficiently and cost-effectively.",
-  },
-  {
-    feature: "Maintenance & support",
-    chatgpt: { status: "no", text: "You handle" },
-    nocode: { status: "no", text: "You handle" },
-    custom: { status: "yes", text: "Included in package" },
-    details:
-      "When a third-party tool changes its API, your no-code workflow breaks, and it's your problem to fix. We provide ongoing support and maintenance to ensure your custom automation remains operational long-term.",
+      "We aren't just 'AI enthusiasts'. We are certified software and cybersecurity professionals. Every line of code is written with threat modeling, encryption, and the principle of least privilege in mind.",
   },
 ];
 
@@ -66,10 +58,10 @@ export default function DifferentiationTable() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
-            Why Custom Automation Beats Prompts
+            Automation Built for Professionals
           </h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            An informed decision requires a clear comparison. Here&apos;s how the options stack up on key business criteria.
+            Don't trust your business data to &apos;prompt wrappers&apos;. See how our engineering approach protects your bottom line and your privacy.
           </p>
         </div>
 
@@ -81,10 +73,10 @@ export default function DifferentiationTable() {
           className="max-w-6xl mx-auto bg-card rounded-lg border shadow-sm"
         >
           <div className="hidden md:grid md:grid-cols-5 p-4 border-b font-bold text-center">
-            <div className="text-left font-headline text-lg col-span-2">Feature</div>
-            <div>ChatGPT/Templates</div>
-            <div>No-Code Tools</div>
-            <div>Custom Build</div>
+            <div className="text-left font-headline text-lg col-span-2">Critical Business Need</div>
+            <div>AI Wrappers</div>
+            <div>No-Code Apps</div>
+            <div>SecureCustom Build</div>
           </div>
           <Accordion type="single" collapsible className="w-full">
             {comparisonData.map((row, idx) => (
@@ -105,12 +97,9 @@ export default function DifferentiationTable() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="p-6 bg-primary/5 border-t">
-                    <p className="text-muted-foreground mb-4 md:hidden">
-                        A detailed look at how each option performs.
-                    </p>
                     <div className="grid md:grid-cols-3 gap-6 text-sm">
                       <div className="md:hidden grid grid-cols-2 gap-y-2 text-sm mb-4 border-b pb-4">
-                        <span className="font-semibold">ChatGPT:</span> <StatusIcon status={row.chatgpt.status} />
+                        <span className="font-semibold">AI Wrappers:</span> <StatusIcon status={row.chatgpt.status} />
                         <span className="font-semibold">No-Code:</span> <StatusIcon status={row.nocode.status} />
                         <span className="font-semibold">Custom:</span> <StatusIcon status={row.custom.status} />
                       </div>
@@ -118,7 +107,7 @@ export default function DifferentiationTable() {
                         <p className="text-foreground">{row.details}</p>
                       </div>
                       <div className="hidden md:block">
-                        <h4 className="font-bold mb-2">ChatGPT/Templates</h4>
+                        <h4 className="font-bold mb-2">AI Wrappers</h4>
                         <p className="text-muted-foreground">{row.chatgpt.text}</p>
                       </div>
                       <div className="hidden md:block">
@@ -126,7 +115,7 @@ export default function DifferentiationTable() {
                         <p className="text-muted-foreground">{row.nocode.text}</p>
                       </div>
                       <div className="hidden md:block">
-                        <h4 className="font-bold mb-2">Custom Build</h4>
+                        <h4 className="font-bold mb-2">Secure Custom Build</h4>
                         <p className="text-muted-foreground">{row.custom.text}</p>
                       </div>
                     </div>

@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview An AI chatbot that qualifies leads based on industry and project size.
+ * @fileOverview An AI chatbot that qualifies leads based on privacy needs and engineering scope.
  *
  * - leadQualifyingChatbot - A function that handles the chatbot interaction and lead qualification process.
  * - LeadQualifyingChatbotInput - The input type for the leadQualifyingChatbot function.
@@ -18,7 +18,7 @@ export type LeadQualifyingChatbotInput = z.infer<typeof LeadQualifyingChatbotInp
 const LeadQualifyingChatbotOutputSchema = z.object({
   response: z.string().describe('The chatbot response to the user message.'),
   isQualified: z.boolean().describe('Whether the user is qualified as a lead.'),
-  nextStep: z.string().optional().describe('The next step for the user, e.g., schedule a consultation.'),
+  nextStep: z.string().optional().describe('The next step for the user, e.g., schedule an architecture review.'),
 });
 export type LeadQualifyingChatbotOutput = z.infer<typeof LeadQualifyingChatbotOutputSchema>;
 
@@ -30,22 +30,26 @@ const prompt = ai.definePrompt({
   name: 'leadQualifyingChatbotPrompt',
   input: {schema: LeadQualifyingChatbotInputSchema},
   output: {schema: LeadQualifyingChatbotOutputSchema},
-  prompt: `You are an AI chatbot designed to qualify leads for a software automation agency.
-  Your primary goal is to determine if the user is a potential client based on their industry and project size.
-  Engage the user in a conversation to gather the necessary information.
-  Ask the user questions to determine their industry, the size of their company, and the scope of the automation project they are considering.
+  prompt: `You are an AI assistant for SecureAutomate, a specialized automation engineering firm.
+  Your goal is to qualify leads for custom automation builds using n8n and custom scripts.
+  
+  IMPORTANT DIFFERENTIATORS:
+  - We are NOT a 'chatgpt prompt' agency. We build custom code and workflows.
+  - We focus on PRIVACY and DATA SOVEREIGNTY.
+  - We build systems that the client OWNS.
+  
+  QUALIFICATION CRITERIA:
+  - Does the client have privacy concerns (e.g., they don't want to share data with open LLMs)?
+  - Is the project technically complex (e.g., legacy system sync, multi-app n8n workflows)?
+  - Are they looking for professional software engineering, not just simple templates?
 
-  Based on the user's input, determine if they are a qualified lead.
-  A qualified lead is someone who:
-  - Works in an industry that the agency serves (e.g., e-commerce, SaaS, healthcare).
-  - Is considering an automation project of significant scope (e.g., multi-system integration, custom AI chatbot).
+  Engage the user, ask about their industry and their biggest manual bottleneck.
+  If they mention privacy, security, or "owning" their tech, they are highly qualified.
 
-  If the user is a qualified lead, set isQualified to true and suggest they schedule a consultation.
-  If the user is not a qualified lead, set isQualified to false and politely thank them for their time.
+  If the user is a qualified lead, set isQualified to true and suggest an "Architecture Review".
+  If they are looking for a simple $20 Zapier fix, politely inform them we focus on larger engineering builds.
 
-  Here's the user's message: {{{message}}}
-
-  Generate a response for the user, set the isQualified field, and optionally suggest a next step.
+  User Message: {{{message}}}
   `,
 });
 
