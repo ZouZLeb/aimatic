@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -14,87 +15,165 @@ import CountUp from "react-countup";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, BarChart, FileText, FlaskConical, Zap } from "lucide-react";
+import { ArrowRight, BarChart, FileText, FlaskConical, Zap, ShieldCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const caseStudiesData = [
   {
     id: 1,
-    clientType: "E-commerce Operations Manager",
-    industry: "Retail",
-    problem:
-      "Spent 15+ hours weekly pulling sales data from Shopify, formatting in Excel, and manually sending reports to leadership. Prone to human error.",
-    solution:
-      "Built a custom Python automation that connects to the Shopify API, processes data, generates formatted Excel reports, and automatically emails them to stakeholders every Monday at 6 AM.",
-    beforeImageId: "case-study-1-before",
-    afterImageId: "case-study-1-after",
+    clientType: "Omni-Channel Lead Concierge",
+    industry: "Sales & Real Estate",
+    problem: "Leads arriving via Email, DMs, and SMS were being missed or taking 12+ hours to receive a response.",
+    solution: "A private n8n-powered AI agent that handles instant responses across all channels. It qualifies leads, inserts data into the CRM, and books appointments on the sales team's calendar automatically.",
+    imageId: "case-leads",
     metrics: {
-      timeSaved: 15,
+      timeSaved: 20,
       timeUnit: "hrs/week",
-      roi: 3,
+      roi: 2,
       roiUnit: "weeks",
-      errorReduction: 100,
+      improvement: 95,
+      improvementLabel: "Response Rate ↑",
     },
     fullDetails: {
-      techStack: ["Python", "Shopify API", "Pandas", "SendGrid"],
+      techStack: ["n8n", "OpenAI API (Private)", "Twilio", "HubSpot"],
       timeline: "2 weeks",
-      testimonial:
-        "This has been a game-changer for our team. What used to take up a significant portion of my Monday is now done before I even wake up. The accuracy is perfect, and we've been able to make faster decisions.",
+      testimonial: "The response is so fast and natural that clients think they are talking to a dedicated assistant. It's booked 15 meetings this week alone without us touching it.",
     },
   },
   {
     id: 2,
-    clientType: "SaaS Marketing Lead",
-    industry: "Software",
-    problem:
-      "Manually syncing lead data from HubSpot to a custom analytics platform, resulting in a 48-hour delay in reporting and frequent data mismatches.",
-    solution:
-      "Developed a real-time data pipeline using webhooks. New HubSpot leads are instantly processed and pushed to the analytics platform's API, providing up-to-the-minute marketing insights.",
-    beforeImageId: "case-study-2-before",
-    afterImageId: "case-study-2-after",
+    clientType: "The 'Infinite Pipeline' Marketing Engine",
+    industry: "SaaS & Agencies",
+    problem: "Thousands of old leads were sitting dormant in the database because the manual follow-up workload was impossible.",
+    solution: "An automated sales system that initiates personalized conversations with all leads, revisits 'cold' leads every 30 days, and notifies the team via Slack only when a lead shows 'high-intent' buying signals.",
+    imageId: "case-marketing",
     metrics: {
-      timeSaved: 8,
+      timeSaved: 40,
+      timeUnit: "hrs/month",
+      roi: 3,
+      roiUnit: "weeks",
+      improvement: 28,
+      improvementLabel: "Revenue ↑",
+    },
+    fullDetails: {
+      techStack: ["n8n", "Node.js", "Slack API", "Custom Lead Scoring"],
+      timeline: "3 weeks",
+      testimonial: "It's like having a 24/7 sales rep who never gets tired. We are closing deals from leads we talked to 6 months ago that we would have otherwise forgotten.",
+    },
+  },
+  {
+    id: 3,
+    clientType: "Autonomous Project Architect",
+    industry: "Construction & Engineering",
+    problem: "Project blueprints, inventory dispatching, and client status updates were manual, causing frequent delays and overhead.",
+    solution: "A trained project agent that handles blueprint preparation, inventory checks via ERP, and streamlines the entire project status workflow for the client portal.",
+    imageId: "case-pm",
+    metrics: {
+      timeSaved: 15,
       timeUnit: "hrs/week",
       roi: 4,
       roiUnit: "weeks",
-      dataLag: 99,
+      improvement: 60,
+      improvementLabel: "Admin Work ↓",
     },
     fullDetails: {
-      techStack: ["Node.js", "HubSpot API", "Webhooks", "PostgreSQL"],
-      timeline: "3 weeks",
-      testimonial:
-        "Our marketing dashboards are now live. We can react to campaign performance in hours, not days. The integration has been flawless and has fundamentally improved our marketing agility.",
+      techStack: ["Python", "n8n", "ERP Integration", "Auto-Blueprinting"],
+      timeline: "5 weeks",
+      testimonial: "Admin overhead was killing our margins. This system handles the paperwork so our engineers can actually focus on building.",
+    },
+  },
+  {
+    id: 4,
+    clientType: "Precision Invoice & Quote Engine",
+    industry: "Professional Services",
+    problem: "Crafting quotes and invoices took hours of manual data entry and was prone to pricing errors.",
+    solution: "A custom generator that takes client details and project scope to craft perfect quotes with dynamic discounts. Once agreed, it generates a full invoice and sends it directly via the client's preferred channel.",
+    imageId: "case-billing",
+    metrics: {
+      timeSaved: 8,
+      timeUnit: "hrs/week",
+      roi: 2,
+      roiUnit: "weeks",
+      improvement: 100,
+      improvementLabel: "Accuracy ↑",
+    },
+    fullDetails: {
+      techStack: ["Node.js", "n8n", "Stripe API", "PDF Generation"],
+      timeline: "2 weeks",
+      testimonial: "What used to take half a day now happens in 2 minutes. The professional look of our quotes has significantly increased our win rate.",
+    },
+  },
+  {
+    id: 5,
+    clientType: "Smart Recruitment & Onboarding",
+    industry: "Corporate HR",
+    problem: "Screening hundreds of resumes and manually handling new hire paperwork was slowing down company growth.",
+    solution: "Automated screening logic that ranks candidates based on criteria, schedules interviews, and handles the entire document signature and onboarding sequence without human intervention.",
+    imageId: "case-hr",
+    metrics: {
+      timeSaved: 25,
+      timeUnit: "hrs/week",
+      roi: 6,
+      roiUnit: "weeks",
+      improvement: 70,
+      improvementLabel: "Hiring Speed ↑",
+    },
+    fullDetails: {
+      techStack: ["n8n", "Greenhouse API", "DocuSign", "Private LLM"],
+      timeline: "4 weeks",
+      testimonial: "Our HR team can finally focus on culture and strategy rather than chasing signatures and sorting through resumes.",
+    },
+  },
+  {
+    id: 6,
+    clientType: "Secure Knowledge Base Assistant",
+    industry: "Enterprise / Legal",
+    problem: "Staff spent hours searching through internal documentation and legacy files for technical answers.",
+    solution: "A self-hosted, private AI assistant integrated with the company's internal tools. It provides instant, accurate answers while ensuring zero data leaks to public LLM models.",
+    imageId: "case-support",
+    metrics: {
+      timeSaved: 12,
+      timeUnit: "hrs/staff/mo",
+      roi: 8,
+      roiUnit: "weeks",
+      improvement: 50,
+      improvementLabel: "Search Time ↓",
+    },
+    fullDetails: {
+      techStack: ["PostgreSQL (Vector)", "n8n", "Custom Python RAG", "Self-Hosted"],
+      timeline: "6 weeks",
+      testimonial: "Our data is our lifeblood. Having a system this smart that we also completely own and control is the ultimate competitive advantage.",
     },
   },
 ];
 
 const IndustryBenchmarkCard = () => (
-  <Card className="flex flex-col bg-muted/50">
+  <Card className="flex flex-col bg-muted/50 border-dashed">
     <CardContent className="p-6 flex-grow flex flex-col">
       <div className="mb-4">
-        <BarChart className="w-10 h-10 text-primary" />
+        <ShieldCheck className="w-10 h-10 text-primary" />
       </div>
-      <h3 className="text-lg font-bold mb-2">Industry Benchmark Results</h3>
+      <h3 className="text-lg font-bold mb-2">The Security Difference</h3>
       <p className="text-sm text-muted-foreground mb-4">
-        According to McKinsey research, AI automation delivers significant business impact.
+        Generic AI wrappers put your data at risk. Our engineered systems ensure complete sovereignty.
       </p>
       <div className="space-y-4 text-sm mt-auto">
         <div className="flex items-center gap-3">
           <Zap className="w-5 h-5 text-primary" />
-          <span><span className="font-bold">20-30%</span> of time saved with automation</span>
+          <span><span className="font-bold">100% IP Ownership</span> - No per-task fees.</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <ShieldCheck className="w-5 h-5 text-primary" />
+          <span><span className="font-bold">Zero Leakage</span> - Your data stays in your VPC.</span>
         </div>
         <div className="flex items-center gap-3">
           <FileText className="w-5 h-5 text-primary" />
-          <span><span className="font-bold">45%</span> reduction in operational errors</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <FlaskConical className="w-5 h-5 text-primary" />
-          <span>ROI typically achieved within <span className="font-bold">2-6 months</span></span>
+          <span><span className="font-bold">Custom Logic</span> - Beyond simple prompts.</span>
         </div>
       </div>
        <Button variant="link" asChild className="mt-4 justify-start p-0 h-auto">
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          View Research <ArrowRight className="ml-1 w-4 h-4" />
+        <a href="#contact">
+          Request Architecture Audit <ArrowRight className="ml-1 w-4 h-4" />
         </a>
       </Button>
     </CardContent>
@@ -114,14 +193,13 @@ export default function CaseStudies() {
             Real Automations, Real Results
           </h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            See how we&apos;ve transformed operations and delivered measurable value for businesses like yours.
+            High-performance systems built by software engineers, designed for security and massive ROI.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {caseStudiesData.map((study, idx) => {
-            const beforeImg = getImg(study.beforeImageId);
-            const afterImg = getImg(study.afterImageId);
+            const studyImg = getImg(study.imageId);
             return (
             <motion.div
               key={study.id}
@@ -135,62 +213,46 @@ export default function CaseStudies() {
                 onClick={() => setSelectedCase(study)}
               >
                 <div className="relative h-48 bg-muted">
-                  <div className="absolute inset-0 flex">
-                    {beforeImg && (
-                      <Image
-                        src={beforeImg.imageUrl}
-                        alt="Before automation"
-                        width={300}
-                        height={200}
-                        className="w-1/2 h-full object-cover"
-                        data-ai-hint={beforeImg.imageHint}
-                      />
-                    )}
-                    {afterImg && (
-                      <Image
-                        src={afterImg.imageUrl}
-                        alt="After automation"
-                        width={300}
-                        height={200}
-                        className="w-1/2 h-full object-cover"
-                        data-ai-hint={afterImg.imageHint}
-                      />
-                    )}
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 text-foreground px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm">
-                    BEFORE → AFTER
-                  </div>
+                  {studyImg && (
+                    <Image
+                      src={studyImg.imageUrl}
+                      alt={study.clientType}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      data-ai-hint={studyImg.imageHint}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                    <Badge variant="secondary" className="absolute bottom-2 left-2">{study.industry}</Badge>
                 </div>
 
                 <CardContent className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-lg font-bold mb-3">{study.clientType}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-grow">{study.problem}</p>
+                  <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors">{study.clientType}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">{study.problem}</p>
                   
-                  <div className="grid grid-cols-3 gap-4 py-4 border-t border-b">
+                  <div className="grid grid-cols-3 gap-4 py-4 border-t border-b bg-muted/30 -mx-6 px-6">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">
+                      <div className="text-xl font-bold text-primary">
                         <CountUp end={study.metrics.timeSaved} duration={2} />{study.metrics.timeSaved % 1 !== 0 ? '' : '+'}
                       </div>
-                      <div className="text-xs text-muted-foreground">Saved {study.metrics.timeUnit}</div>
+                      <div className="text-[10px] uppercase font-bold text-muted-foreground">{study.metrics.timeUnit}</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">
+                      <div className="text-xl font-bold text-primary">
                         <CountUp end={study.metrics.roi} duration={2} />
                       </div>
-                      <div className="text-xs text-muted-foreground">ROI in {study.metrics.roiUnit}</div>
+                      <div className="text-[10px] uppercase font-bold text-muted-foreground">ROI in {study.metrics.roiUnit}</div>
                     </div>
                     <div className="text-center">
-                       <div className="text-2xl font-bold text-primary">
-                        <CountUp end={study.metrics.errorReduction || study.metrics.dataLag || 0} duration={2} suffix="%" />
+                       <div className="text-xl font-bold text-primary">
+                        <CountUp end={study.metrics.improvement} duration={2} suffix="%" />
                       </div>
-                      <div className="text-xs text-muted-foreground">{study.metrics.errorReduction ? 'Error ↓' : 'Data Lag ↓'}</div>
+                      <div className="text-[10px] uppercase font-bold text-muted-foreground">{study.metrics.improvementLabel}</div>
                     </div>
                   </div>
                   
                   <Button variant="link" className="mt-4 self-start p-0 h-auto text-primary group-hover:underline">
-                    View Full Case Study <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    View Full System Details <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </CardContent>
               </Card>
@@ -209,24 +271,27 @@ export default function CaseStudies() {
           </DialogHeader>
           <div className="grid gap-6 py-4">
             <div>
-              <h4 className="font-semibold mb-2">Solution</h4>
+              <h4 className="font-semibold mb-2">The Engineered Solution</h4>
               <p className="text-sm text-muted-foreground">{selectedCase?.solution}</p>
             </div>
              <div>
-              <h4 className="font-semibold mb-2">Tech Stack</h4>
+              <h4 className="font-semibold mb-2">Technology Stack</h4>
               <div className="flex flex-wrap gap-2">
                 {selectedCase?.fullDetails.techStack.map(tech => <Badge key={tech} variant="outline">{tech}</Badge>)}
               </div>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">Project Timeline</h4>
+              <h4 className="font-semibold mb-2">Build Timeline</h4>
               <p className="text-sm text-muted-foreground">{selectedCase?.fullDetails.timeline}</p>
             </div>
             {selectedCase?.fullDetails.testimonial && (
-              <blockquote className="mt-2 border-l-2 pl-4 italic text-muted-foreground">
+              <blockquote className="mt-2 border-l-2 pl-4 italic text-muted-foreground bg-muted/30 py-4 pr-4">
                 "{selectedCase.fullDetails.testimonial}"
               </blockquote>
             )}
+            <Button size="lg" className="w-full mt-4" asChild>
+              <a href="#contact">Discuss a Similar Build for Your Team</a>
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

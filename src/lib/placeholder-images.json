@@ -13,28 +13,40 @@
       "imageHint": "code editor"
     },
     {
-      "id": "case-study-1-before",
-      "description": "A mockup of a messy spreadsheet representing a manual process.",
-      "imageUrl": "https://images.unsplash.com/photo-1621863367744-7363895606b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcHJlYWRzaGVldCUyMG1hbnVhbHxlbnwwfHx8fDE3Njk5MzAwMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "spreadsheet manual"
+      "id": "case-leads",
+      "description": "AI Agent responding to leads across channels.",
+      "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHNlcnZpY2V8ZW58MHx8fHwxNzY5OTM0NTAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "customer service"
     },
     {
-      "id": "case-study-1-after",
-      "description": "A clean, automated dashboard showing data.",
-      "imageUrl": "https://images.unsplash.com/photo-1748609160056-7b95f30041f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXNoYm9hcmQlMjBjaGFydHxlbnwwfHx8fDE3Njk4ODE1MTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "dashboard chart"
+      "id": "case-marketing",
+      "description": "A marketing automation flow diagram.",
+      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYXJrZXRpbmclMjBhdXRvbWF0aW9ufGVufDB8fHx8MTc2OTkzNDUwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "marketing automation"
     },
     {
-      "id": "case-study-2-before",
-      "description": "A diagram showing disconnected business systems.",
-      "imageUrl": "https://images.unsplash.com/photo-1612203264166-e00118d63b94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmbG93Y2hhcnQlMjBkaXNjb25uZWN0ZWR8ZW58MHx8fHwxNzY5OTMwMDMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "flowchart disconnected"
+      "id": "case-pm",
+      "description": "Project management dashboard with blueprints.",
+      "imageUrl": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9qZWN0JTIwbWFuYWdlbWVudHxlbnwwfHx8fDE3Njk5MzQ1MDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "project management"
     },
     {
-      "id": "case-study-2-after",
-      "description": "A diagram showing integrated systems with data flowing smoothly.",
-      "imageUrl": "https://images.unsplash.com/photo-1588422273146-c799447ccb81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbG93Y2hhcnQlMjBjb25uZWN0ZWR8ZW58MHx8fHwxNzY5OTMwMDMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "flowchart connected"
+      "id": "case-billing",
+      "description": "Automated invoice and quote generation interface.",
+      "imageUrl": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbnZvaWNlfGVufDB8fHx8MTc2OTkzNDUwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "invoice billing"
+    },
+    {
+      "id": "case-hr",
+      "description": "Recruitment and onboarding flow.",
+      "imageUrl": "https://images.unsplash.com/photo-1521791136064-7986c2920216?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxodW1hbiUyMHJlc291cmNlc3xlbnwwfHx8fDE3Njk5MzQ1MDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "human resources"
+    },
+    {
+      "id": "case-support",
+      "description": "Private knowledge base AI assistant.",
+      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbCUyMHJvYm90fGVufDB8fHx8MTc2OTkzNDUwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ai robot"
     },
     {
       "id": "about-headshot",
