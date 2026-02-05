@@ -15,8 +15,15 @@ import CountUp from "react-countup";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, BarChart, FileText, FlaskConical, Zap, ShieldCheck } from "lucide-react";
+import { ArrowRight, FileText, Zap, ShieldCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const caseStudiesData = [
   {
@@ -147,39 +154,6 @@ const caseStudiesData = [
   },
 ];
 
-const IndustryBenchmarkCard = () => (
-  <Card className="flex flex-col bg-muted/50 border-dashed">
-    <CardContent className="p-6 flex-grow flex flex-col">
-      <div className="mb-4">
-        <ShieldCheck className="w-10 h-10 text-primary" />
-      </div>
-      <h3 className="text-lg font-bold mb-2">The Security Difference</h3>
-      <p className="text-sm text-muted-foreground mb-4">
-        Generic AI wrappers put your data at risk. Our engineered systems ensure complete sovereignty.
-      </p>
-      <div className="space-y-4 text-sm mt-auto">
-        <div className="flex items-center gap-3">
-          <Zap className="w-5 h-5 text-primary" />
-          <span><span className="font-bold">100% IP Ownership</span> - No per-task fees.</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <ShieldCheck className="w-5 h-5 text-primary" />
-          <span><span className="font-bold">Zero Leakage</span> - Your data stays in your VPC.</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <FileText className="w-5 h-5 text-primary" />
-          <span><span className="font-bold">Custom Logic</span> - Beyond simple prompts.</span>
-        </div>
-      </div>
-       <Button variant="link" asChild className="mt-4 justify-start p-0 h-auto">
-        <a href="#contact">
-          Request Architecture Audit <ArrowRight className="ml-1 w-4 h-4" />
-        </a>
-      </Button>
-    </CardContent>
-  </Card>
-);
-
 export default function CaseStudies() {
   const [selectedCase, setSelectedCase] = useState<typeof caseStudiesData[0] | null>(null);
 
@@ -197,68 +171,119 @@ export default function CaseStudies() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {caseStudiesData.map((study, idx) => {
-            const studyImg = getImg(study.imageId);
-            return (
-            <motion.div
-              key={study.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
-            >
-              <Card
-                className="h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer group flex flex-col"
-                onClick={() => setSelectedCase(study)}
-              >
-                <div className="relative h-48 bg-muted">
-                  {studyImg && (
-                    <Image
-                      src={studyImg.imageUrl}
-                      alt={study.clientType}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      data-ai-hint={studyImg.imageHint}
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                   <Badge variant="secondary" className="absolute bottom-2 left-2">{study.industry}</Badge>
-                </div>
+        <div className="max-w-7xl mx-auto relative px-4 md:px-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-6">
+              {caseStudiesData.map((study) => {
+                const studyImg = getImg(study.imageId);
+                return (
+                  <CarouselItem key={study.id} className="pl-6 md:basis-1/2 lg:basis-1/3 py-4">
+                    <Card
+                      className="h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer group flex flex-col border-border"
+                      onClick={() => setSelectedCase(study)}
+                    >
+                      <div className="relative h-48 bg-muted">
+                        {studyImg && (
+                          <Image
+                            src={studyImg.imageUrl}
+                            alt={study.clientType}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            data-ai-hint={studyImg.imageHint}
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <Badge variant="secondary" className="absolute bottom-2 left-2">{study.industry}</Badge>
+                      </div>
 
-                <CardContent className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors">{study.clientType}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">{study.problem}</p>
-                  
-                  <div className="grid grid-cols-3 gap-4 py-4 border-t border-b bg-muted/30 -mx-6 px-6">
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-primary">
-                        <CountUp end={study.metrics.timeSaved} duration={2} />{study.metrics.timeSaved % 1 !== 0 ? '' : '+'}
-                      </div>
-                      <div className="text-[10px] uppercase font-bold text-muted-foreground">{study.metrics.timeUnit}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-primary">
-                        <CountUp end={study.metrics.roi} duration={2} />
-                      </div>
-                      <div className="text-[10px] uppercase font-bold text-muted-foreground">ROI in {study.metrics.roiUnit}</div>
-                    </div>
-                    <div className="text-center">
-                       <div className="text-xl font-bold text-primary">
-                        <CountUp end={study.metrics.improvement} duration={2} suffix="%" />
-                      </div>
-                      <div className="text-[10px] uppercase font-bold text-muted-foreground">{study.metrics.improvementLabel}</div>
-                    </div>
-                  </div>
-                  
-                  <Button variant="link" className="mt-4 self-start p-0 h-auto text-primary group-hover:underline">
-                    View Full System Details <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )})}
-          <IndustryBenchmarkCard />
+                      <CardContent className="p-6 flex-grow flex flex-col">
+                        <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                          {study.clientType}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">
+                          {study.problem}
+                        </p>
+                        
+                        <div className="grid grid-cols-3 gap-2 py-4 border-t border-b bg-muted/30 -mx-6 px-4">
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-primary">
+                              <CountUp end={study.metrics.timeSaved} duration={2} />{study.metrics.timeSaved % 1 !== 0 ? '' : '+'}
+                            </div>
+                            <div className="text-[9px] uppercase font-bold text-muted-foreground whitespace-nowrap">
+                              {study.metrics.timeUnit}
+                            </div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-primary">
+                              <CountUp end={study.metrics.roi} duration={2} />
+                            </div>
+                            <div className="text-[9px] uppercase font-bold text-muted-foreground">
+                              ROI in {study.metrics.roiUnit}
+                            </div>
+                          </div>
+                          <div className="text-center">
+                             <div className="text-lg font-bold text-primary">
+                              <CountUp end={study.metrics.improvement} duration={2} suffix="%" />
+                            </div>
+                            <div className="text-[9px] uppercase font-bold text-muted-foreground leading-tight">
+                              {study.metrics.improvementLabel}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <Button variant="link" className="mt-4 self-start p-0 h-auto text-primary group-hover:underline text-xs">
+                          View Full System Details <ArrowRight className="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <div className="hidden md:block">
+              <CarouselPrevious className="-left-12 h-10 w-10" />
+              <CarouselNext className="-right-12 h-10 w-10" />
+            </div>
+          </Carousel>
+        </div>
+
+        <div className="mt-16 max-w-5xl mx-auto">
+          <Card className="flex flex-col md:flex-row bg-muted/50 border-dashed p-8 items-center gap-8">
+            <div className="flex-shrink-0 bg-primary/10 p-4 rounded-full">
+              <ShieldCheck className="w-12 h-12 text-primary" />
+            </div>
+            <div className="flex-grow text-center md:text-left">
+              <h3 className="text-xl font-bold mb-2">The Engineering Standard</h3>
+              <p className="text-sm text-muted-foreground mb-4 max-w-2xl">
+                Generic AI wrappers put your data at risk. Our engineered systems ensure complete sovereignty, full source code ownership, and enterprise-grade security.
+              </p>
+              <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-[11px] uppercase tracking-wider font-bold text-primary">
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4" />
+                  <span>100% IP Ownership</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Zero Data Leakage</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4" />
+                  <span>Custom Code Logic</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex-shrink-0 w-full md:w-auto">
+              <Button size="lg" className="w-full md:w-auto" asChild>
+                <a href="#contact">Request Architecture Audit</a>
+              </Button>
+            </div>
+          </Card>
         </div>
       </div>
 
@@ -285,7 +310,7 @@ export default function CaseStudies() {
               <p className="text-sm text-muted-foreground">{selectedCase?.fullDetails.timeline}</p>
             </div>
             {selectedCase?.fullDetails.testimonial && (
-              <blockquote className="mt-2 border-l-2 pl-4 italic text-muted-foreground bg-muted/30 py-4 pr-4">
+              <blockquote className="mt-2 border-l-2 pl-4 italic text-muted-foreground bg-muted/30 py-4 pr-4 rounded-r-lg">
                 "{selectedCase.fullDetails.testimonial}"
               </blockquote>
             )}
