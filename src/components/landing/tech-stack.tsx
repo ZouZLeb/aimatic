@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   OpenAILogo,
@@ -16,7 +15,6 @@ import {
   JiraLogo,
   OAuthLogo,
 } from "../icons/tech-logos";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import type { FC, SVGProps } from "react";
 
@@ -26,107 +24,72 @@ type Tech = {
   description: string;
 };
 
-type Category = {
-  category: string;
-  technologies: Tech[];
-  benefit: string;
-};
-
-const techStack: Category[] = [
-  {
-    category: "AI & Intelligence",
-    benefit: "For processing complex data and intelligent decision making.",
-    technologies: [
-      { name: "OpenAI", logo: OpenAILogo, description: "Advanced reasoning and text analysis." },
-      { name: "Anthropic", logo: AnthropicLogo, description: "Highly secure and accurate AI models." },
-      { name: "LangChain", logo: LangChainLogo, description: "Linking AI models to your private data." },
-    ],
-  },
-  {
-    category: "Business Ecosystem",
-    benefit: "Integrating the tools your team uses every single day.",
-    technologies: [
-      { name: "HubSpot", logo: HubSpotLogo, description: "Syncing leads and customer data." },
-      { name: "Slack", logo: SlackLogo, description: "Real-time team notifications & alerts." },
-      { name: "Jira", logo: JiraLogo, description: "Project tracking and task management." },
-    ],
-  },
-  {
-    category: "Modern Engineering",
-    benefit: "The custom code that makes your automation unique and fast.",
-    technologies: [
-      { name: "n8n", logo: NodeJsLogo, description: "The private core of your workflows." },
-      { name: "Python", logo: PythonLogo, description: "Custom scripts for complex logic." },
-      { name: "PostgreSQL", logo: PostgreSQLLogo, description: "Secure, high-speed data storage." },
-    ],
-  },
-  {
-    category: "Cloud & Security",
-    benefit: "Ensuring your system is encrypted, scalable, and private.",
-    technologies: [
-      { name: "AWS", logo: AWSLogo, description: "Industry-standard private hosting." },
-      { name: "Docker", logo: DockerLogo, description: "Isolated, portable system containers." },
-      { name: "OAuth 2.0", logo: OAuthLogo, description: "Secure, permission-based app access." },
-    ],
-  },
+const technologies: Tech[] = [
+  { name: "n8n", logo: NodeJsLogo, description: "Private workflow core" },
+  { name: "Python", logo: PythonLogo, description: "Advanced custom logic" },
+  { name: "OpenAI", logo: OpenAILogo, description: "Secure reasoning" },
+  { name: "Anthropic", logo: AnthropicLogo, description: "Private AI models" },
+  { name: "PostgreSQL", logo: PostgreSQLLogo, description: "Private data vault" },
+  { name: "AWS", logo: AWSLogo, description: "Secure cloud hosting" },
+  { name: "Docker", logo: DockerLogo, description: "Isolated environments" },
+  { name: "OAuth 2.0", logo: OAuthLogo, description: "Secure auth protocols" },
+  { name: "HubSpot", logo: HubSpotLogo, description: "CRM synchronization" },
+  { name: "Slack", logo: SlackLogo, description: "Team communication" },
+  { name: "Jira", logo: JiraLogo, description: "Project architecture" },
+  { name: "LangChain", logo: LangChainLogo, description: "Private data linking" },
 ];
 
 export default function TechStack() {
   return (
-    <section id="tech-stack" className="bg-slate-900 text-white">
+    <section id="tech-stack" className="bg-slate-900 text-white overflow-hidden py-16 md:py-24">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-headline">
-            Engineered with Enterprise-Grade Tech
-          </h2>
-          <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-            We don't use "no-code" toys. We build with the same professional tools used by 
-            leading software engineering teams and Fortune 500 companies.
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold font-headline mb-4"
+          >
+            Elite Technology Stack
+          </motion.h2>
+          <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+            We integrate with the most powerful tools in the industry using 
+            professional engineering standards. No wrappers, just pure integration.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-12">
-          {techStack.map((category, idx) => (
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+          {technologies.map((tech, idx) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={tech.name}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.3, delay: idx * 0.05 }}
+              className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all hover:bg-white/10 group"
             >
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b border-slate-700 pb-4">
-                <div className="max-w-xl">
-                    <h3 className="text-2xl font-bold text-primary mb-1">{category.category}</h3>
-                    <p className="text-gray-400 text-sm">{category.benefit}</p>
-                </div>
+              <div className="flex-shrink-0 text-gray-400 group-hover:text-primary transition-colors">
+                <tech.logo className="w-6 h-6 md:w-7 md:h-7" />
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.technologies.map((tech, techIdx) => (
-                  <motion.div
-                    key={techIdx}
-                    className="flex items-center gap-4 p-5 rounded-xl bg-slate-800/40 border border-slate-700 hover:border-primary/50 transition-all group"
-                    whileHover={{ scale: 1.02, backgroundColor: "rgba(30, 41, 59, 0.6)" }}
-                  >
-                    <div className="flex-shrink-0 bg-slate-900 p-3 rounded-lg group-hover:text-primary transition-colors">
-                      <tech.logo className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-base">{tech.name}</h4>
-                      <p className="text-xs text-gray-500 leading-relaxed">{tech.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="min-w-0">
+                <h4 className="font-bold text-sm leading-none mb-1">{tech.name}</h4>
+                <p className="text-[10px] text-gray-500 truncate">{tech.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
         
-        <div className="mt-20 text-center">
-            <p className="text-sm text-gray-500 italic max-w-2xl mx-auto">
-                * We integrate with hundreds of other tools including Salesforce, Asana, Google Workspace, Stripe, and custom internal APIs. If it has a way to talk, we can automate it.
-            </p>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8 }}
+          className="mt-12 text-center"
+        >
+          <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
+            + 400 Other Enterprise Integrations Available
+          </p>
+        </motion.div>
       </div>
     </section>
   );
