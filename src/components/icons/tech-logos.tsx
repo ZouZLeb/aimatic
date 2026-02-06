@@ -10,7 +10,7 @@ import {
   SiHubspot,
   SiSlack,
   SiJira,
-  SiOauth,
+  SiAuth0,
   SiLangchain
 } from "@icons-pack/react-simple-icons";
 
@@ -25,6 +25,6 @@ export {
   SiHubspot as HubSpotLogo,
   SiSlack as SlackLogo,
   SiJira as JiraLogo,
-  SiOauth as OAuthLogo,
+  SiAuth0 as OAuthLogo,
   SiLangchain as LangChainLogo
 };
