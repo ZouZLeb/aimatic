@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { Linkedin, Github, Shield, Code, Cpu } from "lucide-react";
+import { Shield, Code, Cpu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Button } from "../ui/button";
 
 export default function AboutSection() {
   const headshot = PlaceHolderImages.find((img) => img.id === "about-headshot");
 
   return (
-    <section id="about" className="bg-white dark:bg-slate-950/50">
+    <section id="about" className="bg-transparent">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
@@ -22,9 +21,9 @@ export default function AboutSection() {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <Card className="overflow-hidden">
+          <Card className="overflow-hidden bg-card/40 backdrop-blur-md border-border/50">
             <div className="grid md:grid-cols-5 gap-8 items-start">
-              <div className="md:col-span-2 p-6 md:p-8 bg-muted/50">
+              <div className="md:col-span-2 p-6 md:p-8 bg-muted/30">
                 <div className="relative aspect-square mb-6">
                   {headshot && (
                     <Image
@@ -88,19 +87,19 @@ export default function AboutSection() {
                 </div>
 
                 <div className="mt-8 grid sm:grid-cols-3 gap-4">
-                  <Card className="bg-primary/5 p-4">
+                  <Card className="bg-primary/5 p-4 border-border/50">
                     <h4 className="font-bold mb-1 text-primary">No Wrappers</h4>
                     <p className="text-sm text-foreground/80">
                       We build real logic, not just chat interfaces.
                     </p>
                   </Card>
-                  <Card className="bg-primary/5 p-4">
+                  <Card className="bg-primary/5 p-4 border-border/50">
                     <h4 className="font-bold mb-1 text-primary">Data Privacy</h4>
                     <p className="text-sm text-foreground/80">
                       Your data stays in your VPC, always.
                     </p>
                   </Card>
-                   <Card className="bg-primary/5 p-4">
+                   <Card className="bg-primary/5 p-4 border-border/50">
                     <h4 className="font-bold mb-1 text-primary">Full IP</h4>
                     <p className="text-sm text-foreground/80">
                       You own 100% of the automation we build.

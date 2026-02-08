@@ -25,8 +25,8 @@ const ComparisonCard = ({
     <Card
       className={`relative overflow-hidden border-2 transition-all duration-300 hover:shadow-xl ${
         type === "after" 
-          ? "border-primary/50 bg-primary/5 dark:bg-white/10" 
-          : "border-destructive/40 bg-destructive/5 dark:bg-white/5"
+          ? "border-primary/50 bg-primary/5 dark:bg-white/5 backdrop-blur-sm" 
+          : "border-destructive/40 bg-destructive/5 dark:bg-white/5 backdrop-blur-sm"
       }`}
     >
       <CardContent className="p-5">
@@ -41,7 +41,7 @@ const ComparisonCard = ({
             <p className="text-sm text-muted-foreground dark:text-gray-300">{description}</p>
           </div>
         </div>
-        <div className="aspect-video relative rounded-md overflow-hidden bg-slate-900">
+        <div className="aspect-video relative rounded-md overflow-hidden bg-slate-900/40">
           {imageData && (
             <Image
               src={imageData.imageUrl}
@@ -60,13 +60,7 @@ const ComparisonCard = ({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-background dark:bg-slate-950 text-foreground dark:text-white flex flex-col justify-center pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-primary/10 dark:from-slate-950 dark:via-slate-900 dark:to-blue-900/30"></div>
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-[0.05]"></div>
-      
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/20 dark:bg-primary/30 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/10 dark:bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
-
+    <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-transparent">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.div

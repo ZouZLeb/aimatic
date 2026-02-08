@@ -40,7 +40,7 @@ const valuePropositions = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-background py-24">
+    <section id="pricing" className="bg-transparent py-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-extrabold font-headline mb-4">
@@ -51,7 +51,6 @@ export default function Pricing() {
           </p>
         </div>
 
-        {/* Value Proposition Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
           {valuePropositions.map((item, idx) => (
             <motion.div
@@ -61,7 +60,7 @@ export default function Pricing() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <div className="flex gap-4 p-6 rounded-xl bg-muted/30 border border-border/50 hover:border-primary/30 transition-colors h-full">
+              <div className="flex gap-4 p-6 rounded-xl bg-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-colors h-full">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                     <item.icon className="w-6 h-6" />
@@ -78,7 +77,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <div className="max-w-4xl mx-auto bg-slate-900 text-white rounded-2xl p-10 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-slate-900/90 backdrop-blur-md text-white rounded-2xl p-10 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-yellow-400 to-primary"></div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
             <div className="text-center md:text-left">

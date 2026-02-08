@@ -87,6 +87,6 @@
     @apply bg-background text-foreground;
   }
   section {
-    @apply py-20 sm:py-24;
+    @apply py-20 sm:py-24 bg-transparent;
   }
 }

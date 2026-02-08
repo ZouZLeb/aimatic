@@ -54,7 +54,7 @@ const StatusIcon = ({ status }: { status: "yes" | "no" | "partial" }) => {
 
 export default function DifferentiationTable() {
   return (
-    <section id="why-custom" className="bg-white dark:bg-slate-950/50">
+    <section id="why-custom" className="bg-transparent">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
@@ -70,7 +70,7 @@ export default function DifferentiationTable() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto bg-card rounded-lg border shadow-sm"
+          className="max-w-6xl mx-auto bg-card/50 backdrop-blur-md rounded-lg border shadow-sm"
         >
           <div className="hidden md:grid md:grid-cols-5 p-4 border-b font-bold text-center">
             <div className="text-left font-headline text-lg col-span-2">Critical Business Need</div>
@@ -80,8 +80,8 @@ export default function DifferentiationTable() {
           </div>
           <Accordion type="single" collapsible className="w-full">
             {comparisonData.map((row, idx) => (
-              <AccordionItem value={`item-${idx}`} key={idx}>
-                <AccordionTrigger className="grid md:grid-cols-5 w-full p-4 hover:bg-muted/50 transition-colors text-left md:text-center group">
+              <AccordionItem value={`item-${idx}`} key={idx} className="border-border/50">
+                <AccordionTrigger className="grid md:grid-cols-5 w-full p-4 hover:bg-muted/30 transition-colors text-left md:text-center group">
                   <span className="col-span-2 text-left font-semibold text-foreground">
                     {row.feature}
                   </span>
@@ -96,7 +96,7 @@ export default function DifferentiationTable() {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="p-6 bg-primary/5 border-t">
+                  <div className="p-6 bg-primary/5 border-t border-border/50">
                     <div className="grid md:grid-cols-3 gap-6 text-sm">
                       <div className="md:hidden grid grid-cols-2 gap-y-2 text-sm mb-4 border-b pb-4">
                         <span className="font-semibold">AI Wrappers:</span> <StatusIcon status={row.chatgpt.status} />
@@ -119,7 +119,7 @@ export default function DifferentiationTable() {
                         <p className="text-muted-foreground">{row.custom.text}</p>
                       </div>
                     </div>
-                     <p className="hidden md:block text-muted-foreground mt-4 pt-4 border-t">{row.details}</p>
+                     <p className="hidden md:block text-muted-foreground mt-4 pt-4 border-t border-border/50">{row.details}</p>
                   </div>
                 </AccordionContent>
               </AccordionItem>

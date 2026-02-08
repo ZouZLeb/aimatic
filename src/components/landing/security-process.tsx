@@ -61,7 +61,7 @@ export default function SecurityProcess() {
   const [activeStep, setActiveStep] = useState(1);
 
   return (
-    <section id="security" className="bg-muted/30 dark:bg-slate-950/40">
+    <section id="security" className="bg-transparent">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground">
@@ -74,7 +74,7 @@ export default function SecurityProcess() {
 
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-x-8 gap-y-8 mb-12 relative">
-             <div className="absolute top-8 left-0 w-full h-0.5 bg-border hidden md:block" />
+             <div className="absolute top-8 left-0 w-full h-0.5 bg-border/50 hidden md:block" />
             {processSteps.map((step) => (
               <motion.div
                 key={step.id}
@@ -86,7 +86,7 @@ export default function SecurityProcess() {
                   "mx-auto w-16 h-16 rounded-full border-4 flex items-center justify-center transition-all duration-300",
                   activeStep === step.id 
                     ? 'bg-primary border-primary/20 text-primary-foreground shadow-lg scale-110' 
-                    : 'bg-background border-border text-muted-foreground hover:border-primary/50'
+                    : 'bg-card border-border text-muted-foreground hover:border-primary/50'
                 )}>
                   <step.icon className="w-8 h-8" />
                 </div>
@@ -101,7 +101,7 @@ export default function SecurityProcess() {
             ))}
           </div>
 
-          <Card className="bg-card border-border shadow-xl">
+          <Card className="bg-card/40 backdrop-blur-md border-border shadow-xl">
             <AnimatePresence mode="wait">
               {activeStep && (
                 <motion.div
@@ -113,14 +113,12 @@ export default function SecurityProcess() {
                 >
                   <CardContent className="p-8">
                      <div className="flex items-center gap-3 mb-6">
-                       {processSteps.find(s => s.id === activeStep)?.icon && (
-                         <div className="p-2 bg-primary/10 rounded-lg">
-                           {(() => {
-                             const Icon = processSteps.find(s => s.id === activeStep)!.icon;
-                             return <Icon className="w-6 h-6 text-primary" />;
-                           })()}
-                         </div>
-                       )}
+                       <div className="p-2 bg-primary/10 rounded-lg">
+                         {(() => {
+                           const Icon = processSteps.find(s => s.id === activeStep)!.icon;
+                           return <Icon className="w-6 h-6 text-primary" />;
+                         })()}
+                       </div>
                        <h3 className="text-2xl font-bold font-headline text-foreground">
                          {processSteps.find(s => s.id === activeStep)?.title} Specifications
                        </h3>
@@ -134,7 +132,7 @@ export default function SecurityProcess() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.05 }}
-                            className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 border border-border/50"
+                            className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-border/50"
                             >
                             <Check className="w-5 h-5 mt-0.5 text-green-600 dark:text-green-400 flex-shrink-0" />
                             <span className="text-foreground text-sm font-medium">{detail}</span>

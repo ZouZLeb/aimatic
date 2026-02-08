@@ -18,7 +18,7 @@ const services = [
       "Self-hosted privacy-focused scheduling",
     ],
     roi: "Own your infrastructure, 0 per-task fees",
-    color: "text-blue-400",
+    color: "text-blue-500",
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const services = [
       "HIPAA/SOC 2 compliant data handlers",
     ],
     roi: "100% ownership of source code",
-    color: "text-purple-400",
+    color: "text-purple-500",
   },
   {
     id: 3,
@@ -46,13 +46,13 @@ const services = [
       "Encrypted communication bridges",
     ],
     roi: "Total data sovereignty and security",
-    color: "text-green-400",
+    color: "text-green-500",
   },
 ];
 
 export default function ServicesOverview() {
   return (
-    <section id="services" className="bg-white dark:bg-slate-950/50">
+    <section id="services" className="bg-transparent">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">Production-Grade Solutions</h2>
@@ -71,7 +71,7 @@ export default function ServicesOverview() {
               transition={{ delay: idx * 0.1, duration: 0.5 }}
               className="h-full"
             >
-              <Card className="h-full flex flex-col hover:border-primary transition-colors hover:shadow-lg">
+              <Card className="h-full flex flex-col border-border/50 bg-card/40 backdrop-blur-sm hover:border-primary transition-colors hover:shadow-lg">
                 <CardHeader>
                   <div className="mb-4">
                      <service.icon className={`w-12 h-12 ${service.color}`} />
@@ -100,7 +100,7 @@ export default function ServicesOverview() {
                     </ul>
                   </div>
 
-                  <div className="pt-4 border-t mt-auto">
+                  <div className="pt-4 border-t border-border/50 mt-auto">
                      <Badge variant="secondary" className="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300">
                          {service.roi}
                      </Badge>
