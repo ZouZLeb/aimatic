@@ -76,7 +76,7 @@
     @apply bg-background text-foreground;
   }
   section {
-    @apply py-20 sm:py-32 bg-transparent;
+    @apply py-12 sm:py-20 bg-transparent;
   }
 }
 

@@ -60,9 +60,9 @@ const ComparisonCard = ({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-transparent">
+    <section className="relative min-h-[80vh] flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden bg-transparent">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <div className="max-w-4xl mx-auto text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-medium"
+            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto font-medium"
           >
             We build high-performance automation with n8n and custom scripts. 
             Real engineering for security-first businesses. No data leaks, no monthly per-task fees, complete ownership.
@@ -89,7 +89,6 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            
             <Button className=" w-auto" asChild variant="default">
               <Link href="#contact">
                 Book Free Consultation

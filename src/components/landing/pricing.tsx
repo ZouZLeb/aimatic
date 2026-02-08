@@ -40,9 +40,9 @@ const valuePropositions = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-transparent py-24">
+    <section id="pricing" className="bg-transparent py-16 md:py-20">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-extrabold font-headline mb-4">
             The SecureAutomate Standard
           </h2>
@@ -51,7 +51,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto">
           {valuePropositions.map((item, idx) => (
             <motion.div
               key={idx}

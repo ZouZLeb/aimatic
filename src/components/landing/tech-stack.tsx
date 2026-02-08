@@ -41,9 +41,9 @@ const technologies: Tech[] = [
 
 export default function TechStack() {
   return (
-    <section id="tech-stack" className="bg-transparent overflow-hidden py-16 md:py-24">
+    <section id="tech-stack" className="bg-transparent overflow-hidden py-12 md:py-16">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-12">
+        <div className="max-w-4xl mx-auto text-center mb-10">
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export default function TechStack() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8 }}
-          className="mt-12 text-center"
+          className="mt-10 text-center"
         >
           <p className="text-[11px] text-muted-foreground uppercase tracking-widest font-semibold">
             + 400 Other Enterprise Integrations Available
