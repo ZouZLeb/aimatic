@@ -23,7 +23,7 @@ export default function Navigation() {
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300",
         isScrolled 
-          ? "backdrop-blur-md bg-background/70 border-b border-border py-3 shadow-md" 
+          ? "backdrop-blur-md bg-background/30 border-b border-border py-3" 
           : "py-6 bg-transparent"
       )}
     >
@@ -56,7 +56,7 @@ export default function Navigation() {
           <ModeToggle />
           <Button 
             asChild 
-            className="font-bold px-6 shadow-xl"
+            className="px-6"
             variant="default"
           >
             <Link href="#contact">Book a Call</Link>
