@@ -15,12 +15,12 @@ import { cn } from "@/lib/utils";
 
 const steps = [
   {
-    title: "Free Consultation Call",
+    title: "Free Architecture Audit",
     description: "A 15-minute technical review of your manual bottlenecks.",
     icon: PhoneCall,
     badge: "Phase 01",
     color: "text-blue-500",
-    gradient: "from-blue-500/40 to-blue-500/10",
+    gradient: "from-blue-500 to-blue-500/20",
   },
   {
     title: "Fixed-Fee Blueprint",
@@ -28,7 +28,7 @@ const steps = [
     icon: FileText,
     badge: "Phase 02",
     color: "text-amber-500",
-    gradient: "from-amber-500/10 to-amber-500/40",
+    gradient: "from-amber-500/20 to-amber-500",
   },
   {
     title: "Secure Custom Build",
@@ -36,7 +36,7 @@ const steps = [
     icon: Code2,
     badge: "Phase 03",
     color: "text-purple-500",
-    gradient: "from-purple-500/40 to-purple-500/10",
+    gradient: "from-purple-500 to-purple-500/20",
   },
   {
     title: "Security Validation",
@@ -44,7 +44,7 @@ const steps = [
     icon: ShieldCheck,
     badge: "Phase 04",
     color: "text-green-500",
-    gradient: "from-green-500/10 to-green-500/40",
+    gradient: "from-green-500/20 to-green-500",
   },
   {
     title: "System Handover",
@@ -52,15 +52,15 @@ const steps = [
     icon: Rocket,
     badge: "Phase 05",
     color: "text-red-500",
-    gradient: "from-red-500/40 to-red-500/10",
+    gradient: "from-red-500 to-red-500/20",
   },
   {
-    title: "Optional Ongoing Support",
+    title: "Lifecycle Support",
     description: "Optional ongoing priority updates and lifecycle monitoring.",
     icon: RefreshCcw,
     badge: "Phase 06",
     color: "text-cyan-500",
-    gradient: "from-cyan-500/10 to-cyan-500/40",
+    gradient: "from-cyan-500/20 to-cyan-500",
   },
 ];
 
@@ -79,7 +79,7 @@ export default function ProcessOverview() {
 
         <div className="relative max-w-5xl mx-auto">
           {/* Central spine line */}
-          <div className="absolute left-8 md:left-1/2 top-[40px] bottom-[40px] w-px bg-gradient-to-b from-primary via-border to-primary -translate-x-1/2 opacity-30 z-0" />
+          <div className="absolute left-8 md:left-1/2 top-[60px] bottom-[40px] w-px bg-gradient-to-b from-primary via-border to-primary -translate-x-1/2 opacity-30 z-0" />
 
           <div className="space-y-4 md:space-y-0">
             {steps.map((step, idx) => (
@@ -94,16 +94,20 @@ export default function ProcessOverview() {
                   idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 )}
               >
-                {/* Horizontal Connector Line */}
+                {/* Horizontal Connector Line (Desktop) */}
                 <div 
                   className={cn(
-                    "absolute top-1/2 -translate-y-1/2 h-[2px] z-0 hidden sm:block pointer-events-none",
-                    "bg-gradient-to-r",
+                    "absolute top-1/2 -translate-y-1/2 h-[2px] z-[1] hidden md:block pointer-events-none bg-gradient-to-r",
                     step.gradient,
-                    // Mobile Position
-                    "left-8 w-8 md:hidden",
-                    // Desktop Position
-                    idx % 2 === 0 ? "md:right-1/2 md:w-[8%]" : "md:left-1/2 md:w-[8%]"
+                    idx % 2 === 0 ? "right-1/2 w-[8%]" : "left-1/2 w-[8%]"
+                  )} 
+                />
+
+                {/* Horizontal Connector Line (Mobile) */}
+                <div 
+                  className={cn(
+                    "absolute left-8 top-1/2 -translate-y-1/2 w-8 h-[2px] z-[1] block md:hidden pointer-events-none bg-gradient-to-r",
+                    step.gradient
                   )} 
                 />
 
@@ -136,7 +140,7 @@ export default function ProcessOverview() {
                 <div className="absolute left-8 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
                   <div className={cn(
                     "w-12 h-12 rounded-full border-4 border-background bg-card flex items-center justify-center shadow-xl ring-1 ring-border",
-                    "group-hover:scale-110 transition-transform duration-300"
+                    "hover:scale-110 transition-transform duration-300 group"
                   )}>
                     <step.icon size={20} className={step.color} />
                   </div>
