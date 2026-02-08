@@ -252,39 +252,6 @@ export default function CaseStudies() {
             </div>
           </Carousel>
         </div>
-
-        <div className="mt-16 max-w-5xl mx-auto">
-          <Card className="flex flex-col md:flex-row bg-card/40 backdrop-blur-md border-border/50 border-dashed p-8 items-center gap-8">
-            <div className="flex-shrink-0 bg-primary/10 p-4 rounded-full">
-              <ShieldCheck className="w-12 h-12 text-primary" />
-            </div>
-            <div className="flex-grow text-center md:text-left">
-              <h3 className="text-xl font-bold mb-2">The Engineering Standard</h3>
-              <p className="text-sm text-muted-foreground mb-4 max-w-2xl">
-                Generic AI wrappers put your data at risk. Our engineered systems ensure complete sovereignty, full source code ownership, and enterprise-grade security.
-              </p>
-              <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-[11px] uppercase tracking-wider font-bold text-primary">
-                <div className="flex items-center gap-2">
-                  <Zap className="w-4 h-4" />
-                  <span>100% IP Ownership</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>Zero Data Leakage</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <FileText className="w-4 h-4" />
-                  <span>Custom Code Logic</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex-shrink-0 w-full md:w-auto">
-              <Button size="lg" className="w-full md:w-auto" asChild>
-                <a href="#contact">Request Architecture Audit</a>
-              </Button>
-            </div>
-          </Card>
-        </div>
       </div>
 
       <Dialog open={selectedCase !== null} onOpenChange={(isOpen) => !isOpen && setSelectedCase(null)}>
