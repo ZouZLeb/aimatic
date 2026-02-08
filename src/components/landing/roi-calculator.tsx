@@ -10,14 +10,14 @@ import { cn } from "@/lib/utils";
 
 const COMPLEXITY_LEVELS = [
   { label: "Standard", multiplier: 1, description: "n8n + Standard Nodes" },
-  { label: "Advanced", multiplier: 2.5, description: "Custom JS & API Hooks" },
-  { label: "Enterprise", multiplier: 6, description: "High-Security / Scale" },
+  { label: "Advanced", multiplier: 1.8, description: "Custom JS & API Hooks" },
+  { label: "Enterprise", multiplier: 3.5, description: "High-Security / Scale" },
 ];
 
 const MAINTENANCE_LEVELS = [
-  { label: "One-Time", multiplier: 1, description: "Build only" },
-  { label: "Priority", multiplier: 1.25, description: "Priority support" },
-  { label: "Managed", multiplier: 1.75, description: "Full lifecycle" },
+  { label: "One-Time", multiplier: 0, description: "Build only" },
+  { label: "Priority", multiplier: 1, description: "Priority support" },
+  { label: "Managed", multiplier: 2, description: "Full lifecycle" },
 ];
 
 export default function RoiCalculator() {
@@ -28,26 +28,33 @@ export default function RoiCalculator() {
   const [weeklyHours, setWeeklyHours] = useState(10);
 
   const calculations = useMemo(() => {
-    const basePrice = 499;
-    const pricePerIntegration = 750;
-    
-    // Build calculation
+    // 1. Initial Build Cost (One-time)
+    const baseBuildPrice = 1500;
+    const pricePerIntegration = 500;
     const complexityMultiplier = COMPLEXITY_LEVELS[complexityIdx].multiplier;
-    const maintenanceMultiplier = MAINTENANCE_LEVELS[maintenanceIdx].multiplier;
-    const build = Math.round(
-      (basePrice + (integrations - 1) * pricePerIntegration) * 
-      complexityMultiplier * 
-      maintenanceMultiplier
+    
+    const buildCost = Math.round(
+      (baseBuildPrice + (integrations * pricePerIntegration)) * complexityMultiplier
     );
 
-    // Labor calculation
+    // 2. Monthly Maintenance Cost
+    const baseMonthlyPrice = 250;
+    const supportMultiplier = MAINTENANCE_LEVELS[maintenanceIdx].multiplier;
+    
+    // Monthly cost is $0 if One-Time is selected
+    const monthlyCost = maintenanceIdx === 0 
+      ? 0 
+      : Math.round((baseMonthlyPrice + (integrations * 50)) * complexityMultiplier * supportMultiplier);
+
+    // 3. Labor and Savings
     const weeklyLabor = hourlyRate * weeklyHours;
     const annualLabor = weeklyLabor * 52;
+    const annualInvestment = buildCost + (monthlyCost * 12);
     
-    // Savings calculation
-    const savings = Math.max(0, annualLabor - build);
+    // Savings calculation (Labor - 1st Year Total Investment)
+    const firstYearSavings = Math.max(0, annualLabor - annualInvestment);
     
-    return { build, annualLabor, savings, weeklyLabor };
+    return { buildCost, monthlyCost, annualLabor, firstYearSavings, weeklyLabor };
   }, [integrations, complexityIdx, maintenanceIdx, hourlyRate, weeklyHours]);
 
   const formatCurrency = (value: number) => {
@@ -180,12 +187,22 @@ export default function RoiCalculator() {
           {/* Results Column */}
           <div className="md:w-2/5 bg-primary/5 p-8 lg:p-10 flex flex-col justify-between border-l border-border/50">
             <div className="space-y-8">
-              <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Estimated Build Investment</span>
-                <div className="text-4xl lg:text-5xl font-black tracking-tighter text-primary">
-                  {formatCurrency(calculations.build)}
+              <div className="space-y-6">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Initial Build Investment</span>
+                  <div className="text-3xl lg:text-4xl font-black tracking-tighter text-primary">
+                    {formatCurrency(calculations.buildCost)}
+                  </div>
+                  <div className="text-[10px] opacity-70 font-medium">One-time engineering fee</div>
                 </div>
-                <div className="text-[10px] opacity-70 font-medium">One-time engineering fee</div>
+
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Monthly Support & Maintenance</span>
+                  <div className="text-3xl lg:text-4xl font-black tracking-tighter text-foreground">
+                    {formatCurrency(calculations.monthlyCost)}
+                  </div>
+                  <div className="text-[10px] opacity-70 font-medium">Monthly recurring cost</div>
+                </div>
               </div>
 
               <div className="space-y-4 pt-8 border-t border-border/50">
@@ -199,7 +216,7 @@ export default function RoiCalculator() {
                 </div>
                 <div className="flex justify-between items-center text-green-600 dark:text-green-400">
                   <span className="text-[10px] font-bold uppercase opacity-60">1st Year Net Gain</span>
-                  <span className="font-bold text-lg">{formatCurrency(calculations.savings)}</span>
+                  <span className="font-bold text-lg">{formatCurrency(calculations.firstYearSavings)}</span>
                 </div>
               </div>
             </div>
