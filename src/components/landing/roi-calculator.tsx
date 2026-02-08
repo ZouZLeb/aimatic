@@ -76,50 +76,54 @@ export default function RoiCalculator() {
 
         <Card className="overflow-hidden border border-border/50 shadow-2xl flex flex-col md:flex-row bg-card/40 backdrop-blur-lg">
           {/* Inputs Column */}
-          <div className="md:w-3/5 p-8 lg:p-10 space-y-8">
-            <div className="grid sm:grid-cols-2 gap-8">
-              {/* Integrations */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-end">
-                  <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Integrations</Label>
-                  <span className="text-xl font-black text-primary">{integrations}</span>
+          <div className="md:w-3/5 p-8 lg:p-10 space-y-12">
+            
+            {/* Build & Maintenance Group */}
+            <div className="space-y-6">
+              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-primary/80 border-b border-primary/10 pb-2">1. System Scope & Maintenance</h3>
+              
+              <div className="grid sm:grid-cols-2 gap-8">
+                {/* Integrations */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-end">
+                    <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Number of Integrations</Label>
+                    <span className="text-xl font-black text-primary">{integrations}</span>
+                  </div>
+                  <Slider 
+                    value={[integrations]} 
+                    onValueChange={(val) => setIntegrations(val[0])} 
+                    min={1} 
+                    max={12} 
+                    step={1} 
+                    className="py-2"
+                  />
                 </div>
-                <Slider 
-                  value={[integrations]} 
-                  onValueChange={(val) => setIntegrations(val[0])} 
-                  min={1} 
-                  max={12} 
-                  step={1} 
-                  className="py-2"
-                />
+
+                {/* Complexity */}
+                <div className="space-y-4">
+                  <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Build Complexity</Label>
+                  <div className="grid grid-cols-3 gap-1.5">
+                    {COMPLEXITY_LEVELS.map((level, idx) => (
+                      <button
+                        key={level.label}
+                        onClick={() => setComplexityIdx(idx)}
+                        className={cn(
+                          "flex flex-col items-center justify-center p-2 rounded-lg border transition-all text-center",
+                          complexityIdx === idx 
+                            ? "border-primary bg-primary/10 text-primary" 
+                            : "border-border/50 hover:border-primary/30 text-muted-foreground"
+                        )}
+                      >
+                        <span className="font-bold text-[10px]">{level.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Complexity */}
-              <div className="space-y-4">
-                <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Complexity</Label>
-                <div className="grid grid-cols-3 gap-1.5">
-                  {COMPLEXITY_LEVELS.map((level, idx) => (
-                    <button
-                      key={level.label}
-                      onClick={() => setComplexityIdx(idx)}
-                      className={cn(
-                        "flex flex-col items-center justify-center p-2 rounded-lg border transition-all text-center",
-                        complexityIdx === idx 
-                          ? "border-primary bg-primary/10 text-primary" 
-                          : "border-border/50 hover:border-primary/30 text-muted-foreground"
-                      )}
-                    >
-                      <span className="font-bold text-[10px]">{level.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-8">
               {/* Support Level */}
               <div className="space-y-4">
-                <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Support & Maintenance</Label>
+                <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Support & Maintenance Level</Label>
                 <div className="grid grid-cols-3 gap-1.5">
                   {MAINTENANCE_LEVELS.map((level, idx) => (
                     <button
@@ -137,38 +141,45 @@ export default function RoiCalculator() {
                   ))}
                 </div>
               </div>
-
-              {/* Weekly Hours */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-end">
-                  <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Hours Wasted / Week</Label>
-                  <span className="text-xl font-black text-primary">{weeklyHours}h</span>
-                </div>
-                <Slider 
-                  value={[weeklyHours]} 
-                  onValueChange={(val) => setWeeklyHours(val[0])} 
-                  min={1} 
-                  max={60} 
-                  step={1} 
-                  className="py-2"
-                />
-              </div>
             </div>
 
-            {/* Hourly Rate */}
-            <div className="space-y-4 max-w-sm">
-              <div className="flex justify-between items-end">
-                <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Internal Hourly Rate</Label>
-                <span className="text-xl font-black text-primary">{formatCurrency(hourlyRate)}/h</span>
+            {/* Labor Cost Group */}
+            <div className="space-y-6 pt-4">
+              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-primary/80 border-b border-primary/10 pb-2">2. Current Manual Labor Costs</h3>
+              
+              <div className="grid sm:grid-cols-2 gap-8">
+                {/* Weekly Hours */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-end">
+                    <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Hours Wasted / Week</Label>
+                    <span className="text-xl font-black text-primary">{weeklyHours}h</span>
+                  </div>
+                  <Slider 
+                    value={[weeklyHours]} 
+                    onValueChange={(val) => setWeeklyHours(val[0])} 
+                    min={1} 
+                    max={60} 
+                    step={1} 
+                    className="py-2"
+                  />
+                </div>
+
+                {/* Hourly Rate */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-end">
+                    <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Internal Hourly Rate</Label>
+                    <span className="text-xl font-black text-primary">{formatCurrency(hourlyRate)}/h</span>
+                  </div>
+                  <Slider 
+                    value={[hourlyRate]} 
+                    onValueChange={(val) => setHourlyRate(val[0])} 
+                    min={20} 
+                    max={250} 
+                    step={5} 
+                    className="py-2"
+                  />
+                </div>
               </div>
-              <Slider 
-                value={[hourlyRate]} 
-                onValueChange={(val) => setHourlyRate(val[0])} 
-                min={20} 
-                max={250} 
-                step={5} 
-                className="py-2"
-              />
             </div>
 
             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border/30 border-dashed">
