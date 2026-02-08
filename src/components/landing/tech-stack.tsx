@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -15,12 +16,11 @@ import {
   OAuthLogo,
   N8NLogo,
 } from "../icons/tech-logos";
-import type { FC } from "react";
-import type { IconProps } from "@icons-pack/react-simple-icons";
+import type { ElementType } from "react";
 
 type Tech = {
   name: string;
-  Logo: FC<IconProps>;
+  Logo: ElementType;
   description: string;
 };
 
@@ -40,6 +40,9 @@ const technologies: Tech[] = [
 ];
 
 export default function TechStack() {
+  // Duplicate for seamless looping
+  const duplicatedTechs = [...technologies, ...technologies, ...technologies];
+
   return (
     <section id="tech-stack" className="bg-transparent overflow-hidden py-12 md:py-16">
       <div className="container mx-auto px-6">
@@ -58,25 +61,40 @@ export default function TechStack() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {technologies.map((tech, idx) => (
+        <div className="relative w-full pointer-events-none select-none">
+          {/* Gradient Fades for the edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+          
+          <div className="flex overflow-hidden">
             <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: idx * 0.05 }}
-              className="flex items-center gap-3 p-4 rounded-xl bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/50 transition-all hover:bg-card/60 group shadow-sm"
+              className="flex gap-4 py-4"
+              animate={{
+                x: [0, -100 * technologies.length + "%"],
+              }}
+              transition={{
+                duration: 40,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              style={{ width: "max-content" }}
             >
-              <div className="flex-shrink-0 text-muted-foreground group-hover:text-primary transition-colors">
-                <tech.Logo size={28} />
-              </div>
-              <div className="min-w-0">
-                <h4 className="font-bold text-sm leading-none mb-1 text-foreground">{tech.name}</h4>
-                <p className="text-[10px] text-muted-foreground truncate">{tech.description}</p>
-              </div>
+              {duplicatedTechs.map((tech, idx) => (
+                <div
+                  key={`${tech.name}-${idx}`}
+                  className="flex items-center gap-3 p-4 w-64 rounded-xl bg-card/40 backdrop-blur-md border border-border/50 transition-all shadow-sm"
+                >
+                  <div className="flex-shrink-0 text-muted-foreground">
+                    <tech.Logo size={28} />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-sm leading-none mb-1 text-foreground">{tech.name}</h4>
+                    <p className="text-[10px] text-muted-foreground truncate">{tech.description}</p>
+                  </div>
+                </div>
+              ))}
             </motion.div>
-          ))}
+          </div>
         </div>
         
         <motion.div 
@@ -87,7 +105,7 @@ export default function TechStack() {
           className="mt-10 text-center"
         >
           <p className="text-[11px] text-muted-foreground uppercase tracking-widest font-semibold">
-            + 400 Other Enterprise Integrations Available
+            + 2000 Other Enterprise Integrations Available
           </p>
         </motion.div>
       </div>

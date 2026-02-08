@@ -29,12 +29,12 @@ export default function RoiCalculator() {
 
   const calculations = useMemo(() => {
     // 1. Initial Build Cost (One-time)
-    const baseBuildPrice = 1500;
+    const baseBuildPrice = 499;
     const pricePerIntegration = 500;
     const complexityMultiplier = COMPLEXITY_LEVELS[complexityIdx].multiplier;
     
-    const buildCost = Math.round(
-      (baseBuildPrice + (integrations * pricePerIntegration)) * complexityMultiplier
+    const buildCost = integrations === 1 ? baseBuildPrice : Math.round(
+      (baseBuildPrice + ((integrations - 1) * pricePerIntegration)) * complexityMultiplier
     );
 
     // 2. Monthly Maintenance Cost
@@ -44,7 +44,7 @@ export default function RoiCalculator() {
     // Monthly cost is $0 if One-Time is selected
     const monthlyCost = maintenanceIdx === 0 
       ? 0 
-      : Math.round((baseMonthlyPrice + (integrations * 50)) * complexityMultiplier * supportMultiplier);
+      : Math.round((baseMonthlyPrice + (integrations * 50)) * complexityMultiplier/2 * supportMultiplier);
 
     // 3. Labor and Savings
     const annualLabor = (hourlyRate * weeklyHours) * 52;
@@ -69,7 +69,7 @@ export default function RoiCalculator() {
     <section id="roi-calculator" className="bg-transparent py-12">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-black font-headline tracking-tight">Estimate Your Investment</h2>
+          <h2 className="text-3xl md:text-4xl font-black font-headline tracking-tight">Estimate Your Investment/Saving</h2>
           <p className="text-muted-foreground mt-2">See how an engineered system pays for itself in weeks.</p>
         </div>
 
@@ -86,7 +86,7 @@ export default function RoiCalculator() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-end">
                     <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Number of Integrations</Label>
-                    <span className="text-xl font-black text-primary">{integrations}</span>
+                    <span className="text-xl font-black text-primary">{integrations < 12 ? integrations : `${integrations+"+"}` }</span>
                   </div>
                   <Slider 
                     value={[integrations]} 
@@ -150,7 +150,7 @@ export default function RoiCalculator() {
                 {/* Weekly Hours */}
                 <div className="space-y-4">
                   <div className="flex justify-between items-end">
-                    <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Hours Wasted / Week</Label>
+                    <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Hours Worked/Week</Label>
                     <span className="text-xl font-black text-primary">{weeklyHours}h</span>
                   </div>
                   <Slider 
@@ -166,13 +166,13 @@ export default function RoiCalculator() {
                 {/* Hourly Rate */}
                 <div className="space-y-4">
                   <div className="flex justify-between items-end">
-                    <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Internal Hourly Rate</Label>
+                    <Label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Hourly Rate</Label>
                     <span className="text-xl font-black text-primary">{formatCurrency(hourlyRate)}/h</span>
                   </div>
                   <Slider 
                     value={[hourlyRate]} 
                     onValueChange={(val) => setHourlyRate(val[0])} 
-                    min={20} 
+                    min={15} 
                     max={250} 
                     step={5} 
                     className="py-2"
