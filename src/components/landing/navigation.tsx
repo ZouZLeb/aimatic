@@ -21,10 +21,10 @@ export default function Navigation() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300 bg-slate-900 text-white",
+        "fixed top-0 z-50 w-full transition-all duration-300",
         isScrolled 
-          ? "backdrop-blur-md bg-slate-900/90 border-b border-white/10 py-3 shadow-md" 
-          : "py-6"
+          ? "backdrop-blur-md bg-background/70 border-b border-border py-3 shadow-md" 
+          : "py-6 bg-transparent"
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -35,7 +35,7 @@ export default function Navigation() {
           )}>
             <CodeXml className="w-6 h-6 text-primary" />
           </div>
-          <span className="font-black text-xl tracking-tight transition-colors font-headline text-white">
+          <span className="font-black text-xl tracking-tight transition-colors font-headline text-foreground">
             SecureAutomate
           </span>
         </Link>
@@ -45,7 +45,7 @@ export default function Navigation() {
             <Link 
               key={item}
               href={`#${item.toLowerCase().replace(' ', '-')}`} 
-              className="transition-all duration-200 text-white/70 hover:text-white"
+              className="transition-all duration-200 text-muted-foreground hover:text-primary"
             >
               {item}
             </Link>

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -42,7 +41,7 @@ const technologies: Tech[] = [
 
 export default function TechStack() {
   return (
-    <section id="tech-stack" className="bg-slate-900 text-white overflow-hidden py-16 md:py-24">
+    <section id="tech-stack" className="bg-transparent overflow-hidden py-16 md:py-24">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <motion.h2 
@@ -53,7 +52,7 @@ export default function TechStack() {
           >
             Elite Technology Stack
           </motion.h2>
-          <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm max-w-2xl mx-auto">
             We integrate with the most powerful tools in the industry using 
             professional engineering standards. No wrappers, just pure integration.
           </p>
@@ -67,14 +66,14 @@ export default function TechStack() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
-              className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all hover:bg-white/10 group"
+              className="flex items-center gap-3 p-4 rounded-xl bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/50 transition-all hover:bg-card/60 group shadow-sm"
             >
-              <div className="flex-shrink-0 text-gray-400 group-hover:text-primary transition-colors">
+              <div className="flex-shrink-0 text-muted-foreground group-hover:text-primary transition-colors">
                 <tech.Logo size={28} />
               </div>
               <div className="min-w-0">
-                <h4 className="font-bold text-sm leading-none mb-1">{tech.name}</h4>
-                <p className="text-[10px] text-gray-500 truncate">{tech.description}</p>
+                <h4 className="font-bold text-sm leading-none mb-1 text-foreground">{tech.name}</h4>
+                <p className="text-[10px] text-muted-foreground truncate">{tech.description}</p>
               </div>
             </motion.div>
           ))}
@@ -87,7 +86,7 @@ export default function TechStack() {
           transition={{ delay: 0.8 }}
           className="mt-12 text-center"
         >
-          <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
+          <p className="text-[11px] text-muted-foreground uppercase tracking-widest font-semibold">
             + 400 Other Enterprise Integrations Available
           </p>
         </motion.div>

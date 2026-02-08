@@ -11,7 +11,7 @@ export default function CtaSection() {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   return (
-    <section id="contact" className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground">
+    <section id="contact" className="bg-transparent text-foreground">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -23,7 +23,7 @@ export default function CtaSection() {
             <h2 className="text-4xl md:text-5xl font-bold font-headline mb-4">
               Ready to Eliminate Repetitive Work?
             </h2>
-            <p className="text-xl mb-12 text-primary-foreground/80">
+            <p className="text-xl mb-12 text-muted-foreground">
               Choose the option that works best for you. Let&apos;s discuss how we can solve your unique challenges.
             </p>
           </motion.div>
@@ -36,16 +36,16 @@ export default function CtaSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Card 
-                className="bg-white/10 text-primary-foreground p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 group border-white/20 hover:border-white/40 cursor-pointer text-left h-full flex flex-col"
+                className="bg-primary/10 text-foreground p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 group border-primary/20 hover:border-primary/40 cursor-pointer text-left h-full flex flex-col backdrop-blur-md"
                 onClick={() => setIsCalendlyOpen(true)}
               >
-                <Calendar className="w-12 h-12 mb-4 text-yellow-300 group-hover:scale-110 transition-transform" />
+                <Calendar className="w-12 h-12 mb-4 text-primary group-hover:scale-110 transition-transform" />
                 <h3 className="text-2xl font-bold mb-2">Book Free Consultation</h3>
-                <p className="text-primary-foreground/80 mb-4 flex-grow">
+                <p className="text-muted-foreground mb-4 flex-grow">
                   A 15-minute technical discussion about your needs. No sales pitch, no commitment.
                 </p>
                 <div className="mt-auto">
-                  <div className="inline-flex items-center bg-yellow-300 text-primary-foreground px-6 py-3 rounded-lg font-semibold">
+                  <div className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold">
                     Schedule Now
                   </div>
                 </div>
@@ -61,15 +61,15 @@ export default function CtaSection() {
               <a
                 href="/case-studies.pdf"
                 download
-                className="bg-white/10 text-primary-foreground p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 group border-white/20 hover:border-white/40 cursor-pointer block text-left h-full"
+                className="bg-card/40 backdrop-blur-md text-foreground p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 group border-border hover:border-primary/40 cursor-pointer block text-left h-full border-2"
               >
-                <FileText className="w-12 h-12 mb-4 text-yellow-300 group-hover:scale-110 transition-transform" />
+                <FileText className="w-12 h-12 mb-4 text-primary group-hover:scale-110 transition-transform" />
                 <h3 className="text-2xl font-bold mb-2">See Examples First</h3>
-                <p className="text-primary-foreground/80 mb-4 flex-grow">
+                <p className="text-muted-foreground mb-4 flex-grow">
                   Not ready to talk? Download our in-depth case studies and technical examples.
                 </p>
                  <div className="mt-auto">
-                  <div className="inline-flex items-center bg-yellow-300 text-primary-foreground px-6 py-3 rounded-lg font-semibold">
+                  <div className="inline-flex items-center bg-muted text-foreground px-6 py-3 rounded-lg font-semibold hover:bg-muted/80 transition-colors">
                     Download PDF
                   </div>
                 </div>
@@ -77,9 +77,9 @@ export default function CtaSection() {
             </motion.div>
           </div>
           
-          <div className="border-t border-white/20 pt-8">
-            <p className="text-primary-foreground/80 mb-4">Or prefer a direct line?</p>
-            <Button variant="ghost" asChild className="text-xl font-semibold hover:bg-white/10 text-primary-foreground h-auto py-2 px-4">
+          <div className="border-t border-border pt-8">
+            <p className="text-muted-foreground mb-4">Or prefer a direct line?</p>
+            <Button variant="ghost" asChild className="text-xl font-semibold hover:bg-primary/10 h-auto py-2 px-4">
               <a href="mailto:hello@secureautomate.com">
                 <Mail className="w-6 h-6 mr-2" />
                 hello@secureautomate.com
@@ -87,7 +87,7 @@ export default function CtaSection() {
             </Button>
           </div>
 
-          <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-primary-foreground/70">
+          <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-muted-foreground">
             <div className="flex items-center justify-center gap-2">
               <Clock className="w-5 h-5" />
               <span>Response within 24 hours</span>
