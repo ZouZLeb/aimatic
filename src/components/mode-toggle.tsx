@@ -19,9 +19,7 @@ export function ModeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full">
-        <span className="sr-only">Toggle theme</span>
-      </Button>
+      <div className="h-10 w-10 rounded-full border border-border/50 bg-background/20 backdrop-blur-sm" />
     )
   }
 
@@ -34,8 +32,9 @@ export function ModeToggle() {
       variant="ghost"
       size="icon"
       className={cn(
-        "h-10 w-10 rounded-full relative overflow-hidden group transition-all duration-300",
-        "bg-white/5 hover:bg-white/20 border border-white/10"
+        "h-10 w-10 rounded-full relative overflow-hidden group transition-all duration-300 border backdrop-blur-md shadow-sm",
+        "bg-white/10 border-white/20 dark:bg-black/20 dark:border-white/10",
+        "hover:bg-white/20 dark:hover:bg-black/30"
       )}
       onClick={toggleTheme}
       title={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
@@ -43,29 +42,29 @@ export function ModeToggle() {
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={resolvedTheme}
-          initial={{ y: resolvedTheme === "dark" ? 20 : -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: resolvedTheme === "dark" ? -20 : 20, opacity: 0 }}
+          initial={{ y: 20, opacity: 0, rotate: -45 }}
+          animate={{ y: 0, opacity: 1, rotate: 0 }}
+          exit={{ y: -20, opacity: 0, rotate: 45 }}
           transition={{ 
             type: "spring",
             stiffness: 300,
-            damping: 30
+            damping: 25
           }}
           className="flex items-center justify-center w-full h-full absolute inset-0"
         >
           {resolvedTheme === "dark" ? (
             <Moon className="h-5 w-5 text-white" />
           ) : (
-            <Sun className="h-5 w-5 text-white" />
+            <Sun className="h-5 w-5 text-primary" />
           )}
         </motion.div>
       </AnimatePresence>
       
       {/* Background hover fill effect */}
       <motion.div 
-        className="absolute inset-0 bg-white/10 -z-10"
+        className="absolute inset-0 bg-primary/5 dark:bg-white/5 -z-10"
         initial={{ scale: 0, opacity: 0 }}
-        whileHover={{ scale: 1.5, opacity: 1 }}
+        whileHover={{ scale: 2, opacity: 1 }}
         transition={{ duration: 0.4 }}
       />
       
