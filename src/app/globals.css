@@ -89,40 +89,29 @@
   section {
     @apply py-20 sm:py-32 bg-transparent;
   }
-
-  /* Glassmorphism Utilities */
-  .glass-panel {
-    @apply bg-card/40 backdrop-blur-xl border-white/10 shadow-none;
-  }
-  
-  .glass-card {
-    @apply bg-card/30 backdrop-blur-lg border-white/5 hover:border-white/20 transition-all shadow-none;
-  }
 }
 
 @layer components {
-  /* Glassy Button Styling with Gradient Border and Hover Fill */
-  .btn-glass-important {
-    @apply relative border-2 border-transparent backdrop-blur-md transition-all duration-300 shadow-none;
-    /* Transparent background with gradient border */
-    background: linear-gradient(hsl(var(--background) / 0.1), hsl(var(--background) / 0.1)) padding-box,
-                linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))) border-box;
+  .btn-custom-glass {
+    @apply relative inline-flex items-center justify-center p-0 transition-all duration-300 no-underline cursor-pointer border-none overflow-hidden rounded-[34px];
+    box-shadow: none;
+    color: #fff !important;
+    background-color: #0f2349;
+    background-image: linear-gradient(90deg, #6998e3, #56c0f8 25%, #958bf8 50%, #cc59f3 75%, #f769ab);
   }
 
-  .btn-glass-important:hover {
-    /* Background becomes the gradient on hover */
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))) border-box;
-    @apply text-primary-foreground;
-    transform: translateY(-1px);
+  .btn-custom-glass-inner {
+    @apply block w-full h-full transition-colors duration-200 ease-in-out bg-[#0e2042] rounded-[32px];
+    margin: 1.5px;
+    padding: 11.5px 22.5px 9.5px;
   }
 
-  .btn-glass-regular {
-    @apply relative border-2 border-white/20 backdrop-blur-md bg-white/5 transition-all duration-300 shadow-none;
+  .btn-custom-glass:hover .btn-custom-glass-inner {
+    background-color: transparent;
   }
 
-  .btn-glass-regular:hover {
-    @apply bg-white/15 border-white/40;
-    transform: translateY(-1px);
+  .btn-custom-glass-text {
+    @apply text-sm font-bold;
   }
 }
 

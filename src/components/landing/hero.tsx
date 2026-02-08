@@ -25,8 +25,8 @@ const ComparisonCard = ({
     <Card
       className={`relative overflow-hidden border-2 transition-all duration-300 hover:shadow-xl ${
         type === "after" 
-          ? "border-primary/50 bg-primary/5 dark:bg-white/5 backdrop-blur-sm" 
-          : "border-destructive/40 bg-destructive/5 dark:bg-white/5 backdrop-blur-sm"
+          ? "border-primary/50 bg-primary/5 backdrop-blur-sm" 
+          : "border-destructive/40 bg-destructive/5 backdrop-blur-sm"
       }`}
     >
       <CardContent className="p-5">
@@ -37,8 +37,8 @@ const ComparisonCard = ({
             <Database className="w-6 h-6 text-red-600 dark:text-red-400" />
           )}
           <div>
-            <h3 className="font-bold text-lg text-foreground dark:text-white">{title}</h3>
-            <p className="text-sm text-muted-foreground dark:text-gray-300">{description}</p>
+            <h3 className="font-bold text-lg text-foreground">{title}</h3>
+            <p className="text-sm text-muted-foreground">{description}</p>
           </div>
         </div>
         <div className="aspect-video relative rounded-md overflow-hidden bg-slate-900/40">
@@ -77,7 +77,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium"
+            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-medium"
           >
             We build high-performance automation with n8n and custom scripts. 
             Real engineering for security-first businesses. No data leaks, no monthly per-task fees, complete ownership.
@@ -89,12 +89,16 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button size="lg" className="h-12 px-8 font-bold text-base" variant="default" asChild>
-              <Link href="#why-custom">Ownership vs Renting</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="h-12 px-8 font-bold text-base" asChild>
-              <Link href="#contact">Book Free Consultation</Link>
-            </Button>
+            <Link href="#why-custom" className="btn-custom-glass">
+              <div className="btn-custom-glass-inner">
+                <div className="btn-custom-glass-text px-4">Ownership vs Renting</div>
+              </div>
+            </Link>
+            <Link href="#contact" className="btn-custom-glass opacity-80 hover:opacity-100">
+              <div className="btn-custom-glass-inner">
+                <div className="btn-custom-glass-text px-4">Book Free Consultation</div>
+              </div>
+            </Link>
           </motion.div>
         </div>
 

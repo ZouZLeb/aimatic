@@ -36,7 +36,7 @@ export default function CtaSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Card 
-                className="bg-card/40 backdrop-blur-md p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 group border-border hover:border-primary/40 cursor-pointer text-left h-full flex flex-col"
+                className="bg-card/40 backdrop-blur-md p-8 rounded-lg shadow-none hover:shadow-xl transition-all hover:scale-[1.02] group border-border hover:border-primary/40 cursor-pointer text-left h-full flex flex-col"
                 onClick={() => setIsCalendlyOpen(true)}
               >
                 <Calendar className="w-12 h-12 mb-4 text-primary group-hover:scale-110 transition-transform" />
@@ -45,9 +45,11 @@ export default function CtaSection() {
                   A 15-minute technical discussion about your needs. No sales pitch, no commitment.
                 </p>
                 <div className="mt-auto">
-                  <Button variant="default" className="w-full h-12 font-bold pointer-events-none">
-                    Schedule Now
-                  </Button>
+                  <div className="btn-custom-glass w-full">
+                    <div className="btn-custom-glass-inner text-center">
+                      <div className="btn-custom-glass-text">Schedule Now</div>
+                    </div>
+                  </div>
                 </div>
               </Card>
             </motion.div>
@@ -61,7 +63,7 @@ export default function CtaSection() {
               <a
                 href="/case-studies.pdf"
                 download
-                className="bg-card/40 backdrop-blur-md text-foreground p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 group border-border hover:border-primary/40 cursor-pointer block text-left h-full border"
+                className="bg-card/40 backdrop-blur-md text-foreground p-8 rounded-lg shadow-none hover:shadow-xl transition-all hover:scale-[1.02] group border-border hover:border-primary/40 cursor-pointer block text-left h-full border no-underline"
               >
                 <FileText className="w-12 h-12 mb-4 text-primary group-hover:scale-110 transition-transform" />
                 <h3 className="text-2xl font-bold mb-2">See Examples First</h3>
@@ -69,9 +71,11 @@ export default function CtaSection() {
                   Not ready to talk? Download our in-depth case studies and technical examples.
                 </p>
                  <div className="mt-auto">
-                  <Button variant="outline" className="w-full h-12 font-bold pointer-events-none">
-                    Download PDF
-                  </Button>
+                  <div className="btn-custom-glass opacity-80 hover:opacity-100 w-full">
+                    <div className="btn-custom-glass-inner text-center">
+                      <div className="btn-custom-glass-text">Download PDF</div>
+                    </div>
+                  </div>
                 </div>
               </a>
             </motion.div>
@@ -79,12 +83,10 @@ export default function CtaSection() {
           
           <div className="border-t border-border pt-8">
             <p className="text-muted-foreground mb-4">Or prefer a direct line?</p>
-            <Button variant="ghost" asChild className="text-xl font-semibold h-auto py-2 px-4">
-              <a href="mailto:hello@secureautomate.com">
-                <Mail className="w-6 h-6 mr-2" />
-                hello@secureautomate.com
-              </a>
-            </Button>
+            <a href="mailto:hello@secureautomate.com" className="text-xl font-semibold text-primary hover:underline flex items-center justify-center gap-2">
+              <Mail className="w-6 h-6" />
+              hello@secureautomate.com
+            </a>
           </div>
 
           <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-muted-foreground">

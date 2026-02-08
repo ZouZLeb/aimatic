@@ -81,7 +81,7 @@ export default function Pricing() {
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-yellow-400 to-primary"></div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
             <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold mb-2 flex items-center justify-center md:justify-start gap-2">
+              <h3 className="text-2xl font-bold mb-2 flex items-center justify-center md:justify-start gap-2 text-white">
                 <Globe className="text-primary w-6 h-6" /> Ready for a Private Build?
               </h3>
               <p className="text-gray-400 max-w-md">
@@ -89,12 +89,16 @@ export default function Pricing() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-               <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10 h-12 px-8">
-                <Link href="#roi-calculator">Use Cost Calculator</Link>
-              </Button>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 h-12 px-8 font-bold">
-                <Link href="#contact">Book Architecture Audit</Link>
-              </Button>
+               <Link href="#roi-calculator" className="btn-custom-glass opacity-80 hover:opacity-100">
+                  <div className="btn-custom-glass-inner">
+                    <div className="btn-custom-glass-text px-4">Use Cost Calculator</div>
+                  </div>
+               </Link>
+               <Link href="#contact" className="btn-custom-glass">
+                  <div className="btn-custom-glass-inner">
+                    <div className="btn-custom-glass-text px-4">Book Architecture Audit</div>
+                  </div>
+               </Link>
             </div>
           </div>
         </div>
