@@ -7,62 +7,62 @@ import {
   Code2, 
   ShieldCheck, 
   Rocket, 
-  RefreshCcw,
-  ArrowRight
+  RefreshCcw
 } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { cn } from "@/lib/utils";
 
 const steps = [
   {
-    title: "Free Architecture Audit",
+    title: "Free consultation Call",
     description: "A 15-minute technical review of your manual bottlenecks.",
     icon: PhoneCall,
-    badge: "Free",
+    badge: "Phase 01",
     color: "text-blue-500",
   },
   {
     title: "Fixed-Fee Blueprint",
     description: "Complete system scope with transparent, guaranteed pricing.",
     icon: FileText,
-    badge: "Fixed Price",
+    badge: "Phase 02",
     color: "text-amber-500",
   },
   {
     title: "Secure Custom Build",
     description: "n8n workflows & custom scripts built for your private VPC.",
     icon: Code2,
-    badge: "n8n + Code",
+    badge: "Phase 03",
     color: "text-purple-500",
   },
   {
     title: "Security Validation",
     description: "Rigorous testing to ensure 0% data leakage to third-parties.",
     icon: ShieldCheck,
-    badge: "Private",
+    badge: "Phase 04",
     color: "text-green-500",
   },
   {
     title: "System Handover",
     description: "You receive the source code. 100% IP ownership. No vendor lock-in.",
     icon: Rocket,
-    badge: "You Own It",
+    badge: "Phase 05",
     color: "text-red-500",
   },
   {
-    title: "Managed Support",
+    title: "Optional Ongoing Support",
     description: "Optional ongoing priority updates and lifecycle monitoring.",
     icon: RefreshCcw,
-    badge: "Optional",
+    badge: "Phase 06",
     color: "text-cyan-500",
   },
 ];
 
 export default function ProcessOverview() {
   return (
-    <section id="services" className="bg-transparent py-16">
+    <section id="services" className="bg-transparent py-12 md:py-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16 md:mb-24">
           <h2 className="text-3xl md:text-5xl font-black font-headline mb-4 tracking-tight">
             The Engineering Lifecycle
           </h2>
@@ -71,60 +71,79 @@ export default function ProcessOverview() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {steps.map((step, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="relative group"
-            >
-              <Card className="h-full border-border/50 bg-card/40 backdrop-blur-md hover:border-primary/50 transition-all duration-300">
-                <CardContent className="pt-8">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className={`p-3 rounded-xl bg-muted/20 ${step.color} group-hover:scale-110 transition-transform duration-300`}>
-                      <step.icon size={32} />
-                    </div>
-                    <Badge variant="secondary" className="bg-primary/10 text-primary border-none text-[10px] uppercase font-bold tracking-widest">
-                      {step.badge}
-                    </Badge>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                    <span className="text-primary/40 text-sm font-mono tracking-tighter">0{idx + 1}</span>
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
-                </CardContent>
-              </Card>
-              
-              {/* Desktop arrow connector */}
-              {idx < steps.length - 1 && (
-                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 text-muted-foreground/20">
-                  <ArrowRight size={24} className="group-hover:text-primary/40 transition-colors" />
+        <div className="relative max-w-5xl mx-auto">
+          {/* Central spine line - hidden on very small screens, responsive for others */}
+          <div className="absolute left-8 md:left-1/2 top-[40px] bottom-[40px] w-px bg-gradient-to-b from-primary via-border to-primary -translate-x-1/2 hidden sm:block opacity-30" />
+
+          <div className="space-y-12 md:space-y-16">
+            {steps.map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className={cn(
+                  "relative flex flex-col md:flex-row items-center justify-between",
+                  idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                )}
+              >
+                {/* Content Card */}
+                <div className={cn(
+                  "w-full md:w-[42%] ml-16 sm:ml-0",
+                  idx % 2 === 0 ? "md:text-right" : "md:text-left"
+                )}>
+                  <Card className="border-border/50 bg-card/40 backdrop-blur-md hover:border-primary/50 transition-all duration-300 group shadow-none hover:shadow-lg">
+                    <CardContent className="p-6">
+                      <div className={cn(
+                        "flex items-center gap-2 mb-3",
+                        idx % 2 === 0 ? "md:flex-row-reverse" : "flex-row"
+                      )}>
+                        <Badge variant="secondary" className="bg-primary/10 text-primary border-none text-[9px] uppercase font-bold tracking-[0.2em] px-2 py-0.5">
+                          {step.badge}
+                        </Badge>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2 text-foreground">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {step.description}
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
-              )}
-            </motion.div>
-          ))}
+
+                {/* Timeline Node Icon */}
+                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 z-10 hidden sm:flex items-center justify-center">
+                  <div className={cn(
+                    "w-12 h-12 rounded-full border-4 border-background bg-card flex items-center justify-center shadow-xl ring-1 ring-border",
+                    "group-hover:scale-110 transition-transform duration-300"
+                  )}>
+                    <step.icon size={20} className={step.color} />
+                  </div>
+                </div>
+
+                {/* Spacer for alternating layout */}
+                <div className="hidden md:block w-[42%]" />
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="grid sm:grid-cols-3 gap-4 text-center">
-            <div className="p-4 border-r border-border/30 last:border-0">
-               <h4 className="font-bold text-foreground">Zero Task Fees</h4>
-               <p className="text-xs text-muted-foreground mt-1">Once built, run unlimited tasks on your own hardware.</p>
+        {/* Closing summary bar */}
+        <div className="mt-20 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-3 gap-6 text-center border-t border-border/30 pt-12">
+            <div className="space-y-1">
+               <h4 className="font-bold text-foreground text-sm uppercase tracking-tight">Zero Task Fees</h4>
+               <p className="text-[11px] text-muted-foreground">Run unlimited tasks on your own infrastructure.</p>
             </div>
-            <div className="p-4 border-r border-border/30 last:border-0">
-               <h4 className="font-bold text-foreground">Complete IP</h4>
-               <p className="text-xs text-muted-foreground mt-1">Full source code and documentation provided at handover.</p>
+            <div className="space-y-1">
+               <h4 className="font-bold text-foreground text-sm uppercase tracking-tight">Complete IP</h4>
+               <p className="text-[11px] text-muted-foreground">Receive full source code and documentation at handover.</p>
             </div>
-            <div className="p-4 last:border-0">
-               <h4 className="font-bold text-foreground">Data Sovereignty</h4>
-               <p className="text-xs text-muted-foreground mt-1">Your proprietary data never touches our servers.</p>
+            <div className="space-y-1">
+               <h4 className="font-bold text-foreground text-sm uppercase tracking-tight">Data Sovereignty</h4>
+               <p className="text-[11px] text-muted-foreground">Your proprietary business data never touches our servers.</p>
             </div>
           </div>
         </div>
