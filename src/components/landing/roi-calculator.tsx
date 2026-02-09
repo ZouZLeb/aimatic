@@ -66,10 +66,10 @@ export default function RoiCalculator() {
   };
 
   return (
-    <section id="roi-calculator" className="bg-transparent py-12">
+    <section id="pricing" className="bg-transparent py-12">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-black font-headline tracking-tight">Estimate Your Investment/Saving</h2>
+          <h2 className="text-3xl md:text-4xl font-black font-headline tracking-tight">Estimate Your Investment</h2>
           <p className="text-muted-foreground mt-2">See how an engineered system pays for itself in weeks.</p>
         </div>
 

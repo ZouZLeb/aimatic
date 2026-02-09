@@ -60,7 +60,7 @@ const ComparisonCard = ({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[80vh] flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden bg-transparent">
+    <section className="relative flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden bg-transparent">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <motion.div

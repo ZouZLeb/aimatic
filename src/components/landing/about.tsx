@@ -13,7 +13,7 @@ export default function AboutSection() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
-            Developers, Not Prompt Engineers
+            Real Developers, Not Prompt Engineers
           </h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
             We focus on building high-quality, secure systems that solve problems while ensuring our clients own their technology.
@@ -37,13 +37,13 @@ export default function AboutSection() {
                 </div>
                 <h3 className="text-2xl font-bold font-headline">The Engineering Team</h3>
                 <p className="text-primary mb-4">
-                  Software Developers & Cybersecurity Experts
+                  Software Developers & Cybersecurity Analyst
                 </p>
 
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-3">
                     <Shield className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span><strong>Security+ & AWS</strong> Certified</span>
+                    <span><strong>Security</strong> Certified</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Code className="w-5 h-5 text-primary flex-shrink-0" />
