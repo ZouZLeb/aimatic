@@ -2,15 +2,30 @@
 
 import { Button } from "@/components/ui/button";
 import { useScroll } from "framer-motion";
-import { CodeXml } from "lucide-react";
+import { CodeXml, Menu } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+const navItems = [
+  { name: 'Why Custom', href: '#why-custom' },
+  { name: 'Services', href: '#services' },
+  { name: 'Pricing', href: '#pricing' },
+  { name: 'About', href: '#about' },
+];
 
 export default function Navigation() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -40,25 +55,67 @@ export default function Navigation() {
           </span>
         </Link>
         
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
-          {['Why Custom', 'Services', 'Pricing', 'About'].map((item) => (
+          {navItems.map((item) => (
             <Link 
-              key={item}
-              href={`#${item.toLowerCase().replace(' ', '-')}`} 
+              key={item.name}
+              href={item.href} 
               className="transition-all duration-200 text-muted-foreground hover:text-primary"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <ModeToggle />
-          <Button asChild variant="default">
-            <Link href="#contact">
-              Book a Call
-            </Link>
-          </Button>
+          
+          <div className="hidden md:block">
+            <Button asChild variant="default">
+              <Link href="#contact">
+                Book a Call
+              </Link>
+            </Button>
+          </div>
+
+          {/* Mobile Burger Menu */}
+          <div className="md:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-background/95 backdrop-blur-xl border-l border-border/50 w-72">
+                <SheetHeader className="text-left pb-6 border-b border-border/30">
+                  <SheetTitle className="flex items-center gap-2">
+                    <CodeXml className="text-primary w-5 h-5" />
+                    <span className="font-headline font-black text-lg">SecureAutomate</span>
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-6 mt-8">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className="text-sm font-bold uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <div className="pt-6 border-t border-border/30 mt-4">
+                    <Button asChild className="w-full" onClick={() => setIsOpen(false)}>
+                      <Link href="#contact">
+                        Book a Consultation
+                      </Link>
+                    </Button>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
