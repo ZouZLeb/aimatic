@@ -6,7 +6,6 @@ import Footer from '@/components/landing/footer';
 import Hero from '@/components/landing/hero';
 import Navigation from '@/components/landing/navigation';
 import RoiCalculator from '@/components/landing/roi-calculator';
-import SecurityProcess from '@/components/landing/security-process';
 import ProcessOverview from '@/components/landing/process-overview';
 import TechStack from '@/components/landing/tech-stack';
 import Chatbot from '@/components/chatbot';
@@ -32,7 +31,6 @@ export default function Home() {
       <main className="relative z-10">
         <Hero />
         <DifferentiationTable />
-        <SecurityProcess />
         <CaseStudies />
         <ProcessOverview />
         <RoiCalculator />

@@ -4,56 +4,45 @@ This document provides a detailed overview of the SecureAutomate project archite
 
 ## 🏗 Project Architecture
 
-The application is built using **Next.js 15 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Genkit** for AI functionality. It follows a modular component-based architecture designed for high performance and security.
+The application is built using **Next.js 15 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Genkit** for AI functionality.
 
 ### 🏢 Key Architecture Concepts
-- **Server vs. Client:** By default, components in `src/app` and `src/ai` are Server Components. Interactive UI elements in `src/components` use the `"use client"` directive.
-- **AI Integration:** Genkit flows handle lead qualification on the server, ensuring LLM keys never reach the browser.
-- **Theming:** A hybrid CSS variable system (HSL) supports smooth Dark/Light mode transitions with a custom "Glassmorphism" aesthetic.
+- **Server vs. Client Boundary:**
+    - **Server Components/Actions:** Genkit flows (`src/ai`), configuration, and main page structure (`src/app/page.tsx`).
+    - **Client Components:** Interactive UI elements (`src/components`), ROI calculator, carousel, and the chatbot interface.
+- **Data Sovereignty Messaging:** The entire site architecture reflects the agency's value proposition: clients own their systems and data remains private.
 
 ---
 
 ## 📂 File Map & Walkthrough
 
 ### ⚙️ Configuration & Root
-- **`package.json`**: Manages dependencies. Includes Genkit for AI, Framer Motion for animations, and ShadCN/Radix for accessible UI.
-- **`next.config.ts`**: Configures Next.js. Specifically permits remote images from Unsplash and Picsum for the portfolio.
-- **`tailwind.config.ts`**: Defines the design system (fonts, custom colors, animations).
-- **`src/app/layout.tsx` (Server)**: The root wrapper. Injects global fonts (Inter & Source Code Pro), initializes the `ThemeProvider`, and handles security-conscious analytics loading via `next/script`.
-- **`src/app/globals.css`**: The design engine. Contains HSL variables for themes and custom `@layer components` for the signature `.btn-custom-glass` effect.
+- **`src/app/layout.tsx` (Server)**: The root wrapper. Injects global styles, handles the design theme, and safely loads analytics using `next/script`.
+- **`src/app/globals.css`**: Defines the HSL color palette and the custom `.btn-custom-glass` component styling.
+- **`tailwind.config.ts`**: Configures the design system, including custom Inter fonts and Source Code Pro for code snippets.
 
 ### 🧠 AI Engine (Genkit)
-- **`src/ai/genkit.ts` (Server)**: Initializes Genkit with the Google Generative AI plugin (Gemini 2.5 Flash).
-- **`src/ai/flows/lead-qualifying-chatbot.ts` (Server Action)**: Defines the `leadQualifyingChatbot` flow. This is a secure server-side function that evaluates user messages to determine if they are high-intent leads.
+- **`src/ai/genkit.ts` (Server)**: Initializes the Genkit environment with Google AI.
+- **`src/ai/flows/lead-qualifying-chatbot.ts` (Server Action)**: The core AI logic. It uses a structured prompt to qualify users based on privacy needs and technical complexity. The user message is securely injected via Handlebars (`{{{message}}}`).
 
-### 🎨 UI Components (Client-Side Focus)
-- **`src/app/page.tsx` (Server)**: The assembly line. It imports and sequences all landing page sections. It also contains the atmospheric background logic.
-- **`src/components/chatbot.tsx` (Client)**: The interactive lead qualifier. It calls the server-side Genkit flow and handles message state.
-- **`src/components/landing/navigation.tsx` (Client)**: Responsive header with a glass-morphic mobile burger menu.
-- **`src/components/landing/hero.tsx` (Client)**: High-impact intro using Framer Motion for entrance animations.
-- **`src/components/landing/roi-calculator.tsx` (Client)**: The financial engine. Uses React `useMemo` to calculate labor savings vs. engineering costs in real-time.
-- **`src/components/landing/process-overview.tsx` (Client)**: The vertical timeline. Visualizes the engineering lifecycle with dynamic connector lines.
-- **`src/components/landing/tech-stack.tsx` (Client)**: The infinite marquee loop of technology logos.
-- **`src/components/landing/case-studies.tsx` (Client)**: A ShadCN Carousel-based portfolio of previous builds.
+### 🎨 Key Landing Sections (Client-Side)
+- **`src/components/landing/hero.tsx`**: A high-impact entry point comparing generic AI agencies to private engineered builds.
+- **`src/components/landing/differentiation-table.tsx`**: A detailed comparison tool highlighting security and ownership benefits.
+- **`src/components/landing/case-studies.tsx`**: A mobile-optimized carousel showing real-world automation results.
+- **`src/components/landing/process-overview.tsx`**: A vertical timeline visualizing the "Engineering Lifecycle" from Audit to Handover.
+- **`src/components/landing/roi-calculator.tsx`**: A financial tool that calculates potential savings by comparing manual labor costs against system investment.
+- **`src/components/landing/tech-stack.tsx`**: An infinite looping marquee of elite technologies used in the builds.
+- **`src/components/chatbot.tsx`**: The interactive chat UI that connects users to the server-side Genkit flow.
 
-### 🛠 Utilities & Data
-- **`src/lib/utils.ts`**: Standard Tailwind class merging utility.
-- **`src/lib/placeholder-images.json`**: Centralized metadata for all images to ensure consistent aspect ratios and search hints.
-- **`src/hooks/use-toast.ts`**: ShadCN utility for non-intrusive error notifications.
+### 🛠 Utilities
+- **`src/lib/placeholder-images.json`**: Centralized storage for Unsplash image metadata to ensure fast loading and consistent visual quality.
+- **`src/hooks/use-mobile.tsx`**: Utility for responsive component behavior (e.g., the vertical timeline spine adjustment).
 
 ---
 
-## 🔒 Security & Best Practices
+## 🔒 Security Best Practices
 
-1. **Zero-Secret Exposure**: No API keys or sensitive strings are present in the source code. All AI calls are wrapped in Server Actions.
-2. **Hydration Safety**: Components using browser APIs (like `window` or `Math.random`) use the `useEffect` hook to prevent server/client mismatches.
-3. **Data Sovereignty**: The UI messaging reinforces the engineering standard: SecureAutomate clients own their code and their data remains in their VPC.
-4. **Content Security**: Third-party scripts (Analytics/Hotjar) are loaded via Next.js optimized script tags with explicit strategy markers.
-
----
-
-## 🚀 Deployment Notes
-
-- **Environment Variables**: Ensure `GOOGLE_GENAI_API_KEY` is set in your production environment (e.g., Firebase App Hosting, Vercel, or GCP).
-- **Build**: Run `npm run build` to generate the production-ready static and dynamic routes.
-- **Performance**: Images use `next/image` for automatic WebP conversion and lazy loading.
+1. **Environment Variable Protection**: All API keys are accessed via server-side Genkit flows; no secrets are exposed to the client.
+2. **Sanitized Inputs**: User messages are handled through Genkit's prompt system, protecting against prompt injection while ensuring accurate context.
+3. **Optimized Scripts**: Analytics and tracking scripts use Next.js `afterInteractive` strategy to prevent blocking the main thread.
+4. **Hydration Safety**: Interactive components use standard React hooks to prevent server/client mismatches in dynamic values.
