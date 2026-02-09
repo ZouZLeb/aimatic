@@ -15,7 +15,7 @@ import CountUp from "react-countup";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, FileText, Zap, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Carousel,
@@ -185,7 +185,7 @@ export default function CaseStudies() {
                 return (
                   <CarouselItem key={study.id} className="pl-6 md:basis-1/2 lg:basis-1/3 py-4">
                     <Card
-                      className="h-full overflow-hidden transition-all duration-300 bg-card/40 backdrop-blur-md hover:shadow-2xl hover:-translate-y-1 cursor-pointer group flex flex-col border-border/50"
+                      className="h-full overflow-hidden bg-card/40 backdrop-blur-md cursor-pointer group flex flex-col border-border/50"
                       onClick={() => setSelectedCase(study)}
                     >
                       <div className="relative h-48 bg-muted/20">
@@ -246,9 +246,11 @@ export default function CaseStudies() {
                 );
               })}
             </CarouselContent>
-            <div className="hidden md:block">
-              <CarouselPrevious className="-left-12 h-10 w-10" />
-              <CarouselNext className="-right-12 h-10 w-10" />
+            
+            {/* Custom Navigation Container */}
+            <div className="flex items-center justify-end gap-3 mt-4 md:mt-0">
+              <CarouselPrevious className="static md:absolute md:-left-12 left-auto top-auto md:top-1/2 translate-y-0 md:-translate-y-1/2 h-10 w-10" />
+              <CarouselNext className="static md:absolute md:-right-12 right-auto top-auto md:top-1/2 translate-y-0 md:-translate-y-1/2 h-10 w-10" />
             </div>
           </Carousel>
         </div>

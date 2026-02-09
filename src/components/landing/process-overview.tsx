@@ -79,7 +79,7 @@ export default function ProcessOverview() {
 
         <div className="relative max-w-5xl mx-auto">
           {/* Central spine line */}
-          <div className="absolute left-8 md:left-1/2 top-[60px] bottom-[60px] w-px bg-gradient-to-b from-primary via-border to-primary -translate-x-1/2 opacity-30 z-0" />
+          <div className="absolute left-8 md:left-1/2 top-[60px] bottom-[60px] w-px bg-gradient-to-b from-primary to-primary -translate-x-1/2 opacity-30 z-0" />
 
           <div className="space-y-4 md:space-y-0">
             {steps.map((step, idx) => (

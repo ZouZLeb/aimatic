@@ -33,7 +33,7 @@ export default function RoiCalculator() {
     const pricePerIntegration = 500;
     const complexityMultiplier = COMPLEXITY_LEVELS[complexityIdx].multiplier;
     
-    const buildCost = integrations === 1 ? baseBuildPrice : Math.round(
+    const buildCost = Math.round(
       (baseBuildPrice + ((integrations - 1) * pricePerIntegration)) * complexityMultiplier
     );
 
