@@ -29,8 +29,8 @@ const caseStudiesData = [
     id: 1,
     clientType: "Instant Lead Assistant",
     industry: "Sales & Real Estate",
-    problem: "Customer messages from Email, DMs, and SMS were being missed or taking hours to answer.",
-    solution: "A private AI helper that answers customers instantly. It qualifies leads, updates the database, and books meetings automatically.",
+    problem: "Customer messages from Email and DMs were being missed or taking hours to answer.",
+    solution: "A private helper that answers customers instantly, books meetings, and updates your list automatically.",
     imageId: "case-leads",
     metrics: {
       timeSaved: 20,
@@ -38,54 +38,117 @@ const caseStudiesData = [
       roi: 2,
       roiUnit: "weeks",
       improvement: 95,
-      improvementLabel: "More Replies ↑",
+      improvementLabel: "Faster Replies ↑",
     },
     fullDetails: {
-      techStack: ["n8n", "Private AI", "Twilio", "CRM"],
+      techStack: ["n8n", "Private AI", "Email Sync"],
       timeline: "2 weeks",
       testimonial: "It's so fast that clients think they are talking to a human. It's booked 15 meetings this week without us doing anything.",
     },
   },
   {
     id: 2,
-    clientType: "Smart Marketing Engine",
-    industry: "Marketing Agencies",
-    problem: "Thousands of old leads were sitting untouched because following up manually was impossible.",
-    solution: "A system that checks in with every lead every 30 days. It only alerts the sales team when someone is ready to buy.",
+    clientType: "Social Media Machine",
+    industry: "Marketing & Creative",
+    problem: "Writing and designing posts for 3 different social platforms every day was a full-time job.",
+    solution: "A system that reads your latest news and creates draft posts for LinkedIn, Twitter, and Instagram in your voice.",
     imageId: "case-marketing",
+    metrics: {
+      timeSaved: 15,
+      timeUnit: "hrs/week",
+      roi: 3,
+      roiUnit: "weeks",
+      improvement: 300,
+      improvementLabel: "More Posts ↑",
+    },
+    fullDetails: {
+      techStack: ["Image AI", "Writing AI", "Content Calendar"],
+      timeline: "3 weeks",
+      testimonial: "I used to spend my whole Sunday planning content. Now I just click 'Approve' and the system handles the rest.",
+    },
+  },
+  {
+    id: 3,
+    clientType: "The Client Update Bot",
+    industry: "Professional Services",
+    problem: "Clients kept asking 'what's the status?' and answering them one-by-one was taking hours.",
+    solution: "An automated helper that checks your project board and sends a friendly summary email to every client every Friday.",
+    imageId: "case-pm",
+    metrics: {
+      timeSaved: 10,
+      timeUnit: "hrs/week",
+      roi: 4,
+      roiUnit: "weeks",
+      improvement: 80,
+      improvementLabel: "Happier Clients ↑",
+    },
+    fullDetails: {
+      techStack: ["Project Sync", "Email Automation"],
+      timeline: "2 weeks",
+      testimonial: "Our clients love the updates. We haven't had a 'check-in' phone call in over a month.",
+    },
+  },
+  {
+    id: 4,
+    clientType: "24/7 Support Assistant",
+    industry: "E-commerce & Tech",
+    problem: "Support tickets were piling up overnight and on weekends when the team was offline.",
+    solution: "A smart chatbot that knows everything about your products and solves common problems instantly at any hour.",
+    imageId: "case-support",
     metrics: {
       timeSaved: 40,
       timeUnit: "hrs/month",
       roi: 3,
       roiUnit: "weeks",
-      improvement: 28,
-      improvementLabel: "Revenue ↑",
+      improvement: 60,
+      improvementLabel: "Faster Support ↑",
     },
     fullDetails: {
-      techStack: ["n8n", "Slack", "Database Sync"],
-      timeline: "3 weeks",
-      testimonial: "We are closing deals from leads we talked to 6 months ago that we would have completely forgotten about.",
+      techStack: ["Knowledge Base", "Chat AI"],
+      timeline: "4 weeks",
+      testimonial: "It handles about 70% of our questions before a human even needs to look at them.",
     },
   },
   {
-    id: 3,
-    clientType: "Paperwork Automator",
-    industry: "Construction",
-    problem: "Managing blueprints and project updates was manual, causing frequent delays and high overhead.",
-    solution: "An AI system that prepares documents and handles status updates automatically for clients and engineers.",
-    imageId: "case-pm",
+    id: 5,
+    clientType: "Smart Billing Helper",
+    industry: "Trades & Construction",
+    problem: "Sending quotes and following up on unpaid invoices was manual and slow.",
+    solution: "A system that creates quotes from photos of notes and automatically reminds people when an invoice is due.",
+    imageId: "case-billing",
     metrics: {
-      timeSaved: 15,
+      timeSaved: 12,
       timeUnit: "hrs/week",
-      roi: 4,
+      roi: 3,
       roiUnit: "weeks",
-      improvement: 60,
-      improvementLabel: "Less Admin ↓",
+      improvement: 25,
+      improvementLabel: "Faster Pay ↑",
     },
     fullDetails: {
-      techStack: ["Python", "n8n", "File Automator"],
-      timeline: "5 weeks",
-      testimonial: "Admin work was killing our profits. This system handles the boring stuff so our team can actually build.",
+      techStack: ["Accounting Sync", "Auto-Reminders"],
+      timeline: "3 weeks",
+      testimonial: "We get paid faster now because the reminders go out the minute a bill is late.",
+    },
+  },
+  {
+    id: 6,
+    clientType: "New Hire Onboarder",
+    industry: "Growing Startups",
+    problem: "Setting up accounts and sending training info to new employees was a messy, manual process.",
+    solution: "A 'Team Bot' that sets up every new hire's accounts, sends their welcome pack, and schedules their first meetings.",
+    imageId: "case-hr",
+    metrics: {
+      timeSaved: 8,
+      timeUnit: "per hire",
+      roi: 5,
+      roiUnit: "weeks",
+      improvement: 100,
+      improvementLabel: "No Errors ↑",
+    },
+    fullDetails: {
+      techStack: ["Slack Bot", "System Provisioning"],
+      timeline: "4 weeks",
+      testimonial: "Every new hire starts day one with everything they need. No more forgotten passwords or missing docs.",
     },
   },
 ];
@@ -100,10 +163,10 @@ export default function CaseStudies() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">
-            Real Work, Real Results
+            Real Examples of How We Help
           </h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Custom tools built for businesses that want to save time and grow faster.
+            See how other businesses are using custom tools to save time and grow.
           </p>
         </div>
 
