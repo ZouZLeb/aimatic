@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
     '192.168.1.68',
     'localhost:9002'
   ],
-  serverExternalPackages: ['express', 'genkit', '@genkit-ai/google-genai', '@genkit-ai/next', '@genkit-ai/core'],
   images: {
     remotePatterns: [
       {

@@ -8,7 +8,6 @@ import Navigation from '@/components/landing/navigation';
 import RoiCalculator from '@/components/landing/roi-calculator';
 import ProcessOverview from '@/components/landing/process-overview';
 import TechStack from '@/components/landing/tech-stack';
-import Chatbot from '@/components/chatbot';
 
 export default function Home() {
   return (
@@ -40,7 +39,6 @@ export default function Home() {
       </main>
       
       <Footer />
-      <Chatbot />
     </div>
   );
 }
