@@ -3303,8 +3303,8 @@
       ],
       "format": "cjs"
     },
-    ".open-next/server-functions/default/.next/server/chunks/404.js": {
-      "bytes": 10287,
+    ".open-next/server-functions/default/.next/server/chunks/29.js": {
+      "bytes": 10396,
       "imports": [],
       "format": "cjs"
     },
@@ -3335,12 +3335,12 @@
       "format": "cjs"
     },
     ".open-next/server-functions/default/.next/server/webpack-runtime.js": {
-      "bytes": 2774,
+      "bytes": 2772,
       "imports": [
         {
-          "path": ".open-next/server-functions/default/.next/server/chunks/404.js",
+          "path": ".open-next/server-functions/default/.next/server/chunks/29.js",
           "kind": "require-call",
-          "original": "./chunks/404.js"
+          "original": "./chunks/29.js"
         },
         {
           "path": ".open-next/server-functions/default/.next/server/chunks/586.js",
@@ -4053,7 +4053,7 @@
       "format": "cjs"
     },
     ".open-next/server-functions/default/.next/server/app/_not-found/page.js": {
-      "bytes": 15122,
+      "bytes": 15121,
       "imports": [
         {
           "path": ".open-next/server-functions/default/node_modules/next/dist/shared/lib/router/utils/app-paths.js",
@@ -4224,8 +4224,8 @@
       ],
       "format": "cjs"
     },
-    ".open-next/server-functions/default/.next/server/app/robots.txt/route.js": {
-      "bytes": 7079,
+    ".open-next/server-functions/default/.next/server/app/favicon.ico/route.js": {
+      "bytes": 26862,
       "imports": [
         {
           "path": ".open-next/server-functions/default/node_modules/next/dist/shared/lib/router/utils/app-paths.js",
@@ -4275,8 +4275,8 @@
       ],
       "format": "cjs"
     },
-    ".open-next/server-functions/default/.next/server/app/favicon.ico/route.js": {
-      "bytes": 26862,
+    ".open-next/server-functions/default/.next/server/app/robots.txt/route.js": {
+      "bytes": 7079,
       "imports": [
         {
           "path": ".open-next/server-functions/default/node_modules/next/dist/shared/lib/router/utils/app-paths.js",
@@ -28134,7 +28134,7 @@
       "format": "esm"
     },
     ".open-next/server-functions/default/.next/server/app/page.js": {
-      "bytes": 528149,
+      "bytes": 528898,
       "imports": [
         {
           "path": ".open-next/server-functions/default/node_modules/next/dist/shared/lib/router/utils/app-paths.js",
@@ -28215,7 +28215,7 @@
       "format": "cjs"
     },
     ".open-next/server-functions/default/node_modules/next/dist/server/require.js": {
-      "bytes": 22366,
+      "bytes": 22468,
       "imports": [
         {
           "path": "path",
@@ -28283,14 +28283,14 @@
           "original": "D:\\my_projects\\nextjs\\aimatic-site\\aimatic\\.open-next\\server-functions\\default\\.next\\server\\app\\_not-found\\page.js"
         },
         {
-          "path": ".open-next/server-functions/default/.next/server/app/robots.txt/route.js",
-          "kind": "require-call",
-          "original": "D:\\my_projects\\nextjs\\aimatic-site\\aimatic\\.open-next\\server-functions\\default\\.next\\server\\app\\robots.txt\\route.js"
-        },
-        {
           "path": ".open-next/server-functions/default/.next/server/app/favicon.ico/route.js",
           "kind": "require-call",
           "original": "D:\\my_projects\\nextjs\\aimatic-site\\aimatic\\.open-next\\server-functions\\default\\.next\\server\\app\\favicon.ico\\route.js"
+        },
+        {
+          "path": ".open-next/server-functions/default/.next/server/app/robots.txt/route.js",
+          "kind": "require-call",
+          "original": "D:\\my_projects\\nextjs\\aimatic-site\\aimatic\\.open-next\\server-functions\\default\\.next\\server\\app\\robots.txt\\route.js"
         },
         {
           "path": ".open-next/server-functions/default/.next/server/app/sitemap.xml/route.js",
@@ -31797,8 +31797,8 @@
         ".open-next/server-functions/default/node_modules/react/jsx-runtime.js": {
           "bytesInOutput": 197
         },
-        ".open-next/server-functions/default/.next/server/chunks/404.js": {
-          "bytesInOutput": 10599
+        ".open-next/server-functions/default/.next/server/chunks/29.js": {
+          "bytesInOutput": 10711
         },
         ".open-next/server-functions/default/.next/server/chunks/586.js": {
           "bytesInOutput": 151598
@@ -31813,7 +31813,7 @@
           "bytesInOutput": 361397
         },
         ".open-next/server-functions/default/.next/server/webpack-runtime.js": {
-          "bytesInOutput": 2965
+          "bytesInOutput": 2964
         },
         ".open-next/server-functions/default/.next/server/pages/_app.js": {
           "bytesInOutput": 3613
@@ -31915,16 +31915,16 @@
           "bytesInOutput": 519
         },
         ".open-next/server-functions/default/.next/server/app/_not-found/page.js": {
-          "bytesInOutput": 15295
+          "bytesInOutput": 15294
         },
         ".open-next/server-functions/default/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js": {
           "bytesInOutput": 168207
         },
-        ".open-next/server-functions/default/.next/server/app/robots.txt/route.js": {
-          "bytesInOutput": 7194
-        },
         ".open-next/server-functions/default/.next/server/app/favicon.ico/route.js": {
-          "bytesInOutput": 26979
+          "bytesInOutput": 26978
+        },
+        ".open-next/server-functions/default/.next/server/app/robots.txt/route.js": {
+          "bytesInOutput": 7195
         },
         ".open-next/server-functions/default/.next/server/app/sitemap.xml/route.js": {
           "bytesInOutput": 11974
@@ -35707,10 +35707,10 @@
           "bytesInOutput": 361
         },
         ".open-next/server-functions/default/.next/server/app/page.js": {
-          "bytesInOutput": 561389
+          "bytesInOutput": 562185
         },
         ".open-next/server-functions/default/node_modules/next/dist/server/require.js": {
-          "bytesInOutput": 18907
+          "bytesInOutput": 19007
         },
         ".open-next/server-functions/default/node_modules/next/dist/lib/wait.js": {
           "bytesInOutput": 344
@@ -35824,7 +35824,7 @@
           "bytesInOutput": 58551
         }
       },
-      "bytes": 8248544
+      "bytes": 8249550
     }
   }
 }
