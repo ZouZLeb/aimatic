@@ -8,6 +8,7 @@ import { ShieldCheck, AlertCircle, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { BrandName } from "@/components/brand-name";
 
 const ComparisonCard = ({
   type,
@@ -17,7 +18,7 @@ const ComparisonCard = ({
   imageId,
 }: {
   type: "competitor" | "aimatic";
-  label: string;
+  label: React.ReactNode;
   title: string;
   description: string;
   imageId: string;
@@ -96,8 +97,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-medium"
           >
-            Don't rent your business logic from generic AI agencies. 
-            AImatic builds custom, high-security systems you own forever. Professional automation for business owners.
+            Don't rent your business logic from generic AI agencies. <BrandName /> builds custom, high-security systems you own forever. Professional automation for business owners.
           </motion.p>
 
           <motion.div
@@ -140,7 +140,7 @@ export default function Hero() {
           >
             <ComparisonCard
               type="aimatic"
-              label="The AImatic Way"
+              label={<>The <BrandName className="px-1 text-foreground"/> Way</>}
               title="Custom Engineering"
               description="Secure, self-hosted code that stays within your business walls."
               imageId="hero-after"

@@ -1,0 +1,3 @@
+export const production = {"GOOGLE_GENAI_API_KEY":"AIzaSyDleHNidblS8zOMBn0kBHVGAeQGLICcdpk","NEXT_PUBLIC_CHAT_SECRET":"UUVccNZNTKyx"};
+export const development = {"GOOGLE_GENAI_API_KEY":"AIzaSyDleHNidblS8zOMBn0kBHVGAeQGLICcdpk","NEXT_PUBLIC_CHAT_SECRET":"UUVccNZNTKyx"};
+export const test = {"GOOGLE_GENAI_API_KEY":"AIzaSyDleHNidblS8zOMBn0kBHVGAeQGLICcdpk","NEXT_PUBLIC_CHAT_SECRET":"UUVccNZNTKyx"};

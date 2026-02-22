@@ -12,6 +12,7 @@ import {
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
+import { BrandName } from "../brand-name";
 
 const steps = [
   {
@@ -70,7 +71,7 @@ export default function ProcessOverview() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12 md:mb-20">
           <h2 id="process-title" className="text-3xl md:text-5xl font-black font-headline mb-4 tracking-tight">
-            The AImatic Engineering Process
+            The <BrandName /> Engineering Process
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Our step-by-step journey from manual business tasks to complete, secure, self-hosted automation.

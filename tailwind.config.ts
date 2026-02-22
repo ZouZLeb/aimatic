@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
         headline: ['Inter', 'sans-serif'],
+        brand: ['Merriweather', 'serif'],
         code: ['"Source Code Pro"', 'monospace'],
       },
       colors: {

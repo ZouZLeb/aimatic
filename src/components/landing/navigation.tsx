@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useScroll } from "framer-motion";
 import { CodeXml, Menu } from "lucide-react";
 import Link from "next/link";
+import { BrandName } from "@/components/brand-name";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -16,10 +17,10 @@ import {
 } from "@/components/ui/sheet";
 
 const navItems = [
-  { name: 'Why AImatic', href: '#why-custom' },
-  { name: 'Projects', href: '#case-studies' },
-  { name: 'Process', href: '#lifecycle' },
-  { name: 'Calculator', href: '#roi-calculator' },
+  { id: 'why', name: <>Why <BrandName /></>, href: '#why-custom' },
+  { id: 'projects', name: 'Projects', href: '#case-studies' },
+  { id: 'process', name: 'Process', href: '#lifecycle' },
+  { id: 'calculator', name: 'Calculator', href: '#roi-calculator' },
 ];
 
 export default function Navigation() {
@@ -43,7 +44,7 @@ export default function Navigation() {
             <div className="p-1.5 rounded-lg bg-primary/20">
               <CodeXml className="w-6 h-6 text-primary" />
             </div>
-            <span className="font-black text-xl tracking-tight font-headline">AImatic</span>
+            <BrandName className="text-xl tracking-tight" />
           </div>
         </div>
       </header>
@@ -67,16 +68,14 @@ export default function Navigation() {
           )}>
             <CodeXml className="w-6 h-6 text-primary" />
           </div>
-          <span className="font-black text-xl tracking-tight transition-colors font-headline text-foreground">
-            AImatic
-          </span>
+          <BrandName className="text-xl tracking-tight text-foreground" />
         </Link>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
           {navItems.map((item) => (
             <Link 
-              key={item.name}
+              key={item.id}
               href={item.href} 
               className="transition-all duration-200 text-muted-foreground hover:text-primary"
             >
@@ -108,13 +107,13 @@ export default function Navigation() {
                 <SheetHeader className="text-left pb-6 border-b border-border/30">
                   <SheetTitle className="flex items-center gap-2">
                     <CodeXml className="text-primary w-5 h-5" />
-                    <span className="font-headline font-black text-lg">AImatic</span>
+                    <BrandName className="text-lg" />
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-6 mt-8">
                   {navItems.map((item) => (
                     <Link
-                      key={item.name}
+                      key={item.id}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
                       className="text-sm font-bold uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors"

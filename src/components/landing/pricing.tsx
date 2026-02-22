@@ -4,6 +4,7 @@ import { Check, ShieldCheck, Zap, Code, Database, UserCheck, FileText, Globe } f
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { BrandName } from "../brand-name";
 
 const valuePropositions = [
   {
@@ -44,7 +45,7 @@ export default function Pricing() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-extrabold font-headline mb-4">
-            The AImatic Standard
+            The <BrandName /> Standard
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             We don't just build automations; we engineer private, production-grade systems that your business owns completely.

@@ -1,5 +1,6 @@
 import { Linkedin, Github, CodeXml } from "lucide-react";
 import Link from "next/link";
+import { BrandName } from "../brand-name";
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2 font-headline">
               <CodeXml className="text-primary"/>
-              AImatic
+              <BrandName />
             </h3>
             <p className="text-muted-foreground text-sm mb-4">
               Privacy-first automation engineering. We build high-quality systems and custom scripts you own.
@@ -59,7 +60,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} AImatic. All rights reserved. 100% Data Sovereignty.</p>
+          <p>© {new Date().getFullYear()} <BrandName />. All rights reserved. 100% Data Sovereignty.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>

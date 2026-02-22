@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Shield, Code, Cpu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { BrandName } from "../brand-name";
 
 export default function AboutSection() {
   const headshot = PlaceHolderImages.find((img) => img.id === "about-headshot");
@@ -64,7 +65,7 @@ export default function AboutSection() {
                   </p>
 
                   <p className="font-semibold text-foreground">
-                    We're building something different. Our team at AImatic consists of real developers 
+                    We're building something different. Our team at <BrandName /> consists of real developers 
                     with a background in security. We build systems that live on your servers, 
                     using your existing tools, so you stay in control.
                   </p>

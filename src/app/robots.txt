@@ -9,4 +9,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://aimatic.com/sitemap.xml
+Sitemap: https://aimatic.dev/sitemap.xml

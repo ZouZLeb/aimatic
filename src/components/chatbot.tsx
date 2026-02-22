@@ -17,6 +17,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Bot, MessageSquare, Send, X, User, Loader } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 import { generateSignature, getDeviceFingerprint } from "@/lib/security";
+import { BrandName } from "@/components/brand-name";
+import { formatBrandName } from "@/lib/brand-utils";
 
 type Message = {
   id: number;
@@ -118,7 +120,7 @@ export default function Chatbot() {
                       <Bot />
                     </AvatarFallback>
                   </Avatar>
-                  <CardTitle className="text-lg font-headline">AImatic Helper</CardTitle>
+                  <CardTitle className="text-lg font-headline"><BrandName /> Helper</CardTitle>
                 </div>
                 <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="rounded-full">
                   <X className="h-4 w-4" />
@@ -154,7 +156,9 @@ export default function Chatbot() {
                             }
                           )}
                         >
-                          <p className="leading-relaxed">{message.text}</p>
+                          <p className="leading-relaxed">
+                            {message.sender === 'bot' ? formatBrandName(message.text) : message.text}
+                          </p>
                           {isLastMessage(index) && message.isQualified && (
                              <Button
                                size="sm"
