@@ -28,30 +28,30 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">Engineering</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="#services" className="hover:text-primary transition-colors">Workflow Development</Link></li>
-              <li><Link href="#services" className="hover:text-primary transition-colors">Custom Scripting</Link></li>
-              <li><Link href="#pricing" className="hover:text-primary transition-colors">Ownership Pricing</Link></li>
-              <li><Link href="#why-custom" className="hover:text-primary transition-colors">Privacy Audit</Link></li>
+              <li><Link href="/#why-custom" className="hover:text-primary transition-colors">Workflow Development</Link></li>
+              <li><Link href="/#tech-stack" className="hover:text-primary transition-colors">Custom Scripting</Link></li>
+              <li><Link href="/#roi-calculator" className="hover:text-primary transition-colors">Ownership Pricing</Link></li>
+              <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Audit</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Team</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="#about" className="hover:text-primary transition-colors">Security Experts</Link></li>
-              <li><Link href="#case-studies" className="hover:text-primary transition-colors">Case Studies</Link></li>
-              <li><Link href="#tech-stack" className="hover:text-primary transition-colors">Tech Stack</Link></li>
-              <li><Link href="#contact" className="hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link href="/#about" className="hover:text-primary transition-colors">Security Experts</Link></li>
+              <li><Link href="/#case-studies" className="hover:text-primary transition-colors">Case Studies</Link></li>
+              <li><Link href="/#lifecycle" className="hover:text-primary transition-colors">Process Overview</Link></li>
+              <li><Link href="/#contact" className="hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Get In Touch</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="mailto:hello@aimatic.com" className="hover:text-primary transition-colors">hello@aimatic.com</a></li>
+              <li><a href="mailto:hello@aimatic.dev" className="hover:text-primary transition-colors">hello@aimatic.dev</a></li>
               <li>Response time: &lt; 24 hours</li>
               <li>
-                <Link href="#contact" className="text-primary hover:underline">
+                <Link href="/#contact" className="text-primary hover:underline">
                   Free Architecture Review →
                 </Link>
               </li>
@@ -62,8 +62,8 @@ export default function Footer() {
         <div className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} <BrandName />. All rights reserved. 100% Data Sovereignty.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
