@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        'X-API-Key': WEBHOOK_API_KEY // Industry standard header for API authentication
+        'x-api-key': WEBHOOK_API_KEY // Industry standard header for API authentication
       },
       body: JSON.stringify({
         message: sanitizedMessage,

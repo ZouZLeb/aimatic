@@ -30,7 +30,7 @@ const ComparisonCard = ({
       className={`relative overflow-hidden border-2 transition-all duration-300 ${
         type === "aimatic" 
           ? "border-primary/50 bg-primary/5 shadow-primary/10 shadow-xl" 
-          : "border-destructive/100 bg-muted/30 grayscale-[0.5] opacity-80"
+          : "border-destructive/40 bg-muted/30 grayscale-[0.5] opacity-80"
       }`}
     >
       <div className="absolute top-4 right-4 z-20">
@@ -61,7 +61,7 @@ const ComparisonCard = ({
           {imageData && (
             <Image
               src={imageData.imageUrl}
-              alt={`${label}: ${description}`}
+              alt={type === "aimatic" ? "Secure engineering illustration" : "Standard AI wrapper illustration"}
               fill
               className="object-cover opacity-90 transition-all duration-500"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -97,7 +97,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-medium"
           >
-            Don't rent your business logic from generic AI agencies. <BrandName /> builds custom, high-security systems you own forever. Professional automation for business owners.
+            Stop renting your business logic. <BrandName /> engineers custom, secure, and self-hosted automation systems that you own forever. Developer-backed solutions for serious businesses.
           </motion.p>
 
           <motion.div
@@ -128,7 +128,7 @@ export default function Hero() {
               type="competitor"
               label="Standard Agencies"
               title="The 'Prompt' Wrapper"
-              description="Fragile tools built on rented platforms with no data privacy."
+              description="Fragile tools built on rented platforms with zero data privacy."
               imageId="hero-before"
             />
           </motion.div>

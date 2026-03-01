@@ -7,41 +7,51 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { ChatWidget } from '../components/chat';
 
 export const metadata: Metadata = {
-  title: 'AImatic Dev Solutions | Professional AI Automation & Security Engineering',
+  title: 'AImatic | Secure AI Automation & Custom Software Engineering',
   description:
-    'AImatic Dev Solutions builds custom, secure business automations. We specialize in n8n workflows, private AI systems, and secure API integrations that you own 100%. Stop renting your business logic.',
+    'AImatic builds custom, secure AI business automation systems you own 100%. We specialize in private n8n workflows, secure API integrations, and developer-backed AI agents that cut costs and increase efficiency without data privacy risks.',
   keywords: [
     'AI Automation Agency',
     'Custom AI Development',
-    'n8n Workflows',
-    'Secure AI Integration',
-    'Business Process Automation',
-    'Data Sovereignty',
     'Private AI Chatbots',
-    'AImatic Automation',
+    'n8n Workflow Engineering',
+    'Business Process Automation',
+    'Secure AI Integration',
+    'Data Sovereignty',
+    'Self-hosted AI Agents',
+    'AImatic Dev Solutions',
   ],
-  authors: [{ name: 'AImatic Dev Team' }],
+  authors: [{ name: 'AImatic Team', url: 'https://aimatic.dev' }],
+  creator: 'AImatic Dev Solutions',
   openGraph: {
-    title: 'AImatic Dev Solutions | Custom Business Tools You Own',
-    description: 'Privacy-first automation engineering. Secure, self-hosted code that stays within your business walls.',
-    url: 'https://aimatic.com',
+    type: 'website',
+    locale: 'en_US',
+    title: 'AImatic | Private AI Automation & Custom Engineering',
+    description: 'Own your automation. Protect your data. Secure, self-hosted code that stays within your business walls.',
+    url: 'https://aimatic.dev',
     siteName: 'AImatic Dev Solutions',
     images: [
       {
         url: 'https://picsum.photos/seed/aimatic-og/1200/630',
         width: 1200,
         height: 630,
-        alt: 'AImatic Dev Solutions Professional Automation',
+        alt: 'AImatic Professional AI Automation',
       },
     ],
-    locale: 'en_US',
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AImatic Dev Solutions | Secure AI Automation',
-    description: 'Own your automation. Protect your data. Professional engineering for modern businesses.',
+    title: 'AImatic | Secure AI Automation',
+    description: 'Professional engineering for modern businesses. Own your code, secure your data.',
     images: ['https://picsum.photos/seed/aimatic-twitter/1200/630'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  alternates: {
+    canonical: 'https://aimatic.dev',
   },
 };
 
@@ -50,24 +60,44 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Structured Data for AI/LLM Crawlers (Schema.org)
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "AImatic Dev Solutions",
-    "description": "Privacy-first automation engineering agency building custom, self-hosted business systems.",
-    "url": "https://aimatic.com",
-    "logo": "https://aimatic.com/logo.png",
-    "sameAs": [
-      "https://github.com/aimatic",
-      "https://linkedin.com/company/aimatic"
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ProfessionalService',
+        '@id': 'https://aimatic.dev/#organization',
+        name: 'AImatic Dev Solutions',
+        url: 'https://aimatic.dev',
+        logo: 'https://aimatic.dev/logo.png',
+        description: 'A developer-backed AI automation agency focusing on security, data sovereignty, and custom engineering for businesses.',
+        address: {
+          '@type': 'PostalAddress',
+          addressRegion: 'CA',
+          addressCountry: 'US'
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer service',
+          email: 'hello@aimatic.dev'
+        },
+        priceRange: '$$',
+        knowsAbout: [
+          'AI Automation',
+          'n8n Workflows',
+          'Python Scripting',
+          'API Integration',
+          'Cybersecurity',
+          'Cloud Architecture'
+        ]
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://aimatic.dev/#website',
+        url: 'https://aimatic.dev',
+        name: 'AImatic Dev Solutions',
+        publisher: { '@id': 'https://aimatic.dev/#organization' }
+      }
     ],
-    "serviceType": [
-      "AI Workflow Automation",
-      "System Integration",
-      "Custom Software Development",
-      "Security Consulting"
-    ]
   };
 
   return (
@@ -84,7 +114,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={cn('font-body antialiased')}>
+      <body className={cn('font-body antialiased overflow-x-hidden')}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -95,32 +125,6 @@ export default function RootLayout({
           <ChatWidget />
           <Toaster />
         </ThemeProvider>
-
-        {/* Analytics & Monitoring */}
-        <Script id="hotjar-snippet" strategy="afterInteractive">
-          {`
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:0,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-          `}
-        </Script>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-0000000000"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-0000000000');
-          `}
-        </Script>
       </body>
     </html>
   );
