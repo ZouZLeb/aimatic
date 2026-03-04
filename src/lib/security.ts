@@ -24,8 +24,8 @@ export function getPersistentDeviceId(): string {
 }
 
 /**
- * Generates a basic browser fingerprint.
- * Used to detect anomalies and prevent request spoofing.
+ * Generates a robust browser fingerprint using multiple entropy sources
+ * and canvas rendering characteristics to ensure device uniqueness.
  */
 export function getBrowserFingerprint(): string {
   if (typeof window === 'undefined') return 'server';
@@ -33,16 +33,54 @@ export function getBrowserFingerprint(): string {
   const nav = window.navigator;
   const screen = window.screen;
   
-  const fingerprint = [
+  const fingerprintParts = [
     nav.userAgent,
     nav.language,
+    nav.platform,
+    nav.vendor,
     screen.colorDepth,
     screen.width + 'x' + screen.height,
+    screen.availWidth + 'x' + screen.availHeight,
     new Date().getTimezoneOffset(),
     nav.hardwareConcurrency || 'unknown',
-  ].join('|');
+    (nav as any).deviceMemory || 'unknown',
+    nav.maxTouchPoints || 0,
+    nav.webdriver ? 'bot' : 'human',
+  ];
 
-  return btoa(fingerprint).substring(0, 32);
+  // Canvas Fingerprinting: Leverages GPU/Driver rendering differences
+  // This is highly effective at distinguishing between identical hardware models
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      canvas.width = 200;
+      canvas.height = 40;
+      ctx.textBaseline = "top";
+      ctx.font = "14px 'Arial'";
+      ctx.textBaseline = "alphabetic";
+      ctx.fillStyle = "#f60";
+      ctx.fillRect(125,1,62,20);
+      ctx.fillStyle = "#069";
+      ctx.fillText("AImatic-Sec-Check-123", 2, 15);
+      ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
+      ctx.fillText("AImatic-Sec-Check-123", 4, 17);
+      fingerprintParts.push(canvas.toDataURL());
+    }
+  } catch (e) {
+    // Fail silently, fallback to hardware entropy
+  }
+
+  const rawString = fingerprintParts.join('|');
+  
+  // Generate a unique 32-bit hash (DJB2-style algorithm)
+  let hash = 5381;
+  for (let i = 0; i < rawString.length; i++) {
+    hash = ((hash << 5) + hash) + rawString.charCodeAt(i);
+  }
+  
+  // Return as a positive hex string for the header
+  return (hash >>> 0).toString(16);
 }
 
 /**
