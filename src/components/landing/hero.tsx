@@ -36,24 +36,24 @@ const ComparisonCard = ({
       <div className="absolute top-4 right-4 z-20">
         <Badge 
           variant={type === "aimatic" ? "default" : "destructive"}
-          className="uppercase tracking-widest text-[10px] font-black px-3 py-1"
+          className="uppercase tracking-widest text-[9px] md:text-[10px] font-black px-2 md:px-3 py-1 whitespace-nowrap"
         >
           {label}
         </Badge>
       </div>
       
-      <CardContent className="p-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className={`p-2 rounded-lg ${type === "aimatic" ? "bg-primary/20" : "bg-destructive/10"}`}>
+      <CardContent className="p-5 md:p-6">
+        <div className="flex items-start gap-3 mb-4">
+          <div className={`p-2 rounded-lg shrink-0 ${type === "aimatic" ? "bg-primary/20" : "bg-destructive/10"}`}>
             {type === "aimatic" ? (
-              <ShieldCheck className="w-6 h-6 text-primary" aria-hidden="true" />
+              <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-primary" aria-hidden="true" />
             ) : (
-              <AlertCircle className="w-6 h-6 text-destructive" aria-hidden="true" />
+              <AlertCircle className="w-5 h-5 md:w-6 md:h-6 text-destructive" aria-hidden="true" />
             )}
           </div>
-          <div>
-            <h3 className="font-black text-lg text-foreground tracking-tight">{title}</h3>
-            <p className="text-xs text-muted-foreground font-medium">{description}</p>
+          <div className="pr-16 md:pr-0">
+            <h3 className="font-black text-base md:text-lg text-foreground tracking-tight leading-tight mb-1">{title}</h3>
+            <p className="text-[10px] md:text-xs text-muted-foreground font-medium">{description}</p>
           </div>
         </div>
         
@@ -127,7 +127,8 @@ export default function Hero() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto relative">
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-background border-2 border-border shadow-xl font-black text-sm italic text-muted-foreground">
+          {/* Responsive VS Indicator */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-background border-2 border-border shadow-xl font-black text-xs md:text-sm italic text-muted-foreground">
             VS
           </div>
           
@@ -135,6 +136,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
+            className="relative z-10"
           >
             <ComparisonCard
               type="competitor"
@@ -149,10 +151,11 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
+            className="relative z-10"
           >
             <ComparisonCard
               type="aimatic"
-              label={<>The <BrandName className="px-1 text-foreground"/> Way</>}
+              label={<>The <BrandName className="px-1 text-foreground inline-block"/> Way</>}
               title="Custom Engineering"
               description="Secure, self-hosted code that stays within your business walls."
               imageId="hero-after"
