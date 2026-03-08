@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import type { ChatMessage, ChatApiResponse } from '../types/chat';
-import { getPersistentDeviceId, getBrowserFingerprint, signRequest } from '@/lib/security';
+import { getPersistentDeviceId, getBrowserFingerprint, signRequest, generateUUID } from '@/lib/security';
 
 // Client-side sanitization
 function sanitizeClientInput(input: string): string {
@@ -70,7 +70,7 @@ export function useChat() {
 
     try {
       const timestamp = Date.now();
-      const nonce = crypto.randomUUID();
+      const nonce = generateUUID();
       const fingerprint = getBrowserFingerprint();
       
       const payload = {

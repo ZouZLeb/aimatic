@@ -30,6 +30,11 @@ async function verifySignature(req: NextRequest, body: any): Promise<boolean> {
 
   if (!signature || !timestamp || !nonce) return false;
 
+  // Development bypass for insecure contexts (HTTP via IP access)
+  if (process.env.NODE_ENV === 'development' && signature === 'insecure_context_skip_signing') {
+    return true;
+  }
+
   // Prevent replay attacks (requests older than 5 mins)
   const now = Date.now();
   if (Math.abs(now - parseInt(timestamp)) > 5 * 60 * 1000) return false;
