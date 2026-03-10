@@ -31,6 +31,7 @@ export function useChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [deviceId, setDeviceId] = useState<string>('');
+  const [remainingMessages, setRemainingMessages] = useState<number | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   // Initialize device ID on mount
@@ -41,6 +42,12 @@ export function useChat() {
   const sendMessage = useCallback(async (rawInput: string) => {
     const input = sanitizeClientInput(rawInput);
     if (!input || isLoading || !deviceId) return;
+    
+    // Check local limit if we have it (optimization)
+    if (remainingMessages !== null && remainingMessages <= 0) {
+      setError("Daily limit reached. Please come back later.");
+      return;
+    }
 
     setError(null);
 
@@ -96,6 +103,10 @@ export function useChat() {
 
       const data: ChatApiResponse = await res.json();
 
+      if (data.remainingMessages !== undefined) {
+        setRemainingMessages(data.remainingMessages);
+      }
+
       if (!res.ok || !data.success) {
         throw new Error(data.error || 'Connection issues. Please try again.');
       }
@@ -135,12 +146,12 @@ export function useChat() {
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, deviceId]);
+  }, [isLoading, deviceId, remainingMessages]);
 
   const clearMessages = useCallback(() => {
     setMessages([WELCOME_MESSAGE]);
     setError(null);
   }, []);
 
-  return { messages, isLoading, error, sendMessage, clearMessages };
+  return { messages, isLoading, error, sendMessage, clearMessages, remainingMessages };
 }

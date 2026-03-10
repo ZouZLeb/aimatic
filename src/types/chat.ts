@@ -19,4 +19,5 @@ export interface ChatApiResponse {
   segments: Segment[];
   plainText: string;
   error?: string;
+  remainingMessages?: number;
 }

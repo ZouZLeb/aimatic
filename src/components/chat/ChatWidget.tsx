@@ -18,9 +18,11 @@ export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [animatedIds, setAnimatedIds] = useState<Set<string>>(new Set(['welcome']));
-  const { messages, isLoading, sendMessage } = useChat();
+  const { messages, isLoading, sendMessage, error, remainingMessages } = useChat();
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const isLimitReached = remainingMessages !== null && remainingMessages <= 0;
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -44,11 +46,11 @@ export function ChatWidget() {
   }, [messages, animatedIds]);
 
   const handleSend = useCallback(async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || isLimitReached) return;
     const text = input.trim();
     setInput('');
     await sendMessage(text);
-  }, [input, isLoading, sendMessage]);
+  }, [input, isLoading, sendMessage, isLimitReached]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -78,9 +80,16 @@ export function ChatWidget() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-          </svg>
+          <div className="relative">
+            <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+            {remainingMessages !== null && (
+               <span className="absolute -top-3.5 -right-3.5 bg-rose-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full ring-2 ring-[#0f0f18] min-w-[18px] text-center">
+                {remainingMessages}
+              </span>
+            )}
+          </div>
         )}
       </button>
 
@@ -110,9 +119,16 @@ export function ChatWidget() {
             <p className="text-white text-sm font-semibold leading-none">Ema</p>
             <p className="text-white/40 text-[11px] mt-0.5">AImatic Dev Solutions</p>
           </div>
-          <div className="ml-auto flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-white/40 text-[11px]">Online</span>
+          <div className="ml-auto flex items-center gap-1.5 text-right">
+             <div className="flex items-center gap-1.5">
+               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+               <span className="text-white/40 text-[11px]">Online</span>
+             </div>
+             {remainingMessages !== null && (
+               <p className="text-[9px] font-medium text-white/20 tracking-wider uppercase mt-0.5">
+                 {remainingMessages}/30 Daily
+               </p>
+             )}
           </div>
         </div>
 
@@ -155,14 +171,19 @@ export function ChatWidget() {
 
         {/* Input area */}
         <div className="shrink-0 px-3 py-3 border-t border-white/10 bg-white/5">
-          <div className="flex items-end gap-2 bg-white/8 rounded-xl px-3 py-2 border border-white/10 focus-within:border-violet-500/50 transition-colors">
+          {error && (
+            <p className="text-rose-400 text-[11px] text-center mb-2 font-medium px-4">
+              {error}
+            </p>
+          )}
+          <div className={`flex items-end gap-2 bg-white/8 rounded-xl px-3 py-2 border border-white/10 focus-within:border-violet-500/50 transition-colors ${isLimitReached ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
             <textarea
               ref={inputRef}
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              disabled={isLoading}
-              placeholder="Ask me anything..."
+              disabled={isLoading || isLimitReached}
+              placeholder={isLimitReached ? "Daily limit reached" : "Ask me anything..."}
               rows={1}
               className="
                 flex-1 bg-transparent text-white text-[14px] placeholder:text-white/30
@@ -174,7 +195,7 @@ export function ChatWidget() {
             />
             <button
               onClick={handleSend}
-              disabled={!input.trim() || isLoading}
+              disabled={!input.trim() || isLoading || isLimitReached}
               aria-label="Send message"
               className="
                 w-8 h-8 rounded-lg shrink-0
@@ -190,8 +211,11 @@ export function ChatWidget() {
               </svg>
             </button>
           </div>
-          <p className="text-white/20 text-[10px] text-center mt-1.5">
-            Powered by AImatic Dev Solutions
+          <p className="text-white/20 text-[10px] text-center mt-1.5 flex items-center justify-center gap-1.5">
+            {remainingMessages !== null && (
+              <span className="text-primary font-semibold">{remainingMessages} messages left</span>
+            )}
+            <span>Powered by AImatic Dev Solutions</span>
           </p>
         </div>
       </div>

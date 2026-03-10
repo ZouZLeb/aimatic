@@ -18,10 +18,10 @@ export default function Footer() {
               Privacy-first automation engineering. We build high-quality systems and custom scripts you own.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/joseph-lebiane-09804021b/" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
+              <a href="https://github.com/ZouZLeb" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
                 <Github className="w-5 h-5" />
               </a>
             </div>

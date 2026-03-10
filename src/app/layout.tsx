@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ChatWidget } from '../components/chat';
+import { WelcomePopup } from '../components/landing/welcome-popup';
 
 export const metadata: Metadata = {
   title: 'AImatic | AI Automation Agency San Diego | Secure Engineering',
@@ -123,6 +124,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <WelcomePopup />
           <ChatWidget />
           <Toaster />
         </ThemeProvider>

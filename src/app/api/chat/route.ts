@@ -6,8 +6,13 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 
 const ipRequestMap = new Map<string, { count: number; windowStart: number; blocked: boolean }>();
+const sessionUsageMap = new Map<string, { count: number; resetAt: number }>();
+
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const RATE_LIMIT_MAX = 10;
+const SESSION_LIMIT_MAX = 30;
+const SESSION_WINDOW_MS = 24 * 60 * 60 * 1000;
+
 const CHAT_SECRET = process.env.NEXT_PUBLIC_CHAT_SECRET || 'dev_secret_only_for_local';
 const WEBHOOK_API_KEY = process.env.N8N_API_KEY || '';
 
@@ -20,6 +25,18 @@ function getRateLimitRecord(ip: string) {
     return fresh;
   }
   return record;
+}
+
+function getSessionUsage(sessionId: string) {
+  const now = Date.now();
+  let usage = sessionUsageMap.get(sessionId);
+
+  if (!usage || now > usage.resetAt) {
+    usage = { count: 0, resetAt: now + SESSION_WINDOW_MS };
+    sessionUsageMap.set(sessionId, usage);
+  }
+  
+  return usage;
 }
 
 // HMAC Verification Logic
@@ -85,27 +102,46 @@ export async function POST(req: NextRequest) {
     record.count++;
 
     const body = await req.json();
-    
-    // 1. Multi-layer Security Check: HMAC Verification
+    const sessionId = body.sessionId;
+
+    if (!sessionId) {
+      return NextResponse.json({ error: 'Session required.' }, { status: 400 });
+    }
+
+    // 1. Session-based Usage Limit (30 messages / 24h)
+    const usage = getSessionUsage(sessionId);
+    if (usage.count >= SESSION_LIMIT_MAX) {
+      const waitTimeHours = Math.ceil((usage.resetAt - Date.now()) / (1000 * 60 * 60));
+      return NextResponse.json({ 
+        error: `Daily message limit reached. Resetting in ${waitTimeHours} hours.`,
+        remainingMessages: 0 
+      }, { status: 429 });
+    }
+
+    // 2. Multi-layer Security Check: HMAC Verification
     const isAuthentic = await verifySignature(req, body);
     if (!isAuthentic) {
       console.warn(`[SECURITY_ALERT] Invalid HMAC signature from IP: ${ip}`);
       return NextResponse.json({ error: 'Request authentication failed.' }, { status: 403 });
     }
 
-    // 2. Input Sanitization
+    // 3. Input Sanitization
     const sanitizedMessage = sanitizeInput(body.message);
     if (!sanitizedMessage) {
       return NextResponse.json({ error: 'Invalid message content.' }, { status: 400 });
     }
 
-    // 3. Forwarding to AI Webhook (n8n)
+    // Increment usage after all validation passes
+    usage.count++;
+
+    // 4. Forwarding to AI Webhook (n8n)
     const webhookUrl = process.env.N8N_WEBHOOK_URL;
     if (!webhookUrl) {
       return NextResponse.json({ 
         success: true, 
         plainText: "AImatic is currently in maintenance. Security verification passed, but the AI core is offline.",
-        segments: [{ type: 'text', content: "Maintenance Mode: AI Core Offline." }]
+        segments: [{ type: 'text', content: "Maintenance Mode: AI Core Offline." }],
+        remainingMessages: SESSION_LIMIT_MAX - usage.count
       });
     }
 
@@ -120,6 +156,7 @@ export async function POST(req: NextRequest) {
         sessionId: body.sessionId,
         fingerprint: req.headers.get('X-Chat-Fingerprint'),
         timestamp: Date.now(),
+        messageCount: usage.count // Pass message count to webhook if needed
       }),
       signal: AbortSignal.timeout(30000),
     });
@@ -135,6 +172,7 @@ export async function POST(req: NextRequest) {
       success: true,
       segments: data.segments || [],
       plainText: data.plainText || '',
+      remainingMessages: SESSION_LIMIT_MAX - usage.count
     });
 
   } catch (err: unknown) {
