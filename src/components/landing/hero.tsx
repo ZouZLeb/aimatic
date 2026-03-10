@@ -118,7 +118,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button size="lg" className="px-8" asChild aria-label="Book a free automation audit">
+            <Button size="sm" className="px-8 py-2" asChild aria-label="Book a free automation audit">
               <Link href="#contact" className="flex items-center gap-2">
                 Get Your Free Audit <ArrowRight className="w-4 h-4" />
               </Link>

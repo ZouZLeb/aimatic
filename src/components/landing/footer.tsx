@@ -41,6 +41,7 @@ export default function Footer() {
             <h4 className="font-bold mb-4">Team</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/#about" className="hover:text-primary transition-colors">Security Experts</Link></li>
+              <li><Link href="/qa" target="_blank" className="hover:text-primary transition-colors flex items-center gap-1">Q&A / Help Center</Link></li>
               <li><Link href="/#case-studies" className="hover:text-primary transition-colors">Case Studies</Link></li>
               <li><Link href="/#lifecycle" className="hover:text-primary transition-colors">Process Overview</Link></li>
               <li><Link href="/#contact" className="hover:text-primary transition-colors">Contact</Link></li>

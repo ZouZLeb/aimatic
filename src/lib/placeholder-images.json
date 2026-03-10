@@ -47,12 +47,6 @@
       "description": "Private knowledge base AI assistant.",
       "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbCUyMHJvYm90fGVufDB8fHx8MTc2OTkzNDUwMHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ai robot"
-    },
-    {
-      "id": "about-headshot",
-      "description": "A professional headshot of the founder.",
-      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3Njk5MTMxNDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "professional headshot"
     }
   ]
 }

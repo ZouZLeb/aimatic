@@ -24,8 +24,8 @@ export default function RoiCalculator() {
   const [integrations, setIntegrations] = useState(1);
   const [complexityIdx, setComplexityIdx] = useState(0);
   const [maintenanceIdx, setMaintenanceIdx] = useState(0);
-  const [hourlyRate, setHourlyRate] = useState(85);
-  const [weeklyHours, setWeeklyHours] = useState(10);
+  const [hourlyRate, setHourlyRate] = useState(20);
+  const [weeklyHours, setWeeklyHours] = useState(40);
 
   const calculations = useMemo(() => {
     const baseBuildPrice = 499;
@@ -165,8 +165,8 @@ export default function RoiCalculator() {
                     value={[hourlyRate]} 
                     onValueChange={(val) => setHourlyRate(val[0])} 
                     min={15} 
-                    max={250} 
-                    step={5} 
+                    max={100} 
+                    step={1} 
                     className="py-2"
                     aria-label="Cost per hour of manual labor"
                   />
@@ -181,7 +181,7 @@ export default function RoiCalculator() {
                 <div className="space-y-1">
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Initial System Build</span>
                   <div className="text-3xl lg:text-4xl font-black tracking-tighter text-primary" aria-live="polite">
-                    {formatCurrency(calculations.buildCost)}
+                    {formatCurrency(calculations.buildCost) + (integrations < 12 ? '' : "+")}
                   </div>
                   <div className="text-[10px] opacity-70 font-medium">One-time engineering fee</div>
                 </div>

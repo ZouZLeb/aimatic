@@ -187,7 +187,7 @@ export default function CaseStudies() {
                       className="h-full overflow-hidden bg-card/40 backdrop-blur-md cursor-pointer group flex flex-col border-border/50"
                       onClick={() => setSelectedCase(study)}
                     >
-                      <div className="relative h-48 bg-muted/20">
+                      <div className="relative h-48 bg-muted/20 overflow-hidden">
                         {studyImg && (
                           <Image
                             src={studyImg.imageUrl}
@@ -281,7 +281,7 @@ export default function CaseStudies() {
                 "{selectedCase.fullDetails.testimonial}"
               </blockquote>
             )}
-            <Button size="lg" className="w-full mt-4" asChild>
+            <Button size="sm" className="mt-4 p-2" asChild>
               <a href="#contact">Build This System for My Team</a>
             </Button>
           </div>
