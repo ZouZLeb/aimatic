@@ -9,6 +9,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { BrandName } from "@/components/brand-name";
+import { useDoc, useFirestore, useMemoFirebase } from "@/firebase";
+import { doc } from "firebase/firestore";
 
 const ComparisonCard = ({
   type,
@@ -51,7 +53,6 @@ const ComparisonCard = ({
               <AlertCircle className="w-5 h-5 md:w-6 md:h-6 text-destructive" aria-hidden="true" />
             )}
           </div>
-          {/* Increased padding-right on mobile (pr-28) to prevent overlap with the floating badge */}
           <div className="pr-28 md:pr-0">
             <h3 className="font-black text-sm md:text-lg text-foreground tracking-tight leading-tight mb-1">{title}</h3>
             <p className="text-[10px] md:text-xs text-muted-foreground font-medium">{description}</p>
@@ -77,6 +78,14 @@ const ComparisonCard = ({
 };
 
 export default function Hero() {
+  const firestore = useFirestore();
+  const heroRef = useMemoFirebase(() => doc(firestore, 'hero_content', 'main'), [firestore]);
+  const { data: heroData } = useDoc(heroRef);
+
+  // Fallback content
+  const headline = heroData?.headline || "Own Your Automation. Protect Your Data.";
+  const subheadline = heroData?.subheadline || "Stop renting your business logic. AImatic is a developer-backed n8n automation agency engineering custom, secure, and self-hosted systems that you own forever.";
+
   return (
     <section className="relative flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden bg-transparent" aria-labelledby="hero-title">
       <div className="container mx-auto px-6 relative z-10">
@@ -99,8 +108,12 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <h1 id="hero-title" className="text-4xl md:text-6xl lg:text-7xl font-black font-headline mb-6 tracking-tight leading-[1.05] text-foreground">
-              Own Your Automation. <br />
-              <span className="text-primary italic">Protect Your Data.</span>
+              {headline.split('. ').map((part, i) => (
+                <span key={i}>
+                  {i === 1 ? <span className="text-primary italic">{part}</span> : part}
+                  {i === 0 ? <br /> : null}
+                </span>
+              ))}
             </h1>
           </motion.div>
 
@@ -110,7 +123,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-medium"
           >
-            Stop renting your business logic. <BrandName /> is a developer-backed <strong>n8n automation agency</strong> engineering custom, secure, and self-hosted systems that you own forever.
+            {subheadline}
           </motion.p>
 
           <motion.div
@@ -121,7 +134,7 @@ export default function Hero() {
           >
             <Button size="lg" className="px-8" asChild aria-label="Book a free automation audit">
               <Link href="#contact" className="flex items-center gap-2">
-                Get Your Free Audit <ArrowRight className="w-4 h-4" />
+                {heroData?.primaryCtaText || "Get Your Free Audit"} <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </motion.div>
@@ -138,7 +151,7 @@ export default function Hero() {
               <ComparisonCard
                 type="competitor"
                 label="Standard Agencies"
-                title="The 'Prompt' Wrapper"
+                title={heroData?.beforeOverlayText || "The 'Prompt' Wrapper"}
                 description="Fragile tools built on rented platforms with zero data privacy."
                 imageId="hero-before"
               />
@@ -153,14 +166,13 @@ export default function Hero() {
               <ComparisonCard
                 type="aimatic"
                 label={<>The <BrandName className="px-1 text-foreground inline-block"/> Way</>}
-                title="Custom Engineering"
+                title={heroData?.afterOverlayText || "Custom Engineering"}
                 description="Secure, self-hosted code that stays within your business walls."
                 imageId="hero-after"
               />
             </motion.div>
           </div>
 
-          {/* Responsive VS Indicator - Positioned to be exactly in the middle of the gap on both mobile and desktop */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-background border-2 border-border shadow-xl font-black text-[10px] md:text-sm italic text-muted-foreground">
             VS
           </div>

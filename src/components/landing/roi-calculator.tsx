@@ -7,6 +7,8 @@ import { Slider } from "../ui/slider";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useDoc, useFirestore, useMemoFirebase } from "@/firebase";
+import { doc } from "firebase/firestore";
 
 const COMPLEXITY_LEVELS = [
   { label: "Simple", multiplier: 1, description: "Standard Connections" },
@@ -21,19 +23,25 @@ const MAINTENANCE_LEVELS = [
 ];
 
 export default function RoiCalculator() {
+  const firestore = useFirestore();
+  const settingsRef = useMemoFirebase(() => doc(firestore, 'roi_calculator_settings', 'defaults'), [firestore]);
+  const { data: dbSettings } = useDoc(settingsRef);
+
   const [integrations, setIntegrations] = useState(1);
   const [complexityIdx, setComplexityIdx] = useState(0);
   const [maintenanceIdx, setMaintenanceIdx] = useState(0);
-  const [hourlyRate, setHourlyRate] = useState(85);
-  const [weeklyHours, setWeeklyHours] = useState(10);
+  
+  const [hourlyRate, setHourlyRate] = useState(dbSettings?.defaultHourlyRate || 85);
+  const [weeklyHours, setWeeklyHours] = useState(dbSettings?.defaultHoursPerWeek || 10);
 
   const calculations = useMemo(() => {
     const baseBuildPrice = 499;
     const pricePerIntegration = 500;
     const complexityMultiplier = COMPLEXITY_LEVELS[complexityIdx].multiplier;
+    const avgCost = dbSettings?.solutionAverageCost || baseBuildPrice;
     
     const buildCost = Math.round(
-      (baseBuildPrice + ((integrations - 1) * pricePerIntegration)) * complexityMultiplier
+      (avgCost + ((integrations - 1) * pricePerIntegration)) * complexityMultiplier
     );
 
     const baseMonthlyPrice = 250;
@@ -48,7 +56,7 @@ export default function RoiCalculator() {
     const firstYearSavings = annualLabor - annualInvestment;
     
     return { buildCost, monthlyCost, annualLabor, firstYearSavings, annualInvestment };
-  }, [integrations, complexityIdx, maintenanceIdx, hourlyRate, weeklyHours]);
+  }, [integrations, complexityIdx, maintenanceIdx, hourlyRate, weeklyHours, dbSettings]);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("en-US", {

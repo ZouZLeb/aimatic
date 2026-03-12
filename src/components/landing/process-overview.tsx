@@ -7,65 +7,93 @@ import {
   Code2, 
   ShieldCheck, 
   Rocket, 
-  RefreshCcw
+  RefreshCcw,
+  LucideIcon
 } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 import { BrandName } from "../brand-name";
+import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
+import { collection, query, orderBy } from "firebase/firestore";
+import { useMemo } from "react";
 
-const steps = [
+const ICON_MAP: Record<string, LucideIcon> = {
+  PhoneCall,
+  FileText,
+  Code2,
+  ShieldCheck,
+  Rocket,
+  RefreshCcw,
+};
+
+const defaultSteps = [
   {
     title: "Free Problem Review",
     description: "A quick 15-minute call to identify where your business is losing time and where automation can have the highest ROI.",
-    icon: PhoneCall,
-    badge: "Step 01",
+    iconIdentifier: "PhoneCall",
+    stepNumber: 1,
     color: "text-blue-500",
     gradient: "from-blue-500 to-blue-500/20",
   },
   {
     title: "Custom Project Roadmap",
     description: "We provide a clear architectural scope with fixed pricing. No hidden fees, no per-task costs, and no monthly licensing.",
-    icon: FileText,
-    badge: "Step 02",
+    iconIdentifier: "FileText",
+    stepNumber: 2,
     color: "text-amber-500",
     gradient: "from-amber-500/20 to-amber-500",
   },
   {
     title: "Expert Engineering Phase",
     description: "Our security-certified developers build your private n8n or Python automation directly in your environment.",
-    icon: Code2,
-    badge: "Step 03",
+    iconIdentifier: "Code2",
+    stepNumber: 3,
     color: "text-purple-500",
     gradient: "from-purple-500 to-purple-500/20",
   },
   {
     title: "Security & Privacy Audit",
     description: "We perform rigorous hardening and testing to ensure your business data stays 100% private and proprietary.",
-    icon: ShieldCheck,
-    badge: "Step 04",
+    iconIdentifier: "ShieldCheck",
+    stepNumber: 4,
     color: "text-green-500",
     gradient: "from-green-500/20 to-green-500",
   },
   {
     title: "System Handover & IP",
     description: "You receive the keys. 100% ownership of your tools, source code, and comprehensive documentation.",
-    icon: Rocket,
-    badge: "Step 05",
+    iconIdentifier: "Rocket",
+    stepNumber: 5,
     color: "text-red-500",
     gradient: "from-red-500 to-red-500/20",
   },
   {
     title: "Ongoing Maintenance",
     description: "Optional monthly support to keep your systems updated, secure, and scaling with your company's growth.",
-    icon: RefreshCcw,
-    badge: "Step 06",
+    iconIdentifier: "RefreshCcw",
+    stepNumber: 6,
     color: "text-cyan-500",
     gradient: "from-cyan-500/20 to-cyan-500",
   },
 ];
 
 export default function ProcessOverview() {
+  const firestore = useFirestore();
+  const stepsRef = useMemoFirebase(() => query(collection(firestore, 'security_process_steps'), orderBy('stepNumber', 'asc')), [firestore]);
+  const { data: dbSteps } = useCollection(stepsRef);
+
+  const steps = useMemo(() => {
+    const raw = dbSteps && dbSteps.length > 0 ? dbSteps : defaultSteps;
+    return raw.map((step, idx) => ({
+      ...step,
+      // Ensure defaults for styling if not in DB
+      color: (step as any).color || defaultSteps[idx]?.color || "text-primary",
+      gradient: (step as any).gradient || defaultSteps[idx]?.gradient || "from-primary/20 to-primary/20",
+      icon: ICON_MAP[step.iconIdentifier] || PhoneCall
+    }));
+  }, [dbSteps]);
+
   return (
     <section id="lifecycle" className="bg-transparent py-10 md:py-16 relative overflow-hidden" aria-labelledby="process-title">
       <div className="container mx-auto px-6">
@@ -122,7 +150,7 @@ export default function ProcessOverview() {
                         idx % 2 === 0 ? "md:flex-row-reverse" : "flex-row"
                       )}>
                         <Badge variant="secondary" className="bg-primary/10 text-primary border-none text-[9px] uppercase font-bold tracking-[0.2em] px-2 py-0.5">
-                          {step.badge}
+                          Step {step.stepNumber.toString().padStart(2, '0')}
                         </Badge>
                       </div>
                       <h3 className="text-xl font-bold mb-2 text-foreground">
