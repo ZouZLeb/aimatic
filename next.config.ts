@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
-    qualities: [25, 50, 60, 75, 90, 100],
+    // qualities: [25, 50, 60, 75, 90, 100],
     remotePatterns: [
       {
         protocol: 'https',
@@ -33,7 +33,21 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/index.html',
+      },
+    ];
   },
 };
 

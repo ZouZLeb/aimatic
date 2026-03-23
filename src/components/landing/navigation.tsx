@@ -23,6 +23,7 @@ const navItems = [
   { id: 'projects', name: 'Projects', href: '#case-studies' },
   { id: 'process', name: 'Process', href: '#lifecycle' },
   { id: 'calculator', name: 'Calculator', href: '#roi-calculator' },
+  { id: 'blog', name: 'Blog', href: '/blog' },
 ];
 
 export default function Navigation() {

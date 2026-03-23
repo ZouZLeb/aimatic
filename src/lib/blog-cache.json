@@ -1,0 +1,22 @@
+[
+  {
+    "frontmatter": {
+      "title": "Welcome to the AImatic Blog",
+      "slug": "welcome-to-the-blog",
+      "description": "Introducing our new blog where we share AI automation insights, tutorials, and updates from the AImatic team.",
+      "ogTitle": "Welcome to the AImatic Blog",
+      "ogDescription": "Introducing our new blog — AI automation insights, tutorials, and updates from the AImatic team.",
+      "bannerImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000",
+      "youtubeVideoId": "",
+      "publishedAt": "2026-03-22T00:00:00.000Z",
+      "draft": false,
+      "category": "General",
+      "tags": [
+        "welcome",
+        "announcement"
+      ]
+    },
+    "content": "<p>Welcome to the AImatic blog! This is where we share insights on AI automation, n8n workflows, secure integrations, and real-world case studies from our work with small businesses in San Diego and beyond.</p>\n<div class=\"my-6 px-6 py-4 rounded-xl border-l-4 bg-primary/10 border-primary\"><h4 class=\"font-bold mb-2 mt-0\">Brand New Layout!</h4><div class=\"[&>p]:m-0 text-sm\">\nWe just updated our blog layout to support beautiful banner images, featured YouTube videos, and rich custom components right inside the MDX content! See them in action below.\n</div></div>\n\n<h2>What to Expect</h2>\n<p>We&#39;ll be posting regularly on topics like:</p>\n<ul>\n<li><strong>AI automation workflows</strong> — how to save hours each week using n8n and custom agents</li>\n<li><strong>Secure integrations</strong> — building private, self-hosted AI systems you actually own</li>\n<li><strong>Client case studies</strong> — real results from real businesses</li>\n<li><strong>Tips &amp; tricks</strong> — practical guides for getting more out of your automation stack</li>\n</ul>\n<p>Here is an example of embedding a secondary YouTube video directly within the text using our custom MDX components:</p>\n<div class=\"my-8 aspect-video w-full rounded-xl overflow-hidden shadow-lg border border-border\"><iframe class=\"w-full h-full\" src=\"https://www.youtube.com/embed/jNQXAC9IVRw\" title=\"YouTube video player\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></div>\n\n<p>Stay tuned, and feel free to reach out at <a href=\"mailto:hello@aimatic.dev\">hello@aimatic.dev</a> with topics you&#39;d like us to cover.</p>\n",
+    "slug": "welcome-to-the-blog"
+  }
+]
