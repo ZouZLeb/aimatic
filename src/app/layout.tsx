@@ -11,12 +11,14 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
+  preload: false,
 });
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
   variable: '--font-mono',
   display: 'swap',
+  preload: false,
 });
 
 const merriweather = Merriweather({
@@ -24,6 +26,7 @@ const merriweather = Merriweather({
   weight: ['400', '700', '900'],
   variable: '--font-merriweather',
   display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = {
